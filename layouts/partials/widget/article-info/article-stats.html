@@ -1,0 +1,14 @@
+<div class="text-tagborder border-t mt-6  font-headline">
+    <div class="px-6 sm:px-5 py-3 flex items-center">
+        {{ (resources.Get "icons/calendar.svg").Content | safeHTML }}
+        <span class="px-4"> <span class="sm:hidden"> Last</span> Updated in <span
+                class="text-deepgray">{{ dateFormat "Mon Jan 2, 2006" .Params.Updated }}</span></span>
+    </div>
+    <div class="px-6 sm:px-5 py-3 flex items-center border-t border-b">
+        {{ (resources.Get "icons/scale.svg").Content | safeHTML }}
+        <span class="px-4"><span class="sm:hidden">This article under the</span> <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="text-deepgray" target="_blank"
+                rel="noopener"><span class="cursor-default">CC BY-NC-ND 4.0.</span>
+                <span class="capitalize article-link cursor-pointer">learn more</span></a></span></span>
+    </div>
+</div>

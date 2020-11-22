@@ -1,0 +1,72 @@
+baseURL = "https://blog.itswincer.com/"
+languageCode = "en-us"
+title = "Wincer's Blog"
+hasCJKLanguage = true
+paginate = 6
+canonifyURLS = true
+disableKinds  = ["RSS", "sitemap"]
+ignoreErrors = ["error-output-taxonomy"]
+DisablePathToLower = true
+
+[Author]
+    name = "Wincer"
+
+[markup]
+    [markup.highlight]
+        lineNos = true
+        noClasses = false
+
+[module]
+    noVendor = ""
+    private = '*.*'
+    proxy = "direct"
+    [[module.imports]]
+        path = "github.com/WincerChan/BlogContent"
+        disabled = false
+        [[module.imports.mounts]]
+            source = "content"
+            target = "content"
+
+[permalinks]
+    posts = "posts/:slug"
+    page = "/:slug/"
+
+[taxonomies]
+    category = "category"
+    tag = "tags"
+
+[outputs]
+    home = ["AMP", "SITEMAP", "HTML", "ATOM", "MANIFEST"]
+    section = ["SITEMAP"]
+    taxonomy = ["SITEMAP"]
+    page = ["HTML", "AMP"]
+
+[mediaTypes]
+    [mediaTypes."application/atom+xml"]
+        suffixes               = ["xml"]
+    [mediaTypes."application/manifest+json"]
+        suffixes              = ["webmanifest"]
+
+[outputFormats.SITEMAP]
+    mediatype             = "application/xml"
+    basename              = "sitemap"
+    ishtml                = false
+    isplaintext           = true
+    nougly                = true
+    rel                   = "sitemap"
+
+[outputFormats.ATOM]
+    MediaType              = "application/atom+xml"
+    BaseName               = "atom"
+    IsHTML                 = false
+    IsPlainText            = true
+    noUgly                 = true
+    Rel                    = "alternate"
+
+[outputFormats.MANIFEST]
+    MediaType             = "application/manifest+json"
+    BaseName              = "manifest"
+    suffix                = "webmanifest"
+    IsHTML                = false
+    IsPlainText           = true
+    noUgly                = false

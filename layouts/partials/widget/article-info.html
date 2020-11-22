@@ -1,0 +1,19 @@
+{{ if in .Site.Params.mainSections .Type }}
+
+<div class="inline-flex items-center flex-wrap my-1 font-headline">
+    {{ (resources.Get "icons/clock.svg").Content | safeHTML}}
+    <span class="uppercase text-beargray my-1 pl-5">Posted in <span
+            class="text-deepgray">{{ dateFormat " Jan 2, 2006" .Date }}</span> </span>
+</div>
+<div class="inline-flex items-center flex-wrap my-1 font-headline">
+    {{ (resources.Get "icons/doc-stat.svg").Content | safeHTML}}
+    <span class="uppercase text-beargray my-1 pl-5">Article has <span class="text-deepgray">{{ .WordCount }}</span>
+        words</span>
+</div>
+<div class="inline-flex items-center flex-wrap my-1 font-headline">
+    {{ (resources.Get "icons/eye.svg").Content | safeHTML}}
+    <span class="uppercase text-beargray my-1 pl-5">It takes <span class="text-deepgray">{{ div .WordCount 500 }}</span>
+        minute(s) read</span>
+</div>
+<div class="seprator my-5"></div>
+{{end}}

@@ -1,0 +1,12 @@
+<div class="rounded-big font-sans">
+    <h1 class="uppercase pb-8 text-maintext text-title font-medium w-full site-name py-2 sm:px-4">
+        {{ printf "%s：%s（%d）" .Type .Title (len .Pages) }}
+    </h1>
+    {{ $published := where .Pages "Params.published" "!=" false }}
+    <div class="space-y-6">
+        {{ range $published }}
+        {{ partial "core/card-compact" . }}
+        {{ end }}
+    </div>
+</div>
+{{ partial "footer/site-footer.html" . }}

@@ -1,0 +1,12 @@
+<div class="bg-contentbg rounded-big shadow-lg font-sans overflow-hidden">
+    <div class="lazy flex content-end flex-wrap bg-cover w-full bg-center h-64 box-border mb-3"
+        data-src="{{ .Params.cover }}">
+    </div>
+    {{ partial "core/main-text" . }}
+
+    {{ partial "widget/disqus" . }}
+</div>
+{{ if in .Site.Params.mainSections .Type }}
+{{ partial "widget/neighbor" . }}
+{{ end }}
+{{ partial "footer/site-footer" . }}

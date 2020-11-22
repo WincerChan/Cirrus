@@ -1,0 +1,8 @@
+<div class="w-1/2 px-2 sm:w-full">
+    <a class="inline-flex w-full flex-wrap link-card bg-contentbg my-4  rounded-lg text-deepgray hover:shadow-xl transition ease-linear duration-300 border-gray-600"
+        href="{{ .Get 1 }}" target="_blank" title="{{ .Get 0 }}">
+        <img class="h-20 w-20 lazy rounded-lg" data-src="{{ .Get 2 }}" alt=""
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWP4+vXrfwAJoQPf9FzjxgAAAABJRU5ErkJggg==">
+        <span class="text-center px-4 font-headline py-2 text-2xl truncate mr-auto">{{ .Get 0 }}</span>
+    </a>
+</div>

@@ -1,0 +1,6 @@
+{{ range .Site.Taxonomies.tags }}
+{{ $.Scratch.Add "tags" (dict "title" .Page.Title "count" .Count "link" .Page.RelPermalink) }}
+{{ end }}
+{{ range first .Site.Params.tagNumber ($.Scratch.Get "tags" | shuffle) }}
+{{ partial "widget/right-side/single-tag" (dict "style" "button" "count" (index . "count") "name" (index . "title") "link" (index . "link") ) }}
+{{ end }}

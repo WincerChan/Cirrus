@@ -1,0 +1,15 @@
+{{ print "<?xml version=\"1.0\" encoding=\"UTF-8\"?><?xml-stylesheet type=\"text/xsl\" href=\"/sitemap.xsl\"?>"  | safeHTML }}
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {{ range .Site.Sections }}
+  <sitemap>
+    <loc>{{ printf "%s%s/sitemap.xml" .Site.BaseURL .Section }}</loc>
+    <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05Z" }}</lastmod>
+  </sitemap>
+  {{ end }}
+  {{ range $name, $taxo := .Site.Taxonomies }}
+    <sitemap>
+      <loc>{{ printf "%s%s/sitemap.xml" site.BaseURL $name }}</loc>
+      {{ with site.GetPage $name }}<lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05Z" }}</lastmod>{{ end }}
+    </sitemap>
+  {{ end }}
+</sitemapindex>

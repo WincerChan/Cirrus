@@ -1,0 +1,24 @@
+<div class="text-tagborder flex flex-col items-start md:mx-0 ">
+    <div class="inline-flex items-center flex-wrap my-1 pb-1">
+        {{ (resources.Get "icons/tag.svg").Content | safeHTML }}
+        <span class="text-lg uppercase my-1 pl-5 font-headline">
+            {{ if in .Site.Params.mainSections .Type }}
+            Tags
+            {{ else }}
+            Featured tags
+            {{ end }}
+        </span>
+    </div>
+    <div class="flex-wrap flex text-beargray pb-1 font-button">
+        {{ $.Scratch.Set "tags" (slice) }}
+        {{ if in .Site.Params.mainSections .Type }}
+        {{ partial "widget/right-side/article-tags" (dict "C" . "style" "button" ) }}
+        {{ else }}
+        {{ partial "widget/right-side/site-tags" . }}
+        {{ end }}
+
+    </div>
+    {{ if in .Site.Params.mainSections .Type }}
+    <div class="seprator mt-6 mb-3"></div>
+    {{ end }}
+</div>

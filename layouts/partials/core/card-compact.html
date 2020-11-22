@@ -1,0 +1,28 @@
+<div class="bg-contentbg flex flex-wrap rounded-xl overflow-hidden font-sans rounded-lg link-card">
+    <div class="metadata w-2/3 px-4 py-4">
+        <a href="{{ .RelPermalink }}">
+            <h3 class="text-deepgray truncate w-full text-xl hover:text-hyper">{{ .Title }}</h3>
+        </a>
+        <div class="inline-flex w-full text-beargray font-headline  pb-2 sm:pb-3">
+            <footer class="flex h-4 items-center">
+                {{ dateFormat "Monday, Jan 2, 2006" .Date }}
+            </footer>
+        </div>
+        <div class="flex flex-wrap items-center text-beargray pt-2">
+            <p class="truncate">
+                Cat.:
+                {{ $category := .Params.Category }}
+                {{ with $.Site.GetPage (printf "/category/%s" $category) }}
+                <span class="text-base text-hyper pl-1 pr-4">
+                    <a href="{{ .RelPermalink }}" class="hover">{{ $category }}</a>
+                </span>
+                {{ end }}
+                Tags:
+                {{ partial "widget/right-side/article-tags" (dict "C" . "style" "span" ) }}
+            </p>
+        </div>
+    </div>
+    <div class="article-cover content-end rounded-lg overflow-hidden w-1/3 bg-cover bg-center lazy"
+        data-src="{{ .Params.Cover }}">
+    </div>
+</div>

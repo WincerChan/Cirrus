@@ -1,0 +1,24 @@
+{{- $title := .Title  -}}
+{{- $siteTitle := .Site.Title -}}
+
+{{- if .IsHome -}}
+<!-- Homepage, and it's pagination -->
+
+<!-- Build paginator -->
+{{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+{{ $published := where .Site.Pages "Params.published" "!=" false }}
+{{ $page := .Paginate ($all | intersect $published) }}
+
+{{ if $page.HasPrev }}
+<!-- Paginated. Append page number to title -->
+{{ $title = printf "%d · %s" $page.PageNumber $siteTitle }}
+{{ else }}
+{{ $title = $siteTitle}}
+{{ end }}
+{{- else if eq .Kind "term" -}}
+{{ $title = printf "%s: %s · %s" (.Type | upper) $title $siteTitle }}
+{{ else }}
+{{ $title = printf "%s · %s" $title $siteTitle }}
+{{- end -}}
+
+{{ return $title }}

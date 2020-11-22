@@ -1,0 +1,94 @@
+<article class="pt-2">
+    <div class="article-meta text-beargray">
+
+        {{ with .Params.tags }}
+        <div class="hidden lg:block article-tags px-6 sm:px-5 font-button text-code">
+            {{ range . }}
+            {{ $page := site.GetPage (printf "/tags/%s" .) }}
+            {{ partial "widget/right-side/single-tag" (dict "style" "button" "name" . "link" $page.RelPermalink ) }}
+            {{ end }}
+        </div>
+        {{ end }}
+        {{ $wordcount := .WordCount }}
+        {{ $date := .Date }}
+        <h1 class="text-maintext text-title font-medium w-full py-2 px-6 sm:px-5">{{ .Title }}</h1>
+        {{ with .Params.Subtitle }}
+        <h5 class="text-deepgray text-xl font-medium pb-3 px-6 sm:px-5">{{ . }}</h5>
+        {{ end }}
+        {{ with .Params.tags }}
+        <div class=" mb-3 block font-headline">
+            <div class="inline-flex items-center flex-wrap px-6 sm:px-5">
+                {{ (resources.Get "icons/clock.svg").Content | safeHTML  }}
+                <span class="uppercase text-tagborder my-1 pl-3">POSTED in
+                    <span class="text-deepgray"> {{ dateFormat "Mon Jan 2, 2006" $date }}</span> </span>
+            </div>
+            <div class="inline-flex items-center flex-wrap px-6 sm:px-5">
+                {{ (resources.Get "icons/doc-stat.svg").Content | safeHTML  }}
+                <span class="uppercase text-tagborder my-1 pl-3"><span class="text-deepgray">{{ $wordcount }}</span>
+                    Words,
+                    <span class="text-deepgray">{{ div $wordcount 500 }}</span> MIN(S) to read. </span>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{ if in .Site.Params.mainSections .Type }}
+    {{ $days := div (sub now.Unix .Date.Unix) 86400 }}
+    {{ if gt $days 90 }}
+    <blockquote id="out-dated" class="border-bqborder bg-bqbg">
+        <p class="">本文最近一次更新于 {{ $days }} 天前，其中所包含的信息很可能已经有所发展或是发生改变。</p>
+    </blockquote>
+    {{ end }}
+    {{ end }}
+    <content class="{{ with .Params.encrypt_pwd }} hidden {{ end }}" {{ with .Params.encrypt_pwd }}
+        data-password={{ . }} {{ end }}>
+        {{ .Content }}
+    </content>
+    {{ with .Params.encrypt_pwd }}
+    <script src=" https://cdn.jsdelivr.net/npm/crypto-js@4.0.0/crypto-js.min.js" crossorigin async defer>
+    </script>
+    <script>
+        appendLeft = (passwd, length) => {
+            pwd = ''
+            for (let i = passwd.length; i < 16; i++)
+                pwd += 'a'
+            return pwd + passwd
+        }
+        DoDecrypt = (pwd, ele) => {
+            pwd = appendLeft(pwd, 16);
+            let key = CryptoJS.enc.Utf8.parse(pwd),
+                encryptedHexStr = CryptoJS.enc.Hex.parse(ele.innerHTML),
+                encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+            decrypted = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+                iv: key,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            try {
+                ele.innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
+                ele.classList.remove('hidden')
+                document.getElementById('input').remove()
+            } catch {
+                console.log("Error Password")
+                document.getElementById("error_msg").classList.remove('hidden')
+            }
+
+        }
+        EnterPress = (event) => {
+            console.log(event)
+            var keyCode = event.which || event.keyCode;
+            if (keyCode !== 13) return
+            const passwd = document.getElementsByTagName('input')[0].value
+            DoDecrypt(passwd, document.getElementsByTagName('content')[0])
+        }
+    </script>
+    <div id="input" class="my-4">
+        <input type="text" placeholder="🔑 Input Password, Press `Enter`" onkeydown="EnterPress"
+            onkeypress="EnterPress(event)"
+            class="transition ease-linear duration-300 border-hyper w-64 border-b-2 px-2 py-1 focus:border-hyper focus:outline-none">
+        <span id="error_msg" class="text-red-600 pl-6 hidden">🙅Wrong Password！</span>
+    </div>
+    {{ end }}
+    {{ if in .Site.Params.mainSections .Type }}
+    {{ partial "widget/article-info/article-stats" . }}
+    {{ end }}
+</article>

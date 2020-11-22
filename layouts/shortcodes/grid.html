@@ -1,0 +1,10 @@
+<hr>
+<div class="px-5 text-center text-2xl text-deepgray mb-8 mt-6">
+    {{ if eq "life" (.Get 0) }}
+    <span class="">我看过的电影（{{ now.Year }}）</span>
+    {{ else if eq "friends"  (.Get 0) }}
+    {{ end }}
+</div>
+<div class="flex flex-wrap px-4 mb-4 items-end">
+    {{ .Inner }}
+</div>

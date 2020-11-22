@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{ $all := where site.RegularPages ".Section" "in" site.Params.mainSections }}
+{{ $published := where site.RegularPages "Params.published" "!=" false }}
+{{ $paginate := .Paginate ($all | intersect $published) }}
+{{ range $paginate.Pages }}
+{{ partial "core/card-default" . }}
+{{ end }}
+<div class="h-6"></div>
+{{ partial "widget/paginate.html" . }}
+<div class="h-10"></div>
+{{ partial "footer/site-footer.html" . }}
+{{ end }}

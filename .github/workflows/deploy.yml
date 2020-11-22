@@ -1,0 +1,58 @@
+name: Blog Workflow
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.74.3'
+          extended: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: Install Yarn
+        run: |
+          npm install -g rollup yarn
+          yarn install
+          rollup -c
+
+      - name: Initial Environment
+        env:
+          ID_ED25519: ${{secrets.ed25519}}
+          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_IP: ${{secrets.SSH_IP}}
+          SSH_PORT: ${{secrets.SSH_PORT}}
+          GOSUMDB: off
+          GOPROXY: direct
+        run: |
+          export GOPRIVATE="github.com/WincerChan"
+          git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+          mkdir -p ~/.ssh
+          echo "$ID_ED25519" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf "Host blog\n    HostName $SSH_IP\n    User $SSH_USER\n    Port $SSH_PORT" > ~/.ssh/config
+          { ssh-keyscan -p $SSH_PORT $SSH_IP 2> /dev/null; } >> ~/.ssh/known_hosts
+
+      - name: Build
+        env:
+          GOPRIVATE: "github.com/WincerChan"
+        run: |
+          go version
+          go get github.com/WincerChan/BlogContent
+          hugo --minify
+          $(go env GOPATH)/bin/BlogContent encrypt_posts.toml
+
+      - name: Depoly
+        run: rsync -az -v --delete public/* blog:/usr/share/www/hexo

@@ -1,0 +1,11 @@
+{{ if in .Site.Params.mainSections .Type }}
+<div class="text-beargray-600 flex flex-col items-start md:mx-0">
+    <div class="inline-flex items-center flex-wrap my-1">
+        {{ (resources.Get "icons/book.svg").Content | safeHTML }}
+        <span class="text-lg uppercase text-tagborder my-1 pl-5 font-headline">Catalog</span>
+    </div>
+    <div class="flex-wrap flex text-beargray pb-1">
+        {{ .TableOfContents }}
+    </div>
+</div>
+{{ end }}

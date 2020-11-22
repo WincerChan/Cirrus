@@ -1,0 +1,34 @@
+[[main]]
+    identifier = "home"
+    name = "Home"
+    url ="/"
+    weight = 10
+    pre = "home"
+
+[[main]]
+    identifier = "about"
+    name = "About"
+    url ="/about/"
+    weight = 20
+    pre = "user"
+
+[[main]]
+    identifier = "life"
+    name = "Life"
+    url ="/life/"
+    weight = 30
+    pre = "news"
+
+[[main]]
+    identifier = "friends"
+    name = "Friends"
+    url = "/friends/"
+    weight = 40
+    pre = "link"
+
+[[main]]
+    identifier = "archives"
+    name = "Archives"
+    url = "/archives/"
+    weight = 50
+    pre = "archive"

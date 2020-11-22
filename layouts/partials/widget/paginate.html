@@ -1,0 +1,23 @@
+<div class="flex justify-between text-beargray uppercase font-headline">
+    {{ $all := where site.RegularPages ".Section" "in" site.Params.mainSections }}
+    {{ $published := where site.RegularPages "Params.published" "!=" false }}
+    {{ $paginator := .Paginate ( $all | intersect $published) }}
+    {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}">
+        <div class="text-center bg-contentbg rounded-big px-5 py-3 link-card">
+            Newer Posts
+        </div>
+    </a>
+    {{ else }}
+    <div class=""></div>
+    {{ end }}
+    {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}">
+        <div class="text-center bg-contentbg rounded-big px-5 py-3 link-card">
+            Older Posts
+        </div>
+    </a>
+    {{ else }}
+    <div class=""></div>
+    {{ end }}
+</div>

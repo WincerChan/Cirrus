@@ -1,0 +1,5 @@
+{{ $tags := .C.Params.Tags }}
+{{ range $tags }}
+{{ $page := site.GetPage (printf "/tags/%s" .) }}
+{{ partial "widget/right-side/single-tag" (dict "style" $.style "name" . "link" $page.RelPermalink ) }}
+{{ end }}
