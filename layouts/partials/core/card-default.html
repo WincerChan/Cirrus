@@ -6,7 +6,7 @@
                 {{ $category := .Params.Category }}
                 {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                 <div style="line-height: 34px;"
-                    class="text-categorytag font-bold cursor-pointer bg-black ml-4 text-code bg-opacity-25 hover:bg-opacity-50 px-button mx-1 my-1 font-button transform inline-block transition ease-linear duration-300 rounded-full">
+                    class="text-categorytag font-bold cursor-pointer bg-black ml-4 text-sm bg-opacity-25 hover:bg-opacity-50 px-button mx-1 my-1 font-button inline-block transition ease-linear duration-300 rounded-full">
                     <a href="{{ .Permalink }}" title="{{ $category }}">
                         {{ $category }}
                     </a>
