@@ -9,7 +9,7 @@
         <div class="rounded-lg my-1 bg-cover h-48 items-center flex justify-center lazy bg-center link-card"
             data-src="{{ index $covers .Page.Title }}" style="flex: 0 0 14rem;">
             <a href={{ .Page.Permalink }}>
-                <span class="text-xl text-beargray-200 card-title">{{ .Page.Title }}（{{ .Count }}）</span>
+                <span class="text-xl text-categorytag card-title">{{ .Page.Title }}（{{ .Count }}）</span>
             </a>
         </div>
         {{ end }}
