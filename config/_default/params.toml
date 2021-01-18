@@ -5,7 +5,7 @@ description = "这里是 @Wincer，喜欢折腾新技术，却没多大耐心。
 
 tagNumber = 50
 
-vendorName = "wir@1.3.2"
+vendorName = "wir@1.3.3"
 
 [Sitemap]
     changeFreq = "weekly"
