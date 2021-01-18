@@ -36,7 +36,7 @@ module.exports = {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
       'headline': ["Lato", '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', '"Open Sans"', '"Helvetica Neue"', '"sans-serif"'],
       'maintext': ['"-apple-system"', "STXihei", "华文细黑", "Microsoft YaHei", "微软雅黑", "SimSun", "宋体", "Heiti", "黑体", '"sans-serif"'],
-      'button': ["-apple-system","BlinkMacSystemFont","'Helvetica Neue'","'PingFang SC'","'Source Han Sans SC'","'Noto Sans CJK SC'","'WenQuanYi Micro Hei'","sans-serif"]
+      'button': ["-apple-system", "'Helvetica Neue'", "'PingFang SC'", "'WenQuanYi Micro Hei'", "'noto sans'", "Cantarell", "'Arial'"]
     },
     extend: {
       opacity: {
