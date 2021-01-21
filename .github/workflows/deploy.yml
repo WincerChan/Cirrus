@@ -49,7 +49,7 @@ jobs:
         env:
           GOPRIVATE: "github.com/WincerChan"
         run: |
-          go version
+          cat config/_default/params.toml
           go get github.com/WincerChan/BlogContent
           hugo --minify
           $(go env GOPATH)/bin/BlogContent encrypt_posts.toml
