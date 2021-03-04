@@ -12,6 +12,9 @@
     "tailwindcss": "^1.8.13"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
@@ -20,5 +23,11 @@
     "workbox-expiration": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4"
+  },
+  "scripts": {
+    "start": "yarn start:hugo & yarn start:rollup",
+    "start:rollup": "rollup -c rollup.config.dev.js -w",
+    "start:hugo": "hugo serve --disableFastRender",
+    "build:rollup": "rollup -c rollup.config.prod.js"
   }
 }

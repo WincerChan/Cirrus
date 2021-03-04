@@ -235,6 +235,7 @@ content {
         @apply mx-1;
         @apply px-2;
         border-radius: 0.2rem;
+        background-color: var(--slightgray);
     }
     pre > code {
         background-color: unset;
@@ -312,7 +313,7 @@ content {
     }
 }
 
-#TableOfContents {
+#TableOfContents, .related-post {
     @apply text-left;
     @apply text-tagborder;
     @apply mt-2;
@@ -636,4 +637,14 @@ footer > svg {
             @apply text-hyper;
         }
     }
+}
+
+#search-results b {
+    color: var(--code)!important;
+    font-style: unset;
+    font-weight: unset;
+}
+
+input {
+    background-color: var(--content-bg);
 }

@@ -27,3 +27,6 @@ vendor
 node_modules
 resources/
 public
+content/
+static/*.js
+wir/

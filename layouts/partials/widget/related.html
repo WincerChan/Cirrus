@@ -1,0 +1,28 @@
+{{ $category := .Params.Category }}
+{{ $title := .Params.Title }}
+
+{{ if in .Site.Params.mainSections .Type }}
+<div class="seprator mt-6 mb-3"></div>
+<div class="text-beargray-600 flex flex-col items-start md:mx-0">
+    <div class="inline-flex items-center flex-wrap my-1">
+        {{ (resources.Get "icons/library.svg").Content | safeHTML }}
+        <span class="text-lg uppercase text-tagborder my-1 pl-5 font-headline">Relateds </span>
+    </div>
+    <ol class="text-left text-tagborder">
+        {{range first 8 (index .Site.Taxonomies.category $category)}}
+        {{ if ne .Title $title }}
+        <li>
+            <div>
+                <footer class="text-sm mb-0 mt-3">
+                    {{ dateFormat "2006-01-02" .Params.Date }}
+                </footer>
+                <a href="{{.Permalink}}" class="truncate hover:text-hyper transition ease-linear duration-300">
+                    {{.Title}}
+                </a>
+            </div>
+        </li>
+        {{ end }}
+        {{end}}
+    </ol>
+</div>
+{{end}}
