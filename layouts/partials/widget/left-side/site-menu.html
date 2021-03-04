@@ -7,9 +7,11 @@
             </span>
         </label>
     </span>
-    <span class="cursor-pointer" title="Search">
-        {{ (resources.Get "icons/search.svg").Content | safeHTML }}
-    </span>
+    <a href="/search/">
+        <span class="cursor-pointer" title="Search">
+            {{ (resources.Get "icons/search.svg").Content | safeHTML }}
+        </span>
+    </a>
     <a href="/atom.xml">
         <span class="cursor-pointer" title="RSS">
             {{ (resources.Get "icons/rss.svg").Content | safeHTML }}
@@ -23,12 +25,16 @@
             {{ range .Site.Menus.main }}
             {{ $isCurrent := eq (.URL | absLangURL) ($.Page.Permalink) }}
             <li
-                class="mt-3 mb-4 h-6 menus hover:text-hyper {{ if $isCurrent}} text-deepgray {{ else }} text-tagborder {{ end }} transition ease-linear duration-300">
-                <a href="{{ .URL }}" class="w-full inline-flex items-center flex-wrap no-underline h-6">
-                    <span class="text-svg  transition ease-linear duration-300">
+                class="mt-3 mb-4 h-6 menus hover:text-hyper {{ if $isCurrent}} text-deepgray {{ else }} text-tagborder {{ end }}">
+                <a href="{{ .URL }}"
+                    class="w-full inline-flex items-center flex-wrap no-underline h-6 transition ease-linear duration-300">
+                    <span class="text-svg flex-grow ">
                         {{ (resources.Get (printf "icons/%s.svg" .Pre)).Content | safeHTML }}
                     </span>
-                    <span class="px-4">{{ .Name }}</span>
+                    <div class="w-16">
+                        <span class="text-left pr-2">{{ .Name }}</span>
+                    </div>
+                    <span class="px-6 flex-grow"></span>
                 </a>
             </li>
             {{ end }}
