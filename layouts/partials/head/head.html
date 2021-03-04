@@ -6,7 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name="referrer" content="same-origin">
     {{ if .Site.IsServer }}
-    {{ $style := resources.Get "sass/main.scss" | toCSS | resources.PostCSS }}
+    {{ $style := resources.Get "sass/main.scss" | toCSS | resources.PostCSS | minify }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
     {{ else }}
     <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.vendorName }}/css/main.min.css" rel="preload" as="style">
