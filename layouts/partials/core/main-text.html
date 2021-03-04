@@ -2,7 +2,7 @@
     <div class="article-meta text-beargray">
 
         {{ with .Params.tags }}
-        <div class="hidden lg:block article-tags px-6 sm:px-5 font-button text-code">
+        <div class="article-tags px-6 sm:px-5 font-button text-code">
             {{ range . }}
             {{ $page := site.GetPage (printf "/tags/%s" .) }}
             {{ partial "widget/right-side/single-tag" (dict "style" "button" "name" . "link" $page.RelPermalink ) }}
