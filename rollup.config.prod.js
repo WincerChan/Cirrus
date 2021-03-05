@@ -1,7 +1,5 @@
 const plugin = require("./rollup.config")
 
-console.log(plugin())
-
 export default [{
   input: 'assets/scripts/workbox.js',
   output: {

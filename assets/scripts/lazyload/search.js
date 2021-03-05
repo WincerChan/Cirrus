@@ -76,7 +76,7 @@ class Search {
         } else {
             this.prev.style.display = "block"
         }
-        if (result.data.length < Params.pageSize || Params.page * Params.pageSize == result.counts) {
+        if (result.data.length < Params.pageSize || Params.page * Params.pageSize == result.count) {
             this.next.style.display = "none"
         } else {
             this.next.style.display = "block"
@@ -85,7 +85,6 @@ class Search {
     static fetchResults = async () => {
         this.constructParams()
         Params.Pages()
-        console.log(Params.self)
         this.url.search = new URLSearchParams(Params.self).toString()
         this.clearItemsChilds()
         let resp = await fetch(this.url),
@@ -114,6 +113,7 @@ class Search {
             var keyCode = event.which || event.keyCode
             if (keyCode !== 13) return
         }
+        Params.page = 1
         this.fetchResults()
     }
 }

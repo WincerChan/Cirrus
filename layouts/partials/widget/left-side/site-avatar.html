@@ -3,7 +3,7 @@
     <ul class="flex-1 grid grid-cols-1 w-6 pl-5 pt-2">
         {{ range .Site.Params.Social }}
         <li class="w-5">
-            <a href="{{ index . "url" }}" target="_blank" rel="noopener" aria-label={{ index . "icon" }}>
+            <a href="{{ index . " url" }}" target="_blank" rel="noopener" aria-label={{ index . "icon" }}>
                 {{ (resources.Get (printf "icons/%s.svg" (index . "icon"))).Content | safeHTML }}
             </a>
         </li>
