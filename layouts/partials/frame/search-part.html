@@ -25,35 +25,36 @@
     <div id="search-results" class="hidden">
         <div class="mb-4 md:px-2">
             <p class="text-sm text-deepgray">
-                共搜索到约<span id="search-number" class="w-5 text-center inline-block"></span>篇文章
+                共搜索到<span id="search-number" class="font-code w-6 text-center inline-block"></span>篇文章
             </p>
         </div>
         <div class="card-compact-list space-y-6" id="search-items">
         </div>
         <div class="mt-16 flex justify-between text-beargray uppercase font-headline">
-            <button>
-                <div id="search-prev" onclick="clickPrev()"
+            <div>
+
+                <button id="search-prev" onclick="clickPrev()"
                     class="text-center bg-contentbg rounded-big px-5 py-3 link-card">
                     Prev
-                </div>
-            </button>
-            <button>
-                <div id="search-next" onclick="clickNext()"
+                </button>
+            </div>
+            <div>
+                <button id="search-next" onclick="clickNext()"
                     class="text-center bg-contentbg rounded-big px-5 py-3 link-card">
                     Next
-                </div>
-            </button>
+                </button>
+            </div>
         </div>
     </div>
     <template id="search-item-tempate">
-        <div class="bg-contentbg flex flex-wrap rounded-xl overflow-hidden font-sans rounded-lg link-card">
+        <div class="bg-contentbg rounded-xl overflow-hidden font-sans rounded-lg link-card">
             <div class="metadata px-4 py-4">
                 <a id="search-url" class="cursor-pointer">
                     <h3 id="search-title" class="text-deepgray truncate w-full text-xl hover:text-hyper">
                     </h3>
                 </a>
                 <div class="w-full mt-3 text-beargray font-headline sm:pb-3">
-                    <p class="">
+                    <p class="text-justify">
                         <span id="search-date" class="h-4 items-center text-tagborder">
                         </span>
                         <span id="search-snippet">
