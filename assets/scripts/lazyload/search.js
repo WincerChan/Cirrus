@@ -43,6 +43,7 @@ class Params {
 class Search {
     static url = new URL(BACKENDAPI)
     static loadHTMLElement = () => {
+        if (!window.location.pathname.startsWith("/search/")) return
         this.hints = document.getElementById('search-hint')
         this.items = document.getElementById('search-items')
         this.results = document.getElementById('search-results')
@@ -52,7 +53,6 @@ class Search {
         this.next = document.getElementById('search-next')
         this.search = document.getElementById('search-button')
         this.input = document.getElementById('search-params')
-
         this.input.onkeypress = this.CheckSearch
         this.prev.onclick = this.clickPrev
         this.next.onclick = this.clickNext
