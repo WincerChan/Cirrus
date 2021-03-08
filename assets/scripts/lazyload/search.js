@@ -25,10 +25,10 @@ class Params {
     static New = (p) => {
         this.Clear()
         p.split(" ").forEach(t => {
-            if (t.startsWith("tags") || t.startsWith("category")) {
+            if (t.startsWith("tags:") || t.startsWith("category:")) {
                 this.Terms(t)
-            } else if (t.startsWith("date")) {
-                this.Range(t)
+            } else if (t.startsWith("range:")) {
+                this.Range(t.slice(6))
             } else {
                 this.Q(t)
             }
