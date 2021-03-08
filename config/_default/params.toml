@@ -6,7 +6,7 @@ description = "这里是 @Wincer，喜欢折腾新技术，却没多大耐心。
 tagNumber = 50
 
 [StaticVendor]
-    cssVer = "wir@1.3.8"
+    cssVer = "wir@1.3.9"
     jsSRI = "sha384-eB8w1Qy9GV0cxbfqRgL/Pg2gDvi11nY7fnkGaew1smhSxmCkijhDS98jgt9FpP6R"
     jsSRC = "defer.02d4ba36.js"
 
