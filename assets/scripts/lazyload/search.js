@@ -19,9 +19,6 @@ class Params {
         if (!this.self.q) this.self.q = []
         this.self.q.push(word)
     }
-    static FormatQ = () => {
-        this.self.q = this.self.q.join(" ")
-    }
     static Clear = () => {
         this.self = {}
     }
@@ -36,7 +33,6 @@ class Params {
                 this.Q(t)
             }
         })
-        this.FormatQ()
     }
 }
 
