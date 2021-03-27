@@ -7,8 +7,8 @@ tagNumber = 36
 disqusUserName = "wincer"
 
 [StaticVendor]
-    version = "wir@1.4.0"
-    jsSRI = "sha384-C7yIanqYPzcTjfVDtjmohnfB/wY9MelF8AtZtjfek+okh6Y3m9wHTF8xXJXCsd58"
+    version = "wir@1.4.1"
+    jsSRI = "sha384-pxYIGmTi1SpekK15+YXevkI+ZUlrEG1N5k6LpPE556jg/GrQ56ISoM1/wM8qKqAO"
 
 [Sitemap]
     changeFreq = "weekly"

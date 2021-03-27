@@ -9,8 +9,8 @@
     {{ $style := resources.Get "sass/main.scss" | toCSS | resources.PostCSS | minify }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
     {{ else }}
-    <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.cssVer }}/css/main.min.css" rel="preload" as="style">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.cssVer }}/css/main.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css" rel="preload" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css">
     {{ end }}
     {{ if in .Site.Params.mainSections .Type }}
     <meta name="description" content="{{ .Summary }}" />
@@ -39,7 +39,7 @@
     {{ if .Site.IsServer }}
     <script src="/bundle.js"></script>
     {{ else }}
-    <script src="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.cssVer }}/js/{{ .Site.Params.StaticVendor.jsSRC }}" async defer
+    <script src="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js" async defer
         integrity="{{ .Site.Params.StaticVendor.jsSRI }}"
         crossorigin="anonymous"></script>
     {{ end }}
