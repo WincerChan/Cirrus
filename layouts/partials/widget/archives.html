@@ -11,7 +11,7 @@
 {{ range $index, $item := $archives }}
 {{ $id := lower (replace $item.Key " " "-") }}
 <a href="/archives/#{{ $id }}"
-    class="pointer-default h-10 archives-info text-beargray bg-contentbg tag text-xs w-full flex items-center transition ease-linear duration-300 link-card">
+    class="pointer-default border h-10 archives-info border-tagborder text-beargray bg-contentbg tag text-xs w-full flex items-center transition ease-linear duration-300">
     <div class="flex items-center justify-between w-full">
         <div class="text-sm px-5">{{ .Key }}</div>
         <div class="text-sm px-5 text-beargray archives-count">{{ len $item.Pages }}</div>

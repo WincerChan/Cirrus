@@ -4,7 +4,7 @@ const instant_load = () => {
     const d = document,
         s = d.createElement('script'),
         btn = document.getElementById('load-disqus');
-    s.src = 'https://wincer.disqus.com/embed.js';
+    s.src = `https://${disqusUserName}.disqus.com/embed.js`;
     s.setAttribute('data-timestamp', + new Date());
     (d.head || d.body).appendChild(s);
     btn.classList.toggle('hidden');

@@ -13,8 +13,10 @@ export default [{
   output: {
     dir: './wir/js/',
     format: 'cjs',
-    entryFileNames: 'defer.[hash].js',
-    chunkFileNames: 'defer.[hash].js',
+    // entryFileNames: 'defer.[hash].js',
+    // chunkFileNames: 'defer.[hash].js',
+    entryFileNames: 'defer.prod.js',
+    chunkFileNames: 'defer.prod.js',
   },
   plugins: plugin(),
 },
