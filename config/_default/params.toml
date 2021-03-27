@@ -5,6 +5,7 @@ description = "这里是 @Wincer，喜欢折腾新技术，却没多大耐心。
 tagNumber = 36
 
 disqusUserName = "wincer"
+backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
     version = "wir@1.4.1"

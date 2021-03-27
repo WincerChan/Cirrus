@@ -15,6 +15,9 @@
         </div>
     </div>
 </body>
-<script>window.disqusUserName = {{ .Site.Params.disqusUserName }}</script>
+<script>
+    window.disqusUserName = {{ .Site.Params.disqusUserName }}
+    window.backendAPI = {{ .Site.Params.backendAPI }}
+</script>
 
 </html>
