@@ -28,5 +28,7 @@ node_modules
 resources/
 public
 content/
+content
 static/*.js
 wir/
+wir

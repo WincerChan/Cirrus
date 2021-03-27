@@ -5,10 +5,11 @@ description = "这里是 @Wincer，喜欢折腾新技术，却没多大耐心。
 tagNumber = 36
 
 disqusUserName = "wincer"
+backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
-    version = "wir@1.4.1"
-    jsSRI = "sha384-pxYIGmTi1SpekK15+YXevkI+ZUlrEG1N5k6LpPE556jg/GrQ56ISoM1/wM8qKqAO"
+    version = "wir@1.4.2"
+    jsSRI = "sha384-MxoQnwAMkM5aEZ4+nZVvlCvlUr0LhihC7nzCkorRq4aR6fBSi0Up/a99msTXBXu9"
 
 [Sitemap]
     changeFreq = "weekly"

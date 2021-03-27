@@ -1,6 +1,6 @@
 import fetch from "../patches/fetch";
 
-const BACKENDAPI = "https://api.itswincer.com/blog-search/v1/"
+const BACKENDAPI = `${backendAPI}/blog-search/v1/`
 class Params {
     static self = {}
     static page = 1
