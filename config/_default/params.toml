@@ -3,7 +3,9 @@ avatar = "https://ae01.alicdn.com/kf/HTB1DdGHXizxK1RjSspj763S.pXax.png"
 subtitle = "昔日玫瑰以其名流芳，今人所持唯玫瑰之名"
 description = "这里是 @Wincer，喜欢折腾新技术，却没多大耐心。个人博客会写得比较杂，包括日常吐槽、技术踩坑，偶尔会写正经一点的。欢迎订阅 RSS(•̀ᴗ•́)。"
 
-tagNumber = 50
+tagNumber = 36
+
+disqusUserName = "wincer"
 
 [StaticVendor]
     cssVer = "wir@1.4.0"
