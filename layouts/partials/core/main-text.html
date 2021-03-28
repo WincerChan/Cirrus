@@ -5,7 +5,13 @@
         <div class="article-tags px-6 sm:px-5 font-button text-code">
             {{ range . }}
             {{ $page := site.GetPage (printf "/tags/%s" .) }}
-            {{ partial "widget/right-side/single-tag" (dict "style" "button" "name" . "link" $page.RelPermalink ) }}
+            <a href="{{ $page.RelPermalink }}" title="{{ . }}" style="line-height: 32px"
+                class="text-beargray bg-tagbghover hover:bg-tagbgdeeper text-sm border-tagborder cursor-pointer px-button mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-full">
+                <span>
+                    {{ . }}
+                </span>
+
+            </a>
             {{ end }}
         </div>
         {{ end }}
@@ -18,12 +24,12 @@
         {{ with .Params.tags }}
         <div class=" mb-3 block font-headline">
             <div class="inline-flex items-center flex-wrap px-6 sm:px-5">
-                {{ (resources.Get "icons/clock.svg").Content | safeHTML  }}
+                {{ (resources.Get "icons/clock.svg").Content | safeHTML }}
                 <span class="uppercase text-tagborder my-1 pl-3">POSTED in
                     <span class="text-deepgray"> {{ dateFormat "Mon Jan 2, 2006" $date }}</span> </span>
             </div>
             <div class="inline-flex items-center flex-wrap px-6 sm:px-5">
-                {{ (resources.Get "icons/doc-stat.svg").Content | safeHTML  }}
+                {{ (resources.Get "icons/doc-stat.svg").Content | safeHTML }}
                 <span class="uppercase text-tagborder my-1 pl-3"><span class="text-deepgray">{{ $wordcount }}</span>
                     Words,
                     <span class="text-deepgray">{{ div $wordcount 500 }}</span> MIN(S) to read. </span>
@@ -39,8 +45,8 @@
     </blockquote>
     {{ end }}
     {{ end }}
-    <content class="{{ with .Params.encrypt_pwd }} hidden {{ end }}" {{ with .Params.encrypt_pwd }}
-        data-password={{ . }} {{ end }}>
+    <content class="{{ with .Params.encrypt_pwd }} hidden {{ end }}" {{ with .Params.encrypt_pwd }} data-password={{.}}
+        {{ end }}>
         {{ .Content }}
     </content>
     {{ with .Params.encrypt_pwd }}

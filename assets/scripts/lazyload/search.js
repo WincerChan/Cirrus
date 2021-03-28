@@ -1,6 +1,5 @@
 import fetch from "../patches/fetch";
 
-const BACKENDAPI = `${backendAPI}/blog-search/v1/`
 class Params {
     static self = {}
     static page = 1
@@ -37,7 +36,6 @@ class Params {
 }
 
 class Search {
-    static url = new URL(BACKENDAPI)
     static loadHTMLElement = () => {
         if (!window.location.pathname.startsWith("/search/")) return
         this.hints = document.getElementById('search-hint')
@@ -81,7 +79,8 @@ class Search {
     static fetchResults = async () => {
         this.constructParams()
         Params.Pages()
-        this.url.search = new URLSearchParams(Params.self).toString()
+        let url = new URL(`${window.backendAPI}/blog-search/v1/`)
+        url.search = new URLSearchParams(Params.self).toString()
         this.clearItemsChilds()
         let resp = await fetch(this.url),
             result = await resp.json()

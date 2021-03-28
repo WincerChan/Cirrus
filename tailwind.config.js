@@ -60,7 +60,7 @@ module.exports = {
         '1/48': '2.08%',
         '1/25': '4%',
         'smallest': '1px',
-        'button': '.6rem'
+        'button': '0.85rem'
       },
       margin: {
         '1/4': '25%',
@@ -84,6 +84,7 @@ module.exports = {
         contentbg: 'var(--content-bg)',
         tagbg: 'var(--tag-bg)',
         tagbghover: 'var(--tag-bg-hover)',
+        tagbgdeeper: 'var(--tag-bg-deeper)',
         headline: 'var(--headline)',
         codecolor: 'var(--code)',
         bqborder: 'var(--bqborder)',
