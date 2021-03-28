@@ -406,10 +406,10 @@ footer > svg {
   
 .light-theme {
     --color-mode: 'light';
-    --bg-color: #f5f5f5;
+    --bg-color: #f5f5f8;
     --hyper: #0085a1;
     --deepgray: #565656;
-    --beargray: #747474;
+    --beargray: #212121;
     --lightgray: #bfbfbf;
     --tagborder: #919191;
     --blockquote: #d1d1d1;
@@ -419,7 +419,8 @@ footer > svg {
     --slightgray: #eee;
     --main-text: #121212;
     --content-bg: #fff;
-    --tag-bg-hover: rgba(0,0,0,.05);
+    --tag-bg-hover: rgba(0,0,0,.07);
+    --tag-bg-deeper: rgba(0,0,0,0.13);
     --headline: #edf2f7;
     --code: #e53e3e;
     --svg: #4a5568;
@@ -480,7 +481,8 @@ footer > svg {
     --slightgray: rgb(56, 56, 56);
     --main-text: rgb(235, 235, 235);
     --content-bg: #2e2e2e;
-    --tag-bg-hover: rgba(255,255,255,.05);
+    --tag-bg-hover: rgba(255,255,255,.07);
+    --tag-bg-deeper: rgba(255,255,255,0.13);
     --headline: #e4e4e4;
     --code: #6bcece;
     --svg: #b5aa97;
