@@ -83,7 +83,7 @@
             console.log(event)
             var keyCode = event.which || event.keyCode;
             if (keyCode !== 13) return
-            const passwd = document.getElementsByTagName('input')[0].value
+            const passwd = document.getElementById("input").querySelector("input").value
             DoDecrypt(passwd, document.getElementsByTagName('content')[0])
         }
     </script>
