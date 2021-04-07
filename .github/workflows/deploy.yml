@@ -55,4 +55,4 @@ jobs:
           $(go env GOPATH)/bin/BlogContent encrypt_posts.toml
 
       - name: Depoly
-        run: rsync -az -v --delete public/* blog:/usr/share/www/hexo
+        run: rsync -az -v --delete public/* blog:/home/web/server/hexo
