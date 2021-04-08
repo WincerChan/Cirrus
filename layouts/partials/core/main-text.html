@@ -39,9 +39,20 @@
     </div>
     {{ if in .Site.Params.mainSections .Type }}
     {{ $days := div (sub now.Unix .Date.Unix) 86400 }}
-    {{ if gt $days 90 }}
+    {{ if gt $days 180 }}
     <blockquote id="out-dated" class="border-bqborder bg-bqbg">
-        <p class="">本文最近一次更新于 {{ $days }} 天前，其中所包含的信息很可能已经有所发展或是发生改变。</p>
+        <p class="">本文最近一次更新于
+            {{ $year := div $days 365 }}
+            {{ $month := div $days 30 }}
+            {{ if gt $year 0 }}
+            {{ $year }} 年
+            {{ if gt (mod $month 12) 0 }}
+            零 {{ mod $month 12 }} 个月
+            {{end}}
+            {{ else }}
+            {{ mod $month 12 }} 个月
+            {{ end }}
+            前，其中所包含的信息很可能已经有所发展或是发生改变。</p>
     </blockquote>
     {{ end }}
     {{ end }}
