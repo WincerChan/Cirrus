@@ -20,7 +20,7 @@ DisablePathToLower = true
     noVendor = ""
     private = '*.*'
     proxy = "direct"
-    replacements = "github.com/WincerChan/BlogContent -> ../.."
+    replacements = "github.com/WincerChan/BlogContent -> ../BlogContent"
     [[module.imports]]
         path = "github.com/WincerChan/BlogContent"
         disabled = false
