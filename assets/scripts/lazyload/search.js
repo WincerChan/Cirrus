@@ -82,7 +82,7 @@ class Search {
         let url = new URL(`${window.backendAPI}/blog-search/v1/`)
         url.search = new URLSearchParams(Params.self).toString()
         this.clearItemsChilds()
-        let resp = await fetch(this.url),
+        let resp = await fetch(url),
             result = await resp.json()
         result.data.forEach(r => {
             this.item.querySelector('#search-title').innerHTML = r.title
