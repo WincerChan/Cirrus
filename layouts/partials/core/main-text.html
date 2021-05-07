@@ -32,7 +32,7 @@
                 {{ (resources.Get "icons/doc-stat.svg").Content | safeHTML }}
                 <span class="uppercase text-tagborder my-1 pl-3"><span class="text-deepgray">{{ $wordcount }}</span>
                     Words,
-                    <span class="text-deepgray">{{ div $wordcount 500 }}</span> MIN(S) to read. </span>
+                    <span class="text-deepgray">{{ add 1 (div $wordcount 300) }}</span> MIN(S) to read. </span>
             </div>
         </div>
         {{ end }}
