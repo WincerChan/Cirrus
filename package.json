@@ -28,6 +28,8 @@
     "start": "yarn start:hugo & yarn start:rollup",
     "start:rollup": "rollup -c rollup.config.dev.js -w",
     "start:hugo": "hugo serve --disableFastRender",
-    "build:rollup": "rollup -c rollup.config.prod.js"
+    "build:rollup": "rollup -c rollup.config.prod.js",
+    "build:hugo": "hugo --minify",
+    "build": "yarn build:rollup ; yarn build:hugo"
   }
 }
