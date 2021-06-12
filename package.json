@@ -25,7 +25,7 @@
     "workbox-strategies": "^5.1.4"
   },
   "scripts": {
-    "start": "yarn start:hugo & yarn start:rollup",
+    "start": "yarn start:rollup & yarn start:hugo",
     "start:rollup": "rollup -c rollup.config.dev.js -w",
     "start:hugo": "hugo serve --disableFastRender",
     "build:rollup": "rollup -c rollup.config.prod.js",

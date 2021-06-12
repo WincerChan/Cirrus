@@ -48,10 +48,7 @@ jobs:
         env:
           GOPRIVATE: "github.com/WincerChan"
         run: |
-          cat config/_default/params.toml
-          go get github.com/WincerChan/BlogContent
-          hugo --minify
-          $(go env GOPATH)/bin/BlogContent encrypt_posts.toml
+          sh build.sh
 
       - name: Depoly
         run: rsync -az -v --delete public/* blog:/home/web/server/hexo
