@@ -1,8 +1,5 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
+  mode: "jit",
   purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss"],
   theme: {
     screens: {
@@ -60,7 +57,7 @@ module.exports = {
         '1/48': '2.08%',
         '1/25': '4%',
         'smallest': '1px',
-        'button': '0.85rem'
+        'button': '0.4rem'
       },
       margin: {
         '1/4': '25%',
@@ -70,6 +67,7 @@ module.exports = {
         '1/24': '4.166%'
       },
       colors: {
+        cardtext: '#f2f2f2',
         hyper: 'var(--hyper)',
         deepgray: 'var(--deepgray)',
         beargray: 'var(--beargray)',
