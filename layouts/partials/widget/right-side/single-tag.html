@@ -4,9 +4,9 @@
 </span>
 {{ else if eq .style "button" }}
 <a href="{{ .link }}" title="{{ .name }}" style="line-height: 32px" level="{{ .count }}"
-    class="text-beargray text-sm border-tagborder bg-contentbg hover:bg-tagbghover cursor-pointer bg-opacity-25 hover:bg-opacity-50 px-button mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-full">
+    class="text-beargray text-sm hover:text-hyper cursor-pointer bg-opacity-25 hover:bg-opacity-50 px-button mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
     <span>
-        {{ .name }}
+        #{{ .name }}
     </span>
 
 </a>

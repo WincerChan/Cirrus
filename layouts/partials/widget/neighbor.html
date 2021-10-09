@@ -1,6 +1,6 @@
 <div class="neighbor grid-cols-63 grid text-white">
     <div
-        class="col-start-1 col-end-32 shadow-lg rounded-none {{ if not .NextInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
+        class="col-start-1 col-end-32 shadow-lg {{ if not .NextInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
         {{ with .NextInSection }}
         <a href="{{ .RelPermalink }}">
             <div class="lazy px-8 h-56 md:h-48 bg-center bg-cover flex items-center justify-center link-card hover:zoomout text-shadow"
@@ -14,7 +14,7 @@
         {{ end }}
     </div>
     <div
-        class="col-start-33 col-end-64 shadow-lg rounded-none {{ if not .PrevInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
+        class="col-start-33 col-end-64 shadow-lg {{ if not .PrevInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
         {{ with .PrevInSection }}
         <a href="{{ .RelPermalink }}">
             <div class="lazy px-8 h-56 md:h-48 bg-center bg-cover flex items-center justify-center link-card hover:zoomout text-shadow"

@@ -6,9 +6,9 @@
             {{ range . }}
             {{ $page := site.GetPage (printf "/tags/%s" .) }}
             <a href="{{ $page.RelPermalink }}" title="{{ . }}" style="line-height: 32px"
-                class="text-beargray bg-tagbghover hover:bg-tagbgdeeper text-sm border-tagborder cursor-pointer px-button mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-full">
+                class="text-beargray  hover:text-hyper text-sm border-tagborder cursor-pointer px-button mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
                 <span>
-                    {{ . }}
+                    #{{ . }}
                 </span>
 
             </a>
@@ -17,7 +17,7 @@
         {{ end }}
         {{ $wordcount := .WordCount }}
         {{ $date := .Date }}
-        <h1 class="text-maintext text-title font-medium w-full py-2 px-6 sm:px-5">{{ .Title }}</h1>
+        <h1 class="text-maintext text-title font-medium w-full pt-2 pb-5 px-6 sm:px-5">{{ .Title }}</h1>
         {{ with .Params.Subtitle }}
         <h5 class="text-deepgray text-xl font-medium pb-3 px-6 sm:px-5">{{ . }}</h5>
         {{ end }}
