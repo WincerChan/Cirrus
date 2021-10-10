@@ -27,7 +27,8 @@ module.exports = {
       '100': '25rem',
       '48': '12rem',
       '36': '9rem',
-      '0': '0'
+      '0': '0',
+      '96': '24rem'
     },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
@@ -69,6 +70,7 @@ module.exports = {
       colors: {
         cardtext: '#f2f2f2',
         hyper: 'var(--hyper)',
+        buttontext: 'var(--button)',
         deepgray: 'var(--deepgray)',
         beargray: 'var(--beargray)',
         lightgray: 'var(--lightgray)',

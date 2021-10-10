@@ -1,4 +1,4 @@
-<div class="bg-contentbg flex flex-col rounded-lg overflow-hidden font-sans min-h-100 link-card">
+<div class="bg-contentbg flex flex-col rounded-lg overflow-hidden font-sans min-h-96 link-card">
     <div href="{{ .RelPermalink }}" class="flex flex-row flex-grow">
         <div class="lazy bg-cardcover flex content-end flex-wrap bg-cover w-full bg-center box-border"
             data-src="{{ .Params.Cover }}">
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="pb-3 pt-5 px-4">
+    <div class="p-4 leading-7">
         <p class="text-code text-justify"
             style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;">
             {{ .Summary | plainify }}

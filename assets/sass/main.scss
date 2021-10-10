@@ -412,16 +412,24 @@ footer > svg {
     stroke-dashoffset: -134;
     stroke-width: 6;
   }
+@layer utilities {
+    .vertical-text {
+        writing-mode: tb-rl;
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+    }
+}
   
 @layer base {
     .light-theme {
         --color-mode: 'light';
         --bg-color: #f5f5f8;
+        --button: #3d4962;
         --hyper: #0085a1;
-        --deepgray: #565656;
+        --deepgray: #3e3e3e;
         --beargray: #212121;
         --lightgray: #bfbfbf;
-        --tagborder: #919191;
+        --tagborder: #595959;
         --blockquote: #d1d1d1;
         --bqbg: #fffff0;
         --link: #294257;
@@ -479,6 +487,7 @@ footer > svg {
     .dark-theme {
         --bg-color: #282828;
         --hyper: #FF7A5D;
+        --button: #c2b69d;
         --deepgray: #bebebe;
         --beargray: #999999;
         --lightgray: #404040;
