@@ -21,10 +21,12 @@
         {{ end }}
         <h1 class=" text-maintext text-title font-medium w-full bg-center bg-cover pt-2 pb-3 mb-2 mt-1 px-6 sm:px-5">
             <span class="lg:text-3xl text-title ">{{ .Title }}</span>
+            {{ if in .Site.Params.mainSections .Type }}
             <sup class=" text-sm text-tagborder "> {{ $wordcount }} Words</sup>
+            {{end}}
         </h1>
         {{ with .Params.Subtitle }}
-        <h5 class="text-deepgray text-xl font-medium pb-3 px-6 sm:px-5"><span>{{ . }}</span></h5>
+        <h5 class="text-deepgray text-xl font-medium pb-3 px-6 sm:px-5 mb-3"><span>{{ . }}</span></h5>
         {{ end }}
     </div>
     {{ if in .Site.Params.mainSections .Type }}

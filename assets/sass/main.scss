@@ -17,8 +17,13 @@ body {
     /* padding-left: 1rem; */
     /* text-shadow: 1px 1px 8px #444; */
 }
+
+
+@layer utilities {
+
 .text-shadow {
     text-shadow: 1px 1px 4px #444;
+}
 }
 
 @media (max-width: 1200px) {
@@ -103,7 +108,8 @@ footer {
 .relative-article:hover > span {
     color: #fff!important;
 }
-@layer base {
+
+@layer components {
     .hover\:zoomout:hover {
         transform: scale(1.2);
     }
