@@ -109,14 +109,12 @@ footer {
     color: #fff!important;
 }
 
-@layer components {
-    .hover\:zoomout:hover {
-        transform: scale(1.2);
-    }
-    .hover\:text-shadow:hover {
-        @apply text-shadow;
+@variants hover {
+    .zoomout {
+        transform: scale(1.2)
     }
 }
+
 
 @layer utilities {
     .hover {
@@ -339,8 +337,6 @@ content {
         }
         a:hover {
             @apply text-hyper;
-            @apply bg-lightgray;
-            @apply rounded;
             @apply transition;
             @apply duration-300;
         }
