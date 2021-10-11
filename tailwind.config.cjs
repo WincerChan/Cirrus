@@ -1,6 +1,6 @@
 module.exports = {
   mode: "jit",
-  purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss"],
+  purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss", "./assets/**/*.svelte"],
   theme: {
     screens: {
       'xxl': { 'min': '1600px' },

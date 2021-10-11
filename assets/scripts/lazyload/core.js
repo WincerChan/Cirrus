@@ -8,7 +8,6 @@ const loadLazy = (entry, observer) => {
         } else if (lazy.tagName === "BUTTON") {
             loadDisqus()
         } else {
-            console.log("herehre", lazy.tagName)
             lazy.src = lazy.dataset.src;
         }
         lazy.classList.remove("lazy");
@@ -26,5 +25,6 @@ const lazyLoadThing = () => {
         });
     }
 }
+window.lazyLoadThing = lazyLoadThing;
 
 export default lazyLoadThing;

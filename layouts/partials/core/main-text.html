@@ -101,4 +101,6 @@
     {{ if in .Site.Params.mainSections .Type }}
     {{ partial "widget/article-info/article-stats" . }}
     {{ end }}
+    <div id="svelte"></div>
+    {{$.Scratch.Set "svelte" false}}
 </article>

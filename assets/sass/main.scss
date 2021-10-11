@@ -350,13 +350,15 @@ content {
     text-shadow: 1px 1px 2px #444;
 }
 
+@variants hover {
+    .link-card-shadow {
+        box-shadow: 0 8px 20px var(--boxshadow-light),0 0 2px var(--boxshadow-deep);
+    }
+}
 .link-card {
     @apply transition;
     @apply ease-linear;
     @apply duration-300;
-    // &:hover {
-    //     box-shadow: 0 8px 20px var(--boxshadow-light),0 0 2px var(--boxshadow-deep);
-    // }
 }
 
 footer > svg {
