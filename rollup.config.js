@@ -1,18 +1,22 @@
-const replace = require('@rollup/plugin-replace');
-const resolve = require('@rollup/plugin-node-resolve').default;
-const { terser } = require("rollup-plugin-terser");
-const { babel } = require('@rollup/plugin-babel');
-const commonjs = require("@rollup/plugin-commonjs");
+import svelte from 'rollup-plugin-svelte';
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
+import sveltePreprocess from "svelte-preprocess";
 
+const production = !process.env.ROLLUP_WATCH;
 
-const LoadPlugins = () => {
-    return [
+export default [{
+    input: 'assets/scripts/workbox.js',
+    output: {
+        file: 'static/service-worker.js',
+        format: 'iife'
+    },
+    plugins: [
         resolve({
             browser: true,
         }),
-        commonjs(
-        ),
-        babel({ babelHelpers: 'bundled' }),
         replace({
             __buildEnv__: 'production',
             __buildDate__: () => new Date(),
@@ -20,7 +24,45 @@ const LoadPlugins = () => {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         terser(),
-    ]
-}
+    ],
+}, {
+    inlineDynamicImports: true,
+    input: 'assets/scripts/main.js',
+    output: {
+        sourcemap: !production,
+        format: 'iife',
+        name: 'app',
+        file: production ? './BlogContent/wir/js/defer.prod.js' : './static/bundle.js'
+    },
+    plugins: [
+        svelte({
+            compilerOptions: {
+                // enable run-time checks when not in production
+                dev: !production
+            },
+            preprocess: sveltePreprocess({
+                sourceMap: !production,
+            }),
+        }),
 
-module.exports = LoadPlugins;
+        // If you have external dependencies installed from
+        // npm, you'll most likely need these plugins. In
+        // some cases you'll need additional configuration -
+        // consult the documentation for details:
+        // https://github.com/rollup/plugins/tree/master/packages/commonjs
+        resolve({
+            browser: true,
+            dedupe: ['svelte']
+        }),
+        commonjs(),
+
+        // In dev mode, call `npm run start` once
+        // the bundle has been generated
+        // If we're building for production (npm run build
+        // instead of npm run dev), minify
+        production && terser()
+    ],
+    watch: {
+        clearScreen: false
+    }
+}];

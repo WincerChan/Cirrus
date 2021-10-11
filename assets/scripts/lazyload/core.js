@@ -25,5 +25,6 @@ const lazyLoadThing = () => {
         });
     }
 }
+window.lazyLoadThing = lazyLoadThing;
 
 export default lazyLoadThing;

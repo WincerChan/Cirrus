@@ -1,6 +1,14 @@
 <div class="bg-contentbg rounded-big shadow-lg font-sans overflow-hidden">
-    <div class="lazy flex content-end flex-wrap bg-cover w-full bg-center h-64 box-border mb-3"
-        data-src="{{ .Params.cover }}">
+    <style>
+        .cover {
+            background-image: url("{{ .Params.cover }}");
+        }
+
+        .cover span {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <div id="article-cover" class="flex cover content-end flex-wrap bg-cover w-full bg-center h-64 box-border mb-3">
     </div>
     {{ partial "core/main-text" . }}
 

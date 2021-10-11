@@ -1,40 +1,32 @@
 <article class="pt-2">
-    <div class="article-meta text-beargray">
+    <div class="article-meta text-beargray cover bg-center bg-clip-text bg-cover backdrop-filter backdrop-blur-lg">
 
+        {{ $date := .Date }}
+        {{ $wordcount := .WordCount }}
         {{ with .Params.tags }}
-        <div class="article-tags px-6 sm:px-5 font-button text-code">
+        <div class="article-tags px-6 sm:px-5 font-button text-code items-center mt-3">
+            <span class="text-deepgray mr-1"> {{ dateFormat "Jan 2, 2006" $date }} </span>
+            <span class="ml-2">/</span>
             {{ range . }}
             {{ $page := site.GetPage (printf "/tags/%s" .) }}
-            <a href="{{ $page.RelPermalink }}" title="{{ . }}" style="line-height: 32px"
-                class="text-beargray bg-tagbghover hover:bg-tagbgdeeper text-sm border-tagborder cursor-pointer px-button mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-full">
-                <span>
-                    {{ . }}
-                </span>
+            <span class="hover:text-bqbg  transition ease-linear duration-300 cursor-pointer overflow-hidden">
+                <a href="{{ $page.RelPermalink }}" title="{{ . }}" style="line-height: 32px"
+                    class="hover:bg-buttontext inline-block mx-1 px-3 text-sm border-tagborder rounded font-button">
+                    #{{ . }}
+                </a>
+            </span>
 
-            </a>
             {{ end }}
         </div>
         {{ end }}
-        {{ $wordcount := .WordCount }}
-        {{ $date := .Date }}
-        <h1 class="text-maintext text-title font-medium w-full py-2 px-6 sm:px-5">{{ .Title }}</h1>
+        <h1 class=" text-maintext text-title font-medium w-full pt-2 pb-3 mb-2 mt-1 px-6 sm:px-5">
+            <span class="lg:text-3xl text-title ">{{ .Title }}</span>
+            {{ if in .Site.Params.mainSections .Type }}
+            <sup class=" text-sm text-tagborder "> {{ $wordcount }} Words</sup>
+            {{end}}
+        </h1>
         {{ with .Params.Subtitle }}
-        <h5 class="text-deepgray text-xl font-medium pb-3 px-6 sm:px-5">{{ . }}</h5>
-        {{ end }}
-        {{ with .Params.tags }}
-        <div class=" mb-3 block font-headline">
-            <div class="inline-flex items-center flex-wrap px-6 sm:px-5">
-                {{ (resources.Get "icons/clock.svg").Content | safeHTML }}
-                <span class="uppercase text-tagborder my-1 pl-3">POSTED in
-                    <span class="text-deepgray"> {{ dateFormat "Mon Jan 2, 2006" $date }}</span> </span>
-            </div>
-            <div class="inline-flex items-center flex-wrap px-6 sm:px-5">
-                {{ (resources.Get "icons/doc-stat.svg").Content | safeHTML }}
-                <span class="uppercase text-tagborder my-1 pl-3"><span class="text-deepgray">{{ $wordcount }}</span>
-                    Words,
-                    <span class="text-deepgray">{{ add 1 (div $wordcount 300) }}</span> MIN(S) to read. </span>
-            </div>
-        </div>
+        <h5 class="text-deepgray text-xl font-medium pb-3 px-6 sm:px-5 mb-3"><span>{{ . }}</span></h5>
         {{ end }}
     </div>
     {{ if in .Site.Params.mainSections .Type }}
@@ -42,7 +34,7 @@
     {{ if gt $days 180 }}
     <blockquote id="out-dated" class="border-bqborder bg-bqbg">
         <p class="">本文最近一次更新于
-            {{ $year := div $days 365 }}
+            {{ $year := div $days 360 }}
             {{ $month := div $days 30 }}
             {{ if gt $year 0 }}
             {{ $year }} 年
@@ -56,6 +48,7 @@
     </blockquote>
     {{ end }}
     {{ end }}
+    <div class="h-2"></div>
     <content class="{{ with .Params.encrypt_pwd }} hidden {{ end }}" {{ with .Params.encrypt_pwd }} data-password={{.}}
         {{ end }}>
         {{ .Content }}
@@ -108,4 +101,6 @@
     {{ if in .Site.Params.mainSections .Type }}
     {{ partial "widget/article-info/article-stats" . }}
     {{ end }}
+    <div id="svelte"></div>
+    {{$.Scratch.Set "svelte" false}}
 </article>

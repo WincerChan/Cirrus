@@ -1,37 +1,34 @@
-<div class="bg-contentbg flex flex-col rounded-big overflow-hidden font-sans min-h-100 link-card">
+<div class="bg-contentbg flex flex-col rounded-lg overflow-hidden font-sans min-h-96 link-card">
     <div href="{{ .RelPermalink }}" class="flex flex-row flex-grow">
         <div class="lazy bg-cardcover flex content-end flex-wrap bg-cover w-full bg-center box-border"
             data-src="{{ .Params.Cover }}">
-            <div class="ml-4 my-2 sm:ml-2">
+            <div class="ml-4 my-1 sm:ml-2">
                 {{ $category := .Params.Category }}
                 {{ with $.Site.GetPage (printf "/category/%s" $category) }}
-                <div style="line-height: 34px;"
-                    class="text-categorytag font-bold cursor-pointer bg-black ml-4 text-code bg-opacity-25 hover:bg-opacity-50 px-button mx-1 my-1 font-button inline-block transition ease-linear duration-300 rounded-full">
-                    <a href="{{ .Permalink }}" title="{{ $category }}">
-                        {{ $category }}
-                    </a>
-                </div>
+                <span class="text-deepgray px-4 card-tag text-cardtext">{{ dateFormat " Jan 2, 2006" .Date }}</span>
                 {{ end }}
             </div>
-            <h3 class="text-headline headline text-2xl w-full px-8 mb-4 card-title sm:px-6">
-                <a href="{{ .RelPermalink }}">
-                    {{ .Params.Title }}
-                </a>
-            </h3>
+            <div class=" justify-between w-full flex items-center mb-4">
+                <h3
+                    class="text-headline headline pt-2 text-2xl w-full px-8 card-title sm:px-6 items-center justify-between">
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.Title }}
+                    </a>
+                    <div
+                        class="text-categorytag font-bold cursor-pointer bg-black text-code bg-opacity-25 float-right hover:bg-opacity-50 mx-1 px-3 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
+                        <a href="{{ .Permalink }}" title="{{ $category }}">
+                            {{ $category }}
+                        </a>
+                    </div>
+                </h3>
+
+            </div>
         </div>
     </div>
-    <div class="pb-3 pt-5 px-4">
+    <div class="p-4 leading-7">
         <p class="text-code text-justify"
             style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;">
-            {{ .Summary | plainify  }}
+            {{ .Summary | plainify }}
         </p>
-    </div>
-    <div class="inline-flex w-full text-beargray font-headline text-code">
-        <footer class="flex mx-4 pt-1 pb-5 h-5 items-center">
-            {{ (resources.Get "icons/clock.svg").Content | safeHTML}}
-            <span class="px-4 uppercase">
-                posted in <span class="text-deepgray">{{ dateFormat "Mon Jan 2, 2006" .Date }}</span>
-            </span>
-        </footer>
     </div>
 </div>

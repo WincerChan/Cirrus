@@ -1,9 +1,6 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-  purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss"],
+  mode: "jit",
+  purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss", "./assets/**/*.svelte"],
   theme: {
     screens: {
       'xxl': { 'min': '1600px' },
@@ -30,7 +27,8 @@ module.exports = {
       '100': '25rem',
       '48': '12rem',
       '36': '9rem',
-      '0': '0'
+      '0': '0',
+      '96': '24rem'
     },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
@@ -60,7 +58,7 @@ module.exports = {
         '1/48': '2.08%',
         '1/25': '4%',
         'smallest': '1px',
-        'button': '0.85rem'
+        'button': '0.4rem'
       },
       margin: {
         '1/4': '25%',
@@ -70,7 +68,9 @@ module.exports = {
         '1/24': '4.166%'
       },
       colors: {
+        cardtext: '#f2f2f2',
         hyper: 'var(--hyper)',
+        buttontext: 'var(--button)',
         deepgray: 'var(--deepgray)',
         beargray: 'var(--beargray)',
         lightgray: 'var(--lightgray)',
