@@ -1,6 +1,6 @@
 echo "Cloning Blogs..."
 export GOPRIVATE="github.com/WincerChan"
-git clone https://${GH_TOKEN}@github.com/BlogContent
+git clone https://${GH_TOKEN}@github.com/WincerChan/BlogContent
 echo "Clone Blogs Succeed. Start Building..."
 yarn install
 yarn build
