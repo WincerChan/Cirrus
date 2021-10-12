@@ -1,9 +1,4 @@
 <script context="module">
-    let promise = fetch("https://live.itswincer.com/api/v0/douban").then(
-        (resp) => {
-            return resp.json();
-        }
-    );
     const update = async () => {
         await tick();
         lazyLoadThing();
@@ -16,6 +11,11 @@
     import lazyLoadThing from "../lazyload/core";
 
     let element;
+    let promise = fetch("https://live.itswincer.com/api/v0/douban").then(
+        (resp) => {
+            return resp.json();
+        }
+    );
 
     let placeholder = [0, 1, 2, 3, 4];
     $: update(element);

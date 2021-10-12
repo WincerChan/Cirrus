@@ -1,6 +1,12 @@
+const production = !process.env.ROLLUP_WATCH;
+
 module.exports = {
   mode: "jit",
-  purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss", "./assets/**/*.svelte"],
+  future: {
+    purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+  },
+  purge: { content: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.css", "./assets/**/*.svelte"], enabled: production },
   theme: {
     screens: {
       'xxl': { 'min': '1600px' },
