@@ -4,9 +4,7 @@
             data-src="{{ .Params.Cover }}">
             <div class="ml-4 my-1 sm:ml-2">
                 {{ $category := .Params.Category }}
-                {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                 <span class="text-deepgray px-4 card-tag text-cardtext">{{ dateFormat " Jan 2, 2006" .Date }}</span>
-                {{ end }}
             </div>
             <div class=" justify-between w-full flex items-center mb-4">
                 <h3
@@ -14,12 +12,14 @@
                     <a href="{{ .RelPermalink }}">
                         {{ .Params.Title }}
                     </a>
+                    {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                     <div
                         class="text-categorytag font-bold cursor-pointer bg-black text-code bg-opacity-25 float-right hover:bg-opacity-50 mx-1 px-3 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
                         <a href="{{ .Permalink }}" title="{{ $category }}">
                             {{ $category }}
                         </a>
                     </div>
+                    {{ end }}
                 </h3>
 
             </div>
