@@ -8,6 +8,7 @@ specifiers:
   '@rollup/plugin-node-resolve': ^9.0.0
   '@rollup/plugin-replace': ^2.3.3
   autoprefixer: ^10.3.7
+  crypto-js: ^4.1.1
   install: ^0.13.0
   postcss: ^8.1.1
   postcss-cli: ^8.1.0
@@ -24,6 +25,7 @@ specifiers:
   workbox-strategies: ^5.1.4
 
 dependencies:
+  crypto-js: 4.1.1
   postcss: 8.3.9
   postcss-cli: 8.3.1_postcss@8.3.9
   rollup-plugin-svelte: 7.1.0_rollup@2.58.0+svelte@3.43.1
@@ -668,6 +670,10 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 1.10.2
+    dev: false
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
     dev: false
 
   /css-color-names/0.0.4:

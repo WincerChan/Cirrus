@@ -7,6 +7,7 @@
   "license": "GPL-3.0-only",
   "private": true,
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "postcss": "^8.1.1",
     "postcss-cli": "^8.1.0",
     "rollup-plugin-svelte": "^7.1.0",
