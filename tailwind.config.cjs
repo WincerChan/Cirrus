@@ -6,7 +6,7 @@ module.exports = {
     purgeLayersByDefault: true,
     removeDeprecatedGapUtilities: true,
   },
-  purge: { content: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss", "./assets/**/*.svelte"], enabled: production },
+  purge: { content: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.css", "./assets/**/*.svelte"], enabled: production },
   theme: {
     screens: {
       'xxl': { 'min': '1600px' },

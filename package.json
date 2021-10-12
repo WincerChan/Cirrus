@@ -33,7 +33,8 @@
     "workbox-strategies": "^5.1.4"
   },
   "scripts": {
-    "start": "yarn start:rollup & yarn start:hugo",
+    "start": "yarn start:rollup & yarn start:hugo & yarn start:tailwindcss",
+    "start:tailwindcss": "postcss assets/sass/main.css -o static/build.css -w",
     "start:rollup": "rollup -c rollup.config.js -w",
     "start:hugo": "hugo serve --disableFastRender",
     "build:rollup": "rollup -c rollup.config.js",
