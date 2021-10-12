@@ -99,9 +99,9 @@
         <span id="error_msg" class="text-red-600 pl-6 hidden">🙅Wrong Password！</span>
     </div>
     {{ end }}
+    <div id="svelte"></div>
     {{ if in .Site.Params.mainSections .Type }}
     {{ partial "widget/article-info/article-stats" . }}
     {{ end }}
-    <div id="svelte"></div>
     {{$.Scratch.Set "svelte" false}}
 </article>
