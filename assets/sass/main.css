@@ -798,3 +798,10 @@ input {
 	background-color: var(--content-bg);
 }
 
+
+.article-summary > p::first-letter{
+	@apply text-2xl;
+}
+.article-summary {
+	text-indent: 2rem;
+}
