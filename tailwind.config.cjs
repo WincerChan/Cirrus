@@ -34,7 +34,10 @@ module.exports = {
       '48': '12rem',
       '36': '9rem',
       '0': '0',
-      '96': '24rem'
+      '96': '24rem',
+    },
+    maxHeight: {
+      'summary': '7.3rem'
     },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],

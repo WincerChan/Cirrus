@@ -1,5 +1,5 @@
 <script>
-    import { enc } from "crypto-js";
+    import { enc, AES, mode, pad } from "crypto-js";
     let password, input_pass;
     $: err_msg = null;
     const ele = document.getElementsByTagName("content")[0];
@@ -12,13 +12,13 @@
     function decrypt() {
         let pwd = fillToPassword();
         console.log(pwd);
-        let key = CryptoJS.enc.Utf8.parse(pwd),
-            encryptedHexStr = CryptoJS.enc.Hex.parse(ele.innerHTML),
-            encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);
-        let decrypted = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+        let key = enc.Utf8.parse(pwd),
+            encryptedHexStr = enc.Hex.parse(ele.innerHTML),
+            encryptedBase64Str = enc.Base64.stringify(encryptedHexStr);
+        let decrypted = AES.decrypt(encryptedBase64Str, key, {
             iv: key,
-            mode: CryptoJS.mode.CBC,
-            padding: CryptoJS.pad.Pkcs7,
+            mode: mode.CBC,
+            padding: pad.Pkcs7,
         });
         try {
             ele.innerHTML = decrypted.toString(enc.Utf8);
@@ -36,11 +36,12 @@
         type="text"
         placeholder="🔑 Input Password, Press `Enter`"
         bind:value={password}
-        onkeydown="EnterPress"
-        onkeypress="EnterPress(event)"
         class="transition ease-linear duration-300 border-hyper w-64 border-b-2 px-2 py-1 focus:border-hyper focus:outline-none"
     />
-    <button on:click={decrypt} class="border rounded p-2">提交</button>
+    <button
+        on:click={decrypt}
+        class="border rounded p-2 text-base bg-hyper text-bqbg">提交</button
+    >
     {#if err_msg}
         <span id="error_msg" class="text-red-600 pl-6">🙅Wrong Password！</span>
     {/if}
