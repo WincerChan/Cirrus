@@ -17,15 +17,15 @@
         }
     );
 
-    let placeholder = [0, 1, 2, 3, 4];
+    let placeholder = [0, 1, 2, 3];
     $: update(element);
 </script>
 
 <div class="px-6">
     <div class="seprator my-5" />
-    <div class="flex justify-center w-full mb-8">
+    <div class="flex justify-center w-full mb-10">
         <p class="text-2xl ">
-            我看过的电影（{new Date().getFullYear()}）
+            我看过的书籍和电影（{new Date().getFullYear()}）
         </p>
     </div>
     <div class="flex flex-wrap mb-4 items-end">
@@ -36,7 +36,7 @@
                         class="text-center text-sm truncate text-beargray bg-contentbg link-card rounded"
                     >
                         <div
-                            class="mx-auto  bg-slightgray animate-pulse h-52"
+                            class="mx-auto  bg-slightgray animate-pulse xl:h-52 h-24"
                         />
                         <div
                             class="block mx-auto mt-1 truncate p-smallest h-5 w-2/3 bg-slightgray animate-pulse"
@@ -56,7 +56,7 @@
                             class="mx-0"
                         >
                             <img
-                                class="mx-auto lazy min-h-48 rounded"
+                                class="mx-auto lazy rounded"
                                 title="{douban.date} {douban.type == 'movie'
                                     ? '看过'
                                     : '读过'}"
