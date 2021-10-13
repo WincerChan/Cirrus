@@ -22,6 +22,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
     "autoprefixer": "^10.3.7",
+    "cssnano": "^5.0.8",
     "install": "^0.13.0",
     "postcss-scss": "^4.0.1",
     "rollup": "^2.32.1",
@@ -39,6 +40,7 @@
     "start:hugo": "hugo serve --disableFastRender",
     "build:rollup": "rollup -c rollup.config.js",
     "build:hugo": "hugo --minify",
-    "build": "yarn build:rollup ; yarn build:hugo"
+    "build:tailwindcss": "env NODE_ENV=production postcss assets/sass/main.css -o BlogContent/wir/css/main.min.css",
+    "build": "yarn build:rollup ; yarn build:hugo; yarn build:tailwindcss"
   }
 }
