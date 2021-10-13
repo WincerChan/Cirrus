@@ -342,25 +342,21 @@ content {
   
 
 
-#TableOfContents,
-.related-post li {
+#TableOfContents li {
 		@apply pl-4;
 		@apply my-1;
 	}
-#TableOfContents,
-.related-post li a {
+#TableOfContents li a {
 			@apply px-2;
 			@apply py-1;
 		}
-#TableOfContents,
-.related-post li a:hover {
+#TableOfContents li a:hover {
 			@apply text-hyper;
 			@apply transition;
 			@apply duration-300;
 		}
 
-#TableOfContents,
-.related-post {
+#TableOfContents {
 	@apply text-left;
 	@apply text-tagborder;
 	@apply mt-2;
@@ -799,9 +795,9 @@ input {
 }
 
 
-.article-summary > p::first-letter{
+/* .article-summary > p::first-letter{
 	@apply text-2xl;
 }
 .article-summary {
 	text-indent: 2rem;
-}
+} */
