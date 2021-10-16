@@ -13,6 +13,7 @@
             Place = (await import("./life/life.svelte")).default;
         else if (encrypted)
             Place = (await import("./encrypt/blog.svelte")).default;
+        else Place = (await import("./music/music.svelte")).default;
     });
 </script>
 
