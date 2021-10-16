@@ -132,6 +132,7 @@ module.exports = {
       boxShadow: {
         'box-shadow': "0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;",
         'box-shadow-hover': "0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;",
+        'button': "rgba(0, 0, 0, 0.4) 0px 0px 10px"
       }
     },
   },
