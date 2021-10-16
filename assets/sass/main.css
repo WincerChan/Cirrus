@@ -801,3 +801,5 @@ input {
 .article-summary {
 	text-indent: 2rem;
 } */
+progress::-moz-progress-bar { background: rgba(255, 255, 255, 0.7); }
+progress::-webkit-progress-value { background: rgba(255, 255, 255, 0.7); }
