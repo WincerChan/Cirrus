@@ -231,7 +231,7 @@
                                             /
                                         </span>
                                         <span class="w-10 sm:hidden block"
-                                            >{formatTime(duration)}</span
+                                            >{formatTime(duration || 0)}</span
                                         >
                                     </div>
                                 </div>
