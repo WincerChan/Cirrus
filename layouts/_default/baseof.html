@@ -19,15 +19,15 @@
     <div id="svelte"></div>
     {{end}}
 </body>
+<script>
+    window.disqusUserName = {{ .Site.Params.disqusUserName }}
+    window.backendAPI = {{ .Site.Params.backendAPI }}
+</script>
 {{ if .Site.IsServer }}
 <script src="/bundle.js"></script>
 {{ else }}
 <script src="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js" async defer
     integrity="{{ .Site.Params.StaticVendor.jsSRI }}" crossorigin="anonymous"></script>
 {{ end }}
-<script>
-    window.disqusUserName = {{ .Site.Params.disqusUserName }}
-    window.backendAPI = {{ .Site.Params.backendAPI }}
-</script>
 
 </html>
