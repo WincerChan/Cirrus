@@ -1,6 +1,12 @@
+const production = !process.env.ROLLUP_WATCH;
+
 module.exports = {
   mode: "jit",
-  purge: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.scss", "./assets/**/*.svelte"],
+  future: {
+    purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+  },
+  purge: { content: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.css", "./assets/**/*.svelte"], enabled: production },
   theme: {
     screens: {
       'xxl': { 'min': '1600px' },
@@ -28,7 +34,10 @@ module.exports = {
       '48': '12rem',
       '36': '9rem',
       '0': '0',
-      '96': '24rem'
+      '96': '24rem',
+    },
+    maxHeight: {
+      'summary': '7.3rem'
     },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
@@ -123,6 +132,7 @@ module.exports = {
       boxShadow: {
         'box-shadow': "0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;",
         'box-shadow-hover': "0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;",
+        'button': "rgba(0, 0, 0, 0.4) 0px 0px 10px"
       }
     },
   },

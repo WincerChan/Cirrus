@@ -29,7 +29,7 @@ resources/
 public
 content/
 content
-static/*.js
+static/*.css
 wir/
 wir
 

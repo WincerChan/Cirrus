@@ -2,14 +2,8 @@
     <h1 class="uppercase pb-4 text-maintext text-title font-meidum w-full site-name py-2 sm:px-4">
         {{ .Title }}
     </h1>
-    <div class="flex mt-4 mb-6 md:mx-2">
-        <input type="text" placeholder="请输入关键字" id="search-params"
-            class="h-10 mr-1 flex-grow rounded-full outline-none px-6 md:px-3">
-        <button id="search-button" onclick="instant_search()"
-            class="flex-none bg-tagbghover rounded-full ml-1 px-4 h-10 flex items-center">
-            <p class="text-xl">搜索</p>
-        </button>
-    </div>
+    <div id="svelte" style="min-height: 40px;" class="mt-4"></div>
+    {{$.Scratch.Set "svelte" false}}
     <article id="search-hint" class="mt-8">
 
         <content>
@@ -22,49 +16,6 @@
             </ol>
         </content>
     </article>
-    <div id="search-results" class="hidden">
-        <div class="mb-4 md:px-2">
-            <p class="text-sm text-deepgray">
-                共搜索到<span id="search-number" class="font-code w-6 text-center inline-block"></span>篇文章
-            </p>
-        </div>
-        <div class="card-compact-list space-y-6" id="search-items">
-        </div>
-        <div class="mt-16 flex justify-between text-beargray uppercase font-headline">
-            <div>
-
-                <button id="search-prev" onclick="clickPrev()"
-                    class="text-center bg-contentbg rounded-big px-5 py-3 link-card">
-                    Prev
-                </button>
-            </div>
-            <div>
-                <button id="search-next" onclick="clickNext()"
-                    class="text-center bg-contentbg rounded-big px-5 py-3 link-card">
-                    Next
-                </button>
-            </div>
-        </div>
-    </div>
-    <template id="search-item-tempate">
-        <div class="bg-contentbg rounded-xl overflow-hidden font-sans rounded-lg link-card">
-            <div class="metadata px-4 py-4">
-                <a id="search-url" class="cursor-pointer">
-                    <h3 id="search-title" class="text-deepgray truncate w-full text-xl hover:text-hyper">
-                    </h3>
-                </a>
-                <div class="w-full mt-3 text-beargray font-headline sm:pb-3">
-                    <p class="text-justify">
-                        <span id="search-date" class="h-4 mr-1 items-center text-tagborder">
-                        </span>
-                        <span id="search-snippet">
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </template>
-
 
 </div>
 {{ partial "footer/site-footer.html" . }}

@@ -2,33 +2,34 @@
     <div href="{{ .RelPermalink }}" class="flex flex-row flex-grow">
         <div class="lazy bg-cardcover flex content-end flex-wrap bg-cover w-full bg-center box-border"
             data-src="{{ .Params.Cover }}">
-            <div class="ml-4 my-1 sm:ml-2">
-                {{ $category := .Params.Category }}
-                {{ with $.Site.GetPage (printf "/category/%s" $category) }}
-                <span class="text-deepgray px-4 card-tag text-cardtext">{{ dateFormat " Jan 2, 2006" .Date }}</span>
-                {{ end }}
-            </div>
-            <div class=" justify-between w-full flex items-center mb-4">
-                <h3
-                    class="text-headline headline pt-2 text-2xl w-full px-8 card-title sm:px-6 items-center justify-between">
-                    <a href="{{ .RelPermalink }}">
-                        {{ .Params.Title }}
-                    </a>
+            <div class=" justify-between w-full items-center flex mb-4">
+                <div class="title-date w-full px-8 sm:px-6">
+                    {{ $category := .Params.Category }}
+                    {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                     <div
-                        class="text-categorytag font-bold cursor-pointer bg-black text-code bg-opacity-25 float-right hover:bg-opacity-50 mx-1 px-3 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
+                        class="text-categorytag mt-10 h-8 py-1 font-bold cursor-pointer float-right bg-black text-code bg-opacity-25  hover:bg-opacity-50 px-3 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
                         <a href="{{ .Permalink }}" title="{{ $category }}">
                             {{ $category }}
                         </a>
                     </div>
-                </h3>
+                    {{ end }}
+                    <div class="my-1">
+                        <span class="text-deepgray card-tag text-cardtext">
+                            {{ dateFormat " Jan 2, 2006" .Date }}</span>
+                    </div>
+                    <h3 class="text-headline headline pt-2 text-2xl card-title items-center justify-between">
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Params.Title }}
+                        </a>
+                    </h3>
 
+                </div>
             </div>
         </div>
     </div>
-    <div class="p-4 leading-7">
-        <p class="text-code text-justify"
-            style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;">
-            {{ .Summary | plainify }}
+    <div class="p-4 leading-7 article-summary">
+        <p class="text-code text-justify max-h-summary overflow-hidden">
+            {{ .Summary | replaceRE "(?m)(?s:<(style|script)[^>]*>[^<]*<\\/(style|script)>)" "" | plainify }}
         </p>
     </div>
 </div>
