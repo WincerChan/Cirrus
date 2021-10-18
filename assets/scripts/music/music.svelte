@@ -68,7 +68,7 @@
         class="left-0 top-0 right-0 absolute flex-col"
     >
         <div class="flex relative flex-row text-gray-300">
-            <div class="w-20 h-20 relative flex-none">
+            <div class="w-20 h-20 relative flex-none bg-gray-200">
                 {#await promise}
                     <div
                         class="w-full h-full relative bg-gray-200 animate-pulse"
@@ -131,7 +131,7 @@
             <div class="relative w-full">
                 <div class="flex">
                     <div class="h-20 text-sm relative w-full">
-                        <div class="truncate m-2 block">
+                        <div class="truncate sm:m-2 my-2 mx-3 block">
                             {#await promise}
                                 <div
                                     class="bg-gray-200 h-4 mb-1 animate-pulse w-20"
@@ -171,20 +171,31 @@
                                 src={music_link}
                             />
                             <div
-                                class="m-0 w-full cursor-auto flex-grow py-2 relative flex items-center px-2"
+                                class="m-0 w-full cursor-auto flex-grow py-2 relative flex items-center px-3 sm:px-2"
                             >
                                 {#await promise}
                                     <div
-                                        class="h-1 flex-grow bg-gray-200 animate-pulse mr-2 sm:mr-0"
+                                        class="h-1 flex-grow bg-gray-200 animate-pulse mr-3 sm:mr-0"
                                     />
                                 {:then music_info}
-                                    <div class="flex-grow mr-2 sm:mr-0">
+                                    <div class="flex-grow mr-3 sm:mr-0">
                                         <div
                                             style="height: 18px;"
                                             class="cursor-pointer"
                                             on:click={handleClick}
                                             on:mousemove={handleMove}
                                             on:touchmove|preventDefault={handleMove}
+                                            on:mouseleave={() => {
+                                                player_thumb.classList.add(
+                                                    "hidden"
+                                                );
+                                            }}
+                                            on:focus
+                                            on:mouseover={() => {
+                                                player_thumb.classList.remove(
+                                                    "hidden"
+                                                );
+                                            }}
                                         >
                                             <progress
                                                 bind:this={progress_bar}
@@ -195,7 +206,7 @@
                                             <div
                                                 bind:this={player_thumb}
                                                 style="height: 11px; width: 11px; background-color: rgba(255, 255, 255, 1)"
-                                                class="bottom-4 -left-1 rounded-full shadow-button relative"
+                                                class="bottom-4 hidden -left-1 rounded-full shadow-button relative"
                                             />
                                         </div>
                                     </div>
@@ -207,9 +218,9 @@
                                     <div class="hidden sm:block">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-5"
+                                            class="h-6 w-4"
                                             fill="none"
-                                            viewBox="0 0 8 24"
+                                            viewBox="0 0 14 24"
                                             stroke="currentColor"
                                         >
                                             <path
@@ -220,17 +231,17 @@
                                             />
                                         </svg>
                                     </div>
-                                    <div class="flex">
-                                        <span class="w-10 block sm:hidden"
+                                    <div class="flex font-code">
+                                        <span class="block sm:hidden"
                                             >{formatTime(time || 0)}</span
                                         >
-                                        <span class="hidden sm:block w-10"
+                                        <span class="hidden sm:block"
                                             >{show_time}</span
                                         >
                                         <span class="sm:hidden block px-1">
                                             /
                                         </span>
-                                        <span class="w-10 sm:hidden block"
+                                        <span class="sm:hidden block"
                                             >{formatTime(duration || 0)}</span
                                         >
                                     </div>
