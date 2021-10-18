@@ -803,3 +803,25 @@ input {
 } */
 progress::-moz-progress-bar { background: rgba(255, 255, 255, 0.7); }
 progress::-webkit-progress-value { background: rgba(255, 255, 255, 0.7); }
+#summary {
+	@apply overflow-hidden;
+	@apply relative;
+	@apply leading-7;
+	max-height: 7rem;
+	@apply text-justify;
+	margin-right: -0.9375rem;
+	padding-right: 0.9375rem;
+}
+.summary-thumb {
+	@apply absolute;
+	@apply bottom-0;
+	@apply  font-medium;
+	@apply bg-white;
+	right: 0.9375rem;
+	@apply article-link;
+	@apply px-2;
+}
+.summary-thumb:hover {
+	@apply article-link-hover;
+	@apply cursor-pointer;
+}
