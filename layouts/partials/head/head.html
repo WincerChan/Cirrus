@@ -15,13 +15,10 @@
     </script>
     {{ if .Site.IsServer }}
     <link rel="preload" as="script" href="/bundle.js">
-    <script async crossorigin defer src="/bundle.js"></script>
     <link href="/build.css" rel="preload stylesheet" as="style">
     {{ else }}
     <link rel="preload" as="script" integrity="{{ .Site.Params.StaticVendor.jsSRI }}"
         href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">
-    <script async crossorigin defer
-        src="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css"
         rel="preload stylesheet" as="style">
     {{ end }}
