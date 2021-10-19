@@ -27,9 +27,8 @@
             </div>
         </div>
     </div>
-    <div class="p-4 leading-7 article-summary">
-        <p id="summary" class="text-code ">
-            <a href="{{ .RelPermalink }}" class="summary-thumb">MORE</a>
+    <div class="p-4 leading-7 article-summary text-justify">
+        <p id="summary" class="text-code h-full float-left text-justify overflow-hidden">
             {{ .Summary | replaceRE "(?m)(?s:<(style|script)[^>]*>[^<]*<\\ /(style|script)>)" "" | plainify }}
         </p>
     </div>
