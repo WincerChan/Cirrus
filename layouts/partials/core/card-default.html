@@ -27,9 +27,9 @@
             </div>
         </div>
     </div>
-    <div class="p-4 leading-7 article-summary">
-        <p class="text-code text-justify max-h-summary overflow-hidden">
-            {{ .Summary | replaceRE "(?m)(?s:<(style|script)[^>]*>[^<]*<\\/(style|script)>)" "" | plainify }}
+    <div class="p-4 leading-7 article-summary text-justify">
+        <p id="summary" class="text-code h-full float-left text-justify overflow-hidden">
+            {{ .Summary | replaceRE "(?m)(?s:<(style|script)[^>]*>[^<]*<\\ /(style|script)>)" "" | plainify }}
         </p>
     </div>
 </div>

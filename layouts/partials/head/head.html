@@ -5,13 +5,22 @@
     <title>{{ $title }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name="referrer" content="same-origin">
+    <script>
+        !function () {
+            const e = document.documentElement,
+                t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+                n = localStorage.getItem("theme");
+            n === t ? a() : n ? e.setAttribute("data-theme", n) : (e.removeAttribute("data-theme"), localStorage.removeItem("theme"))
+        }()
+    </script>
     {{ if .Site.IsServer }}
-    <!-- {{ $style := resources.Get "sass/main.css" | toCSS | resources.PostCSS | minify }} -->
-    <link rel="stylesheet" href="/build.css">
+    <link rel="preload" as="script" href="/bundle.js">
+    <link href="/build.css" rel="preload stylesheet" as="style">
     {{ else }}
-    <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css" rel="preload"
-        as="style">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css">
+    <link rel="preload" as="script" integrity="{{ .Site.Params.StaticVendor.jsSRI }}"
+        href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">
+    <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css"
+        rel="preload stylesheet" as="style">
     {{ end }}
     {{ if in .Site.Params.mainSections .Type }}
     <meta name="description" content="{{ .Summary }}" />
@@ -23,12 +32,7 @@
     {{ else }}
     <meta name="description" content="{{ site.Params.Description }}" />
     {{ end }}
-    <meta name="keywords" content="{{ range first 25 site.Taxonomies.tags.ByCount }}{{ $f := slicestr  .Name 0 1}}
-        {{if ne $f " 2"}}{{.Name}},{{end}}{{end}}" />
-    {{ else }}
-    <meta name="keywords" content="{{ range first 25 site.Taxonomies.tags.ByCount }}{{ $f := slicestr  .Name 0 1}}
-        {{if ne $f " 2"}}{{.Name}},{{end}}{{end}}" />
-    <meta name="description" content="{{ .Site.Params.Description }}" />
+    <meta name="keywords" content="{{ site.Params.Keywords }}" />
     {{ end }}
     <meta name="date" content="{{site.LastChange.Format " 2006-01-02T15:04:05Z" }}" />
     {{ with site.Author.name }}
@@ -38,7 +42,6 @@
     <link href="{{ .Permalink }}" rel="canonical" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <script>!function () { const e = document.documentElement, t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light", n = localStorage.getItem("theme"); n === t ? a() : n ? e.setAttribute("data-theme", n) : (e.removeAttribute("data-theme"), localStorage.removeItem("theme")) }()</script>
     {{ partial "head/opengraph" . }}
     {{ partial "head/application" . }}
     {{ partial "head/schema" . }}

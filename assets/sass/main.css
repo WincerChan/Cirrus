@@ -803,3 +803,9 @@ input {
 } */
 progress::-moz-progress-bar { background: rgba(255, 255, 255, 0.7); }
 progress::-webkit-progress-value { background: rgba(255, 255, 255, 0.7); }
+#summary {
+	display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
