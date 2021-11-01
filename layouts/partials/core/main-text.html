@@ -1,5 +1,6 @@
 <article class="pt-2">
-    <div class="article-meta text-beargray cover bg-center bg-clip-text bg-cover backdrop-filter backdrop-blur-lg">
+    <div style="background-size: 1px;"
+        class="article-meta text-beargray cover bg-clip-text backdrop-filter backdrop-blur-lg">
 
         {{ $date := .Date }}
         {{ $wordcount := .WordCount }}
@@ -9,9 +10,9 @@
             <span class="ml-2">/</span>
             {{ range . }}
             {{ $page := site.GetPage (printf "/tags/%s" .) }}
-            <span class="hover:text-bqbg  transition ease-linear duration-300 cursor-pointer overflow-hidden">
+            <span class="hover:text-bqbg cursor-pointer overflow-hidden">
                 <a href="{{ $page.RelPermalink }}" title="{{ . }}" style="line-height: 32px"
-                    class="hover:bg-buttontext inline-block mx-1 px-3 text-sm border-tagborder rounded font-button">
+                    class="hover:bg-buttontext transition ease-linear duration-300 inline-block mx-1 px-3 text-sm border-tagborder rounded font-button">
                     #{{ . }}
                 </a>
             </span>
