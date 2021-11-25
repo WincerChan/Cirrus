@@ -4,6 +4,6 @@
 
 1. 移除[配置文件](config/_default/config.toml)里的 [module] 字段的所有内容；
 2. 根目录新建 content 文件夹，再创建 page（自定义页面） 和 posts（博客正文）子文件夹；
-3. 参照 [deploy.yml](.github/workflows/deploy.yml) 的步骤安装依赖后即可运行。
+3. 参照 build.sh 的步骤安装依赖后即可运行。
 
 主题样式可能会有一些硬编码的字段，我会尽可能将其变成可配置的（比如放到配置文件里面）。
