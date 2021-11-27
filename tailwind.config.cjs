@@ -99,7 +99,8 @@ module.exports = {
         bqborder: 'var(--bqborder)',
         categorytag: 'var(--category-tag)',
         svg: 'var(--svg)',
-        cardcover: 'var(--card-cover)'
+        cardcover: 'var(--card-cover)',
+        atcheadline: 'var(--article-headline)'
       },
       inset: {
         '10': '2.5rem'

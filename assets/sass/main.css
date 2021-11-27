@@ -209,15 +209,12 @@ content hr {
 	@apply border-none;
 }
 
-content > ol, content > ul {
+content > ol, content > ul, section > ol {
 	@apply pl-16;
 	@apply my-2;
 }
 
 content > ol ol, content > ol ul, content > ul ol, content > ul ul {
-	padding-left: 3rem;
-}
-section ol{
 	padding-left: 3rem;
 }
 
@@ -457,6 +454,7 @@ footer>svg {
 
 @layer base {
 	.light-theme {
+		--article-headline: rgba(0, 0, 0, 0.5);
 		--color-mode: 'light';
 		--bg-color: #f5f5f8;
 		--button: #3d4962;
@@ -520,6 +518,7 @@ footer>svg {
 		--chroma-w: #bbbbbb;
 	}
 	.dark-theme {
+		--article-headline: rgba(253, 253, 253, 0.4);
 		--bg-color: #282828;
 		--hyper: #FF7A5D;
 		--button: #c2b69d;
