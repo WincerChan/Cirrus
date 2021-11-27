@@ -217,6 +217,9 @@ content > ol, content > ul {
 content > ol ol, content > ol ul, content > ul ol, content > ul ul {
 	padding-left: 3rem;
 }
+section ol{
+	padding-left: 3rem;
+}
 
 content ol {
 	@apply list-decimal;
