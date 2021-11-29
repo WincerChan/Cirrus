@@ -52,7 +52,7 @@
     <div class="h-2"></div>
     <content class="{{ with .Params.encrypt_pwd }} hidden {{ end }}" {{ with .Params.encrypt_pwd }} data-password={{.}}
         {{ end }}>
-        {{ .Content }}
+        {{ replace .Content "<br>" "" | safeHTML }}
     </content>
     {{ with .Params.encrypt_pwd }}
     <script>window.blog_encrypted = true</script>
