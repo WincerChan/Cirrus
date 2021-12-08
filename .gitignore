@@ -34,3 +34,5 @@ wir/
 wir
 
 BlogContent/
+.vscode
+*.log
