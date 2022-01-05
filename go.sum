@@ -6,6 +6,8 @@ github.com/WincerChan/BlogContent v0.0.0-20201115102208-03278383d4bf h1:Md4mQTk3
 github.com/WincerChan/BlogContent v0.0.0-20201115102208-03278383d4bf/go.mod h1:NPifCj2kBE9Pug8VBDIHm8QWcEDYs03eCgTc5fRnMbA=
 github.com/WincerChan/BlogContent v0.0.0-20210408001346-41e54fae7a8a h1:Vv2gaexjhqcL/o+WvMbj2A8YvLRa59e0BOQxUmQbe/o=
 github.com/WincerChan/BlogContent v0.0.0-20210408001346-41e54fae7a8a/go.mod h1:NPifCj2kBE9Pug8VBDIHm8QWcEDYs03eCgTc5fRnMbA=
+github.com/WincerChan/BlogContent v0.0.0-20211129052208-71b28b240025 h1:QuHxadQU0Zz0BHWp6b6+1DM1nW1ZaFonzinBv5OOTlc=
+github.com/WincerChan/BlogContent v0.0.0-20211129052208-71b28b240025/go.mod h1:NPifCj2kBE9Pug8VBDIHm8QWcEDYs03eCgTc5fRnMbA=
 github.com/andybalholm/cascadia v1.1.0 h1:BuuO6sSfQNFRu1LppgbD25Hr2vLYW25JvxHs5zzsLTo=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/andybalholm/cascadia v1.2.0 h1:vuRCkM5Ozh/BfmsaTm26kbjm0mIOM3yS5Ek/F5h18aE=
