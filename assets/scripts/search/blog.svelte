@@ -88,9 +88,7 @@
                                         <span
                                             id="search-date"
                                             class="h-4 mr-1 items-center text-tagborder"
-                                            >{new Date(item.date * 1000)
-                                                .toISOString()
-                                                .split("T")[0]}</span
+                                            >{item.date.split("T")[0]}</span
                                         >
                                         <span
                                             id="search-snippet"
