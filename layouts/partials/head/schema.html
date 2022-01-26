@@ -37,7 +37,7 @@
     "datePublished": {{ .Params.Date.Format "2006-01-02T15:04:0500:00Z" }},
     "dateModified": {{ .Params.Updated }},
     "keywords": "{{ range $index, $director := .Params.tags }}{{ if gt $index 0 }},{{ end }}{{ . }}{{ end }}",
-    "description": {{ .Summary | plainify }}
+    "description": {{  .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify }}
     {{ else if .IsHome }},
     "description": {{ .Site.Params.Subtitle }}
     {{ end }}
