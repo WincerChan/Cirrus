@@ -35,6 +35,7 @@ module.exports = {
       '36': '9rem',
       '0': '0',
       '96': '24rem',
+      'screen': '100vh'
     },
     maxHeight: {
       'summary': '7.3rem'
