@@ -38,7 +38,9 @@ module.exports = {
       'screen': '100vh'
     },
     maxHeight: {
-      'summary': '7.3rem'
+      'summary': '7.3rem',
+      '60': '15rem',
+      '80': '20rem',
     },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
