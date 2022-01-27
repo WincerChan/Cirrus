@@ -4,20 +4,22 @@
     {{ (resources.Get "icons/collections.svg").Content | safeHTML}}
     <span class="text-lg uppercase text-tagborder my-1 pl-5 font-headline">Archives</span>
 </div>
-{{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-{{ $published := where site.RegularPages "Params.published" "!=" false }}
-{{ $pages := ($all | intersect $published) }}
-{{ $archives := $pages.GroupByDate "2006" }}
-{{ range $index, $item := first .Site.Params.archiveYears $archives }}
-{{ $id := lower (replace $item.Key " " "-") }}
-<a href="/archives/#{{ $id }}"
-    class="pointer-default h-10 border-transparent archives-info border hover:border-beargray text-beargray bg-contentbg tag text-xs w-full flex items-center transition ease-linear duration-300">
-    <div class="flex items-center justify-between w-full">
-        <div class="text-sm px-5">{{ .Key }}</div>
-        <div class="text-sm px-5 text-beargray archives-count">{{ len $item.Pages }}</div>
-    </div>
-</a>
-{{ end }}
+<div class="w-full space-y-2 items-center flex-col max-h-60 overflow-y-auto">
+    {{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $published := where site.RegularPages "Params.published" "!=" false }}
+    {{ $pages := ($all | intersect $published) }}
+    {{ $archives := $pages.GroupByDate "2006" }}
+    {{ range $index, $item := first .Site.Params.archiveYears $archives }}
+    {{ $id := lower (replace $item.Key " " "-") }}
+    <a href="/archives/#{{ $id }}"
+        class="pointer-default h-10 border-transparent archives-info border hover:border-beargray text-beargray bg-contentbg tag text-xs w-full flex items-center transition ease-linear duration-300">
+        <div class="flex items-center justify-between w-full">
+            <div class="text-sm px-5">{{ .Key }}</div>
+            <div class="text-sm px-5 text-beargray archives-count">{{ len $item.Pages }}</div>
+        </div>
+    </a>
+    {{ end }}
+</div>
 </div>
 <div class="seprator mt-6 mb-3"></div>
 

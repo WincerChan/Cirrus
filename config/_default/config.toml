@@ -12,6 +12,8 @@ DisablePathToLower = true
     name = "Wincer"
 
 [markup]
+    [markup.tableOfContents]
+        endLevel = 5
     [markup.highlight]
         lineNos = true
         noClasses = false

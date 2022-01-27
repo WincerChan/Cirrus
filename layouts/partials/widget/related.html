@@ -9,7 +9,7 @@
         <span class="text-lg uppercase text-tagborder my-1 pl-5 font-headline">Relateds </span>
     </div>
     <ol class="text-left text-tagborder">
-        {{range first 8 (index .Site.Taxonomies.category $category)}}
+        {{range first 6 (index .Site.Taxonomies.category $category)}}
         {{ if ne .Title $title }}
         <li>
             <div>

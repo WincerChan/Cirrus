@@ -343,11 +343,11 @@ content {
 
 
 #TableOfContents li {
-		@apply pl-4;
-		@apply my-1;
+		@apply pl-6;
+		@apply my-2;
 	}
 #TableOfContents li a {
-			@apply px-2;
+			@apply pr-2;
 			@apply py-1;
 		}
 #TableOfContents li a:hover {
@@ -833,4 +833,8 @@ code::before {
 	color: var(--chroma-w);
 	text-transform: uppercase;
 	@apply text-4xl absolute right-2 top-2;
+}
+
+ul ul {
+	border-left: 2px dotted var(--chroma-w);
 }
