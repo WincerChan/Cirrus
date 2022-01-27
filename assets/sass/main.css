@@ -811,3 +811,15 @@ progress::-webkit-progress-value { background: rgba(255, 255, 255, 0.7); }
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+content a[target=_blank]::after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="rgb(198, 198, 198)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>') ;
+	width: 1rem;
+	margin-left: 2px;
+	margin-top: 2px;
+	position: absolute;
+	display: inline-block;
+}
+
+content a[target=_blank] {
+	margin-right: 1.25rem;
+}
