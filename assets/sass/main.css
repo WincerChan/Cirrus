@@ -823,3 +823,14 @@ content a[target=_blank]::after {
 content a[target=_blank] {
 	margin-right: 1.25rem;
 }
+
+.highlight {
+	@apply relative;
+}
+
+code::before {
+	content: attr(data-lang);
+	color: var(--chroma-w);
+	text-transform: uppercase;
+	@apply text-4xl absolute right-2 top-2;
+}
