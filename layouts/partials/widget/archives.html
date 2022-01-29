@@ -4,7 +4,7 @@
     {{ (resources.Get "icons/collections.svg").Content | safeHTML}}
     <span class="text-lg uppercase text-tagborder my-1 pl-5 font-headline">Archives</span>
 </div>
-<div class="w-full space-y-2 items-center flex-col max-h-60 overflow-y-auto">
+<div class="w-full space-y-2 items-center flex-col max-h-48 xxl:max-h-60 overflow-y-auto">
     {{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
     {{ $published := where site.RegularPages "Params.published" "!=" false }}
     {{ $pages := ($all | intersect $published) }}

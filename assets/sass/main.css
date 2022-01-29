@@ -47,9 +47,9 @@ body {
 	}
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1680px) {
 	.container {
-		width: 100rem;
+		width: 108rem;
 	}
 }
 

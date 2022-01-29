@@ -39,6 +39,7 @@ module.exports = {
     },
     maxHeight: {
       'summary': '7.3rem',
+      '48': '12rem',
       '60': '15rem',
       '80': '20rem',
     },
@@ -77,7 +78,8 @@ module.exports = {
         '1/3': '33.333%',
         '7/24': '29.17%',
         '1/100': '1%',
-        '1/24': '4.166%'
+        '1/24': '4.166%',
+        "1.5": ".375rem",
       },
       colors: {
         cardtext: '#f2f2f2',
@@ -129,6 +131,8 @@ module.exports = {
       height: {
         '36': '9rem',
         '100': '25rem',
+        '66': '16.5rem',
+        '77': '19.25rem'
       },
       borderRadius: {
         'big': '.75rem'
