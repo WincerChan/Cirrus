@@ -11,11 +11,9 @@
     import lazyLoadThing from "../lazyload/core";
 
     let element;
-    let promise = fetch("https://live.itswincer.com/api/v0/douban").then(
-        (resp) => {
-            return resp.json();
-        }
-    );
+    let promise = fetch("https://api.itswincer.com/douban/v1/").then((resp) => {
+        return resp.json();
+    });
 
     let placeholder = [0, 1, 2, 3];
     $: update(element);
