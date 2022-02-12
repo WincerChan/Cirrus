@@ -12,7 +12,7 @@
     let show_time;
     let player, progress_bar;
     let promise = fetch(
-        `https://live.itswincer.com/cloudmusic/v1/detail?ids=[${music_id}]`
+        `https://api.itswincer.com/cloudmusic/v1/detail?ids=[${music_id}]`
     ).then((resp) => {
         return resp.json();
     });
