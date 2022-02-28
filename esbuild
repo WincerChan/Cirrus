@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const esbuild = require("esbuild");
+const sveltePlugin = require("esbuild-svelte")
+
+const isDev = process.env.NODE_ENV !== "production";
+
+esbuild.build({
+    entryPoints: ["assets/scripts/main.js",],
+    bundle: true,
+    format: "iife",
+    outfile: "static/bundle.js",
+    watch: isDev,
+    sourcemap: isDev,
+    minify: !isDev,
+    plugins: [sveltePlugin()],
+    logLevel: "info"
+})
+    .catch(() => process.exit(1));
+esbuild.build({
+    entryPoints: ["assets/scripts/workbox.js"],
+    bundle: true,
+    format: "iife",
+    minify: !isDev,
+    outfile: "static/service-worker.js",
+})
+    .catch(() => process.exit(1));

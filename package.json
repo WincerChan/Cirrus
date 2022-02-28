@@ -36,13 +36,13 @@
     "workbox-strategies": "^5.1.4"
   },
   "scripts": {
-    "start": "pnpm start:rollup & pnpm start:hugo & pnpm start:tailwindcss",
+    "start": "pnpm start:esbuild & pnpm start:hugo & pnpm start:tailwindcss",
     "start:tailwindcss": "postcss assets/sass/main.css -o static/build.css -w",
-    "start:rollup": "rollup -c rollup.config.js -w",
+    "start:esbuild": "./esbuild",
     "start:hugo": "hugo serve --disableFastRender",
-    "build:rollup": "rollup -c rollup.config.js",
     "build:hugo": "hugo --minify",
     "build:tailwindcss": "env NODE_ENV=production postcss assets/sass/main.css -o BlogContent/wir/css/main.min.css",
-    "build": "pnpm build:rollup ; pnpm build:hugo; pnpm build:tailwindcss"
+    "build": "pnpm build:esbuild ; pnpm build:hugo; pnpm build:tailwindcss",
+    "build:esbuild": "env NODE_ENV=production ./esbuild"
   }
 }
