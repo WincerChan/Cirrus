@@ -10,18 +10,11 @@
     "crypto-js": "^4.1.1",
     "esbuild": "^0.14.23",
     "esbuild-svelte": "^0.6.2",
-    "postcss": "^8.1.1",
-    "postcss-cli": "^8.1.0",
-    "svelte": "^3.43.1",
-    "tailwindcss": "^2.2.16"
+    "svelte": "^3.43.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "autoprefixer": "^10.3.7",
-    "cssnano": "^5.0.8",
-    "install": "^0.13.0",
-    "postcss-scss": "^4.0.1",
     "svelte-preprocess": "^4.9.8",
     "windicss": "^3.5.0",
     "workbox-core": "^6.3.0",
@@ -30,12 +23,12 @@
     "workbox-strategies": "^5.1.4"
   },
   "scripts": {
-    "start": "pnpm start:esbuild & pnpm start:hugo & pnpm start:tailwindcss",
-    "start:tailwindcss": "postcss assets/sass/main.css -o static/build.css -w",
+    "start": "pnpm start:windicss & pnpm start:esbuild & pnpm start:hugo",
+    "start:windicss": "node_modules/.bin/windicss -f windi.config.js -ato static/build.css --dev",
     "start:esbuild": "./esbuild",
     "start:hugo": "hugo serve --disableFastRender",
     "build:hugo": "hugo --minify",
-    "build:tailwindcss": "env NODE_ENV=production postcss assets/sass/main.css -o BlogContent/wir/css/main.min.css",
+    "build:windicss": "node_modules/.bin/windicss -f windi.config.js -ato static/build.css",
     "build": "pnpm build:esbuild ; pnpm build:hugo; pnpm build:tailwindcss",
     "build:esbuild": "env NODE_ENV=production ./esbuild"
   }
