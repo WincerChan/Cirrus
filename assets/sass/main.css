@@ -1,8 +1,5 @@
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 body {
 	@apply font-maintext;
 	@apply transition;
