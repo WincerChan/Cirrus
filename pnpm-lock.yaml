@@ -12,10 +12,10 @@ specifiers:
   postcss: ^8.1.1
   postcss-cli: ^8.1.0
   postcss-scss: ^4.0.1
-  rollup-plugin-svelte: ^7.1.0
   svelte: ^3.43.1
   svelte-preprocess: ^4.9.8
   tailwindcss: ^2.2.16
+  windicss: ^3.5.0
   workbox-core: ^6.3.0
   workbox-expiration: ^5.1.4
   workbox-routing: ^5.1.4
@@ -27,7 +27,6 @@ dependencies:
   esbuild-svelte: 0.6.2_esbuild@0.14.23
   postcss: 8.3.9
   postcss-cli: 8.3.1_postcss@8.3.9
-  rollup-plugin-svelte: 7.1.0_svelte@3.43.1
   svelte: 3.43.1
   tailwindcss: 2.2.16_96f83969316717847b3edf58a3f353f3
 
@@ -39,6 +38,7 @@ devDependencies:
   install: 0.13.0
   postcss-scss: 4.0.1_postcss@8.3.9
   svelte-preprocess: 4.9.8_39bb5b0bdee8e8621abdb62a2d950f77
+  windicss: 3.5.0
   workbox-core: 6.3.0
   workbox-expiration: 5.1.4
   workbox-routing: 5.1.4
@@ -1033,10 +1033,6 @@ packages:
     resolution: {integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=}
     engines: {node: '>=0.8.0'}
 
-  /estree-walker/0.6.1:
-    resolution: {integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==}
-    dev: false
-
   /fast-glob/3.2.7:
     resolution: {integrity: sha512-rYGMRwip6lUMvYD3BTScMwT1HtAs2d71SMv66Vrxs0IekGZEjhM0pcMfjQPnknBt2zeCwQMEupiN02ZP4DiT1Q==}
     engines: {node: '>=8'}
@@ -1962,10 +1958,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /require-relative/0.8.7:
-    resolution: {integrity: sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=}
-    dev: false
-
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -2008,24 +2000,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.0
-    dev: false
-
-  /rollup-plugin-svelte/7.1.0_svelte@3.43.1:
-    resolution: {integrity: sha512-vopCUq3G+25sKjwF5VilIbiY6KCuMNHP1PFvx2Vr3REBNMDllKHFZN2B9jwwC+MqNc3UPKkjXnceLPEjTjXGXg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      rollup: '>=2.0.0'
-      svelte: '>=3.5.0'
-    dependencies:
-      require-relative: 0.8.7
-      rollup-pluginutils: 2.8.2
-      svelte: 3.43.1
-    dev: false
-
-  /rollup-pluginutils/2.8.2:
-    resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
-    dependencies:
-      estree-walker: 0.6.1
     dev: false
 
   /run-parallel/1.2.0:
@@ -2302,6 +2276,12 @@ packages:
 
   /vendors/1.0.4:
     resolution: {integrity: sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==}
+    dev: true
+
+  /windicss/3.5.0:
+    resolution: {integrity: sha512-+UNYm2Zy4TM2uLiz6bqY2a69LavMqGbILFIwuGhPEJ/uqsPT3kCGSaWlhMw/weIaFOkm1K1cEzZ015Y8pp8N1A==}
+    engines: {node: '>= 12'}
+    hasBin: true
     dev: true
 
   /workbox-core/5.1.4:
