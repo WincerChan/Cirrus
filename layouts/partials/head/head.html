@@ -10,7 +10,7 @@
             const e = document.documentElement,
                 t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
                 n = localStorage.getItem("theme");
-            n === t ? a() : n ? e.setAttribute("data-theme", n) : (e.removeAttribute("data-theme"), localStorage.removeItem("theme"))
+            n === t ? a() : n ? e.setAttribute("class", n) : (e.removeAttribute("class"), localStorage.removeItem("theme"))
         }()
     </script>
     {{ if .Site.IsServer }}

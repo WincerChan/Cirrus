@@ -329,7 +329,7 @@ content a:hover {
 	 :root {
 		--color-mode: 'dark';
 	}
-	 :root:not([data-theme]) {
+	 :root:not(.light) {
 		--article-headline: rgba(253, 253, 253, 0.4);
 		--bg-color: #282828;
 		--hyper: #FF7A5D;
@@ -401,8 +401,7 @@ content a:hover {
 	}
 }
 
-[data-theme="dark"] {
-
+.dark {
 		--article-headline: rgba(253, 253, 253, 0.4);
 		--bg-color: #282828;
 		--hyper: #FF7A5D;

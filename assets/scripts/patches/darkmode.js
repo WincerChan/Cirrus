@@ -19,7 +19,7 @@ const getLS = (k) => {
 }
 
 const resetRootDarkModeAttributeAndLS = () => {
-    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute('class');
     removeLS('theme');
 }
 const getCSSMediaQuery = () => {
@@ -56,7 +56,7 @@ const applyCustomDarkModeSettings = (mode) => {
     if (currentSetting === getCSSMediaQuery()) {
         resetRootDarkModeAttributeAndLS();
     } else if (validColorModeKeys[currentSetting]) {
-        document.documentElement.setAttribute('data-theme', currentSetting);
+        document.documentElement.setAttribute('class', currentSetting);
     } else {
         resetRootDarkModeAttributeAndLS();
     }

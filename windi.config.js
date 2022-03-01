@@ -2,12 +2,25 @@ const helper = require('windicss/helpers');
 
 const production = !process.env.NODE_ENV !== 'production';
 
+
+const LINKABLE = {
+  'link-text': 'transition duration-200 ease-linear shadow-box-shadow text-link',
+  'link-text-hover': 'shadow-box-shadow-hover text-deeplink',
+  'link-card': 'transition ease-linear duration-300',
+}
+
+const WIDGET = {
+  'headline': 'font-maintext pb-[.6rem]',
+  'menu': 'bg-transparent border-none cursor-pointer',
+  'tag': 'px-3 mr-2 my-1 rounded-lg',
+  'category-tag': 'tag mx-4 shadow-md font-bold',
+  'site-description': 'text-beargray text-lg',
+  'site-name': 'text-deepgray',
+}
+
 module.exports = helper.defineConfig({
   extract: { include: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.html", "./assets/**/*.svelte"] },
-  shortcuts: {
-    'hover': 'transition duration-200 ease-linear shadow-box-shadow text-link'
-
-  },
+  shortcuts: { ...LINKABLE, ...WIDGET },
   theme: {
     screens: {
       'three': '1440px',

@@ -18,15 +18,16 @@
         }
     }
 
-    @media (min-width: 1800px) {
-        .container {
-            width: 100rem;
-        }
-    }
 
     @media (min-width: 1439px) {
         .container {
             width: 83rem;
+        }
+    }
+
+    @media (min-width: 1800px) {
+        .container {
+            width: 100rem;
         }
     }
 
@@ -59,13 +60,6 @@
         }
     }
 
-    .headline {
-        @apply font-maintext pb-[.6rem];
-    }
-
-    .menu {
-        @apply bg-transparent border-none cursor-pointer;
-    }
 
     .line {
         fill: none;
@@ -107,42 +101,12 @@
         stroke-width: 6;
     }
 
-    .hover {
-        @apply transition duration-200 ease-linear shadow-box-shadow text-link;
-    }
-
-    .tag {
-        padding: 1px;
-        @apply px-3 mr-2 my-1 rounded-lg;
-    }
-
-    .category-tag {
-        @apply tag mx-4 shadow-md font-bold;
-    }
-
-    .relative-article:hover>span {
-        color: #fff !important;
-    }
-
-
     body {
         @apply bg-bg font-maintext transition ease-linear duration-300;
     }
 
-    .site-description {
-        @apply text-beargray text-lg;
-    }
-
-    .site-name {
-        @apply text-deepgray;
-    }
-
     li span {
         @apply font-headline;
-    }
-
-    footer {
-        @apply my-[.5rem];
     }
 
     .label sup {
@@ -183,22 +147,12 @@
     }
 
 
-    .article-link {
-        @apply hover;
-    }
 
     .link-card-hover:hover {
         transform: scale(1.15);
         box-shadow: 0 8px 20px var(--boxshadow-light), 0 0 2px var(--boxshadow-deep);
     }
 
-    .link-card {
-        @apply transition ease-linear duration-300;
-    }
-
-    .article-link:hover {
-        @apply shadow-box-shadow-hover text-deeplink;
-    }
 
     content p {
         @apply text-justify;
@@ -222,7 +176,7 @@
 
 
     content a {
-        @apply hover mx-1 .article-link: hover;
+        @apply link-text mx-1 hover: link-text-hover;
     }
 
     .life-desc>p {
@@ -276,10 +230,6 @@
         text-shadow: 1px 1px 2px #444;
     }
 
-
-    footer>svg {
-        @apply w-[1.25rem] !important;
-    }
 
     progress::-moz-progress-bar {
         background: rgba(255, 255, 255, 0.7);

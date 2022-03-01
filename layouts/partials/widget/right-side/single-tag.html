@@ -1,6 +1,6 @@
 {{ if eq .style "span" }}
 <span class="text-base text-hyper px-1">
-    <a href="{{ .link }}" class="hover" title="{{ .name }}">{{ .name }}</a>
+    <a href="{{ .link }}" class="link-text hover:link-text-hover" title="{{ .name }}">{{ .name }}</a>
 </span>
 {{ else if eq .style "button" }}
 <a href="{{ .link }}" title="{{ .name }}" style="line-height: 32px" level="{{ .count }}"
