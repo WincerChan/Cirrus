@@ -1,3 +1,21 @@
+
+content a[target=_blank]::after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="rgb(198, 198, 198)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>');
+    width: 1rem;
+    margin-left: 2px;
+    margin-top: 2px;
+    position: absolute;
+    display: inline-block;
+}
+
+content a:hover {
+  color: var(--deeplink);
+    --tw-shadow-color: 0, 0, 0;
+    --tw-shadow: 0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;;
+    -webkit-box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .chroma {
   background-color: var(--chroma-bg); 
 }

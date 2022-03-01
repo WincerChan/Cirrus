@@ -90,6 +90,7 @@ module.exports = helper.defineConfig({
       },
       colors: {
         cardtext: '#f2f2f2',
+        bg: 'var(--bg-color)',
         hyper: 'var(--hyper)',
         buttontext: 'var(--button)',
         deepgray: 'var(--deepgray)',

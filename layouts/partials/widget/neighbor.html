@@ -3,7 +3,7 @@
         class="col-start-1 col-end-32 shadow-lg {{ if not .NextInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
         {{ with .NextInSection }}
         <a href="{{ .RelPermalink }}">
-            <div class="lazy px-8 h-56 <md:h-48 bg-center bg-cover flex items-center justify-center link-card hover:zoomout text-shadow"
+            <div class="lazy px-8 h-56 <md:h-48 bg-center bg-cover flex items-center justify-center link-card link-card-hover text-shadow"
                 data-src="{{ .Params.Cover }}">
                 <div class="text-center">
                     <span class="block text-2xl font-bold uppercase">Next</span>
@@ -17,7 +17,7 @@
         class="col-start-33 col-end-64 shadow-lg {{ if not .PrevInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
         {{ with .PrevInSection }}
         <a href="{{ .RelPermalink }}">
-            <div class="lazy px-8 h-56 <md:h-48 bg-center bg-cover flex items-center justify-center link-card hover:zoomout text-shadow"
+            <div class="lazy px-8 h-56 <md:h-48 bg-center bg-cover flex items-center justify-center link-card link-card-hover text-shadow"
                 data-src="{{ .Params.Cover }}">
                 <div class="text-center">
                     <span class="block text-2xl font-bold uppercase">Previous</span>
