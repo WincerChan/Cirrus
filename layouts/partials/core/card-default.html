@@ -3,7 +3,7 @@
         <div class="lazy bg-cardcover flex content-end flex-wrap bg-cover w-full bg-center box-border"
             data-src="{{ .Params.Cover }}">
             <div class=" justify-between w-full items-center flex mb-4">
-                <div class="title-date w-full px-8 sm:px-6">
+                <div class="title-date w-full px-8 <sm:px-6">
                     {{ $category := .Params.Category }}
                     {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                     <div
@@ -17,7 +17,8 @@
                         <span class="text-deepgray card-tag text-cardtext">
                             {{ dateFormat " Jan 2, 2006" .Date }}</span>
                     </div>
-                    <h3 class="text-headline headline pt-2 text-2xl card-title items-center justify-between">
+                    <h3
+                        class="text-headline font-maintext headline pt-2 text-2xl card-title items-center justify-between">
                         <a href="{{ .RelPermalink }}">
                             {{ .Params.Title }}
                         </a>

@@ -3,17 +3,28 @@ const helper = require('windicss/helpers');
 const production = !process.env.NODE_ENV !== 'production';
 
 module.exports = helper.defineConfig({
+  extract: { include: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.html", "./assets/**/*.svelte"] },
+  shortcuts: {
+    'hover': 'transition duration-200 ease-linear shadow-box-shadow text-link'
 
-  extract: { include: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.css", "./assets/**/*.svelte"] },
+  },
   theme: {
     screens: {
-      'xxl': { 'min': '1600px' },
-      'xl': { 'min': '1440px' }, // more, 3 column
-      'lg': { 'max': '1439px' }, // less, 2 column
-      'lm': { 'max': '1072px' },
-      'md': { 'max': '960px' }, // pad
-      'sm': { 'max': '600px' } // phone
+      'three': '1440px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
     },
+    // screens: {
+    //   'xxl': { 'min': '1600px' },
+    //   'xl': { 'min': '1440px' }, // more, 3 column
+    //   'lg': { 'max': '1439px' }, // less, 2 column
+    //   'lm': { 'max': '1072px' },
+    //   'md': { 'max': '960px' }, // pad
+    //   'sm': { 'max': '600px' } // phone
+    // },
     maxWidth: {
       '4/5': '80%',
       '1/4': '25%',

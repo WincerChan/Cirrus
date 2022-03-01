@@ -15,8 +15,9 @@
     </script>
     {{ if .Site.IsServer }}
     <link rel="preload" as="script" href="/bundle.js">
-    <link href="/build.css" rel="preload stylesheet" as="style">
-    <link href="/main.css" rel="preload stylesheet" as="style">
+    {{ $base := resources.Get "scss/base.scss" | resources.ToCSS }}
+    <link rel="preload stylesheet" href="{{ $base.Permalink }}" as="style">
+    <!-- <link href="/main.css" rel="preload stylesheet" as="style"> -->
     {{ else }}
     <link rel="preload" as="script" integrity="{{ .Site.Params.StaticVendor.jsSRI }}"
         href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">

@@ -4,12 +4,12 @@
 {{ partial "head/head.html" . }}
 {{$.Scratch.Set "svelte" true}}
 
-<body class="antialiased text-maintext">
-    <div class="container mx-auto md:w-full">
-        <div class="flex mx-auto sm:block md:block lg:max-lg-w-screen lg:justify-between">
+<body class="antialiased text-maintext font-maintext transition ease-linear duration-300">
+    <div class="container mx-auto <md:w-full">
+        <div class="flex mx-auto <sm:block <md:block <lg:(justify-between max-lg-w-screen)">
             {{ partial "frame/left-part" . }}
             <div
-                class=" py-10 content-center overflow-hidden px-3 sm:px-0 flex-grow flex-col min-h-screen md:min-h-0 flex md:w-19/20 sm:w-full article-list md:mx-auto space-y-12">
+                class=" py-10 content-center overflow-hidden px-3 <sm:px-0 flex-grow flex-col min-h-[100vh] <md:min-h-0 flex <md:w-19/20 <sm:w-full article-list <md:mx-auto space-y-12">
                 {{ block "main" . }}{{ end }}
             </div>
             {{ partial "frame/right-part" . }}

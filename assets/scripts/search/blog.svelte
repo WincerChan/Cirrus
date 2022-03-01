@@ -20,13 +20,13 @@
 </script>
 
 <div>
-    <div class="flex mt-4 mb-6 md:mx-2">
+    <div class="flex mt-4 mb-6 <md:mx-2">
         <input
             type="text"
             bind:value={query_params}
             placeholder="请输入关键字"
             id="search-params"
-            class="h-10 mr-1 flex-grow rounded-full outline-none px-6 md:px-3"
+            class="h-10 mr-1 flex-grow rounded-full outline-none px-6 <md:px-3"
         />
         <button
             id="search-button"
@@ -38,7 +38,7 @@
     </div>
     {#if show_result}
         {#await promise}
-            <div class="mb-4 md:px-2">
+            <div class="mb-4 <md:px-2">
                 <p
                     class="text-sm text-deepgray w-28 h-5 bg-gray-200 animate-pulse"
                 />
@@ -54,7 +54,7 @@
             {#if data.err_msg}
                 <p class="text-xl text-red-600">{data.err_msg}</p>
             {:else}
-                <div class="mb-4 md:px-2">
+                <div class="mb-4 <md:px-2">
                     <p class="text-sm text-deepgray">
                         共搜索到<span
                             id="search-number"
@@ -82,7 +82,7 @@
                                     />
                                 </a>
                                 <div
-                                    class="w-full mt-3 text-beargray font-headline sm:pb-3"
+                                    class="w-full mt-3 text-beargray font-headline <sm:pb-3"
                                 >
                                     <p class="text-justify">
                                         <span

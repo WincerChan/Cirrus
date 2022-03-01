@@ -29,7 +29,7 @@
     <div class="flex flex-wrap mb-4 items-end">
         {#await promise}
             {#each placeholder as l}
-                <div class="px-2 w-1/5 rounded-md sm:w-1/4 pb-6">
+                <div class="px-2 w-1/5 rounded-md <sm:w-1/4 pb-6">
                     <figure
                         class="text-center text-sm truncate text-beargray bg-contentbg link-card rounded"
                     >
@@ -44,7 +44,7 @@
             {/each}
         {:then douban_infos}
             {#each douban_infos as douban}
-                <div class="px-2 w-1/5 sm:w-1/4 pb-6">
+                <div class="px-2 w-1/5 <sm:w-1/4 pb-6">
                     <figure
                         class="text-center text-sm truncate text-beargray  bg-contentbg link-card link-card-shadow rounded-md"
                     >

@@ -1,0 +1,116 @@
+<!-- 使用这个文件来导入 windicss 的属性： -->
+<style lang="windi">
+    @media (max-width: 1200px) {
+        .container {
+            max-width: 95%;
+        }
+    }
+
+    @media (max-width: 940px) {
+        .container {
+            max-width: 100%;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            width: 66rem;
+        }
+    }
+
+    @media (min-width: 1800px) {
+        .container {
+            width: 100rem;
+        }
+    }
+
+    @media (min-width: 1439px) {
+        .container {
+            width: 83rem;
+        }
+    }
+</style>
+<style lang="windi">
+    .hover {
+        @apply transition duration-200 ease-linear shadow-box-shadow text-link;
+    }
+
+    .seprator {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 3rem;
+        background: #757575;
+    }
+
+
+
+    article h2,
+    article h3,
+    article h4 {
+        @apply pl-5 pr-6 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose
+    }
+
+    article h3 {
+        @apply text-xl;
+    }
+
+    article h4 {
+        @apply text-lg;
+    }
+
+    article blockquote {
+        @apply border-l-4 border-blockquote pt-3 pl-5 pr-6 pb-3 mb-5 text-deepgray;
+    }
+
+    .article-link-hover {
+        @apply shadow-box-shadow-hover text-deeplink;
+    }
+
+    .article-link {
+        @apply hover;
+    }
+
+    content p {
+        @apply text-justify;
+    }
+
+    content p>img {
+        @apply mx-auto;
+    }
+
+    article #input {
+        @apply pl-6;
+    }
+
+    content>p {
+        @apply px-6 mb-3;
+    }
+
+    content a {
+        @apply article-link mx-1 hover: article-link-hover;
+    }
+
+    .life-desc>p {
+        @apply mb-3;
+    }
+
+
+    content>ol,
+    content>ul,
+    section>ol {
+        @apply pl-16 my-2;
+    }
+
+    content hr {
+        @apply seprator m-6 w-24 border-none;
+    }
+
+
+    content>ol ol,
+    content>ol ul,
+    content>ul ol,
+    content>ul ul {
+        padding-left: 3rem;
+    }
+</style>

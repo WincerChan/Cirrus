@@ -22,6 +22,20 @@ esbuild.build({
     bundle: true,
     format: "iife",
     minify: !isDev,
+    watch: isDev,
     outfile: "static/service-worker.js",
 })
     .catch(() => process.exit(1));
+
+// esbuild.build({
+//     entryPoints: ["assets/css/base.css"],
+//     bundle: true,
+//     minify: !isDev,
+//     watch: {
+//         onRebuild(error, result) {
+//             if (error) console.error('watch build failed: ', error);
+//             else console.log('watch build css succeeded: ', result);
+//         }
+//     },
+//     outfile: "static/main.css",
+// })

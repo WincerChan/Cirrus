@@ -1,6 +1,6 @@
-<div class="flex flex-1 md:mx-1/24">
+<div class="flex flex-1 <md:mx-1/24">
     <img src="{{ .Site.Params.avatar }}" alt="avatar"
-        class="rounded-full flex-none h-48 w-48 md:w-56 self-start md:h-56" width="192px" height="192px">
+        class="rounded-full flex-none h-48 w-48 <md:w-56 self-start <md:h-56" width="192px" height="192px">
     <ul class="flex-1 grid grid-cols-1 w-6 pl-5 pt-2">
         {{ range .Site.Params.Social }}
         <li class="w-5">
@@ -10,7 +10,7 @@
         </li>
         {{ end }}
     </ul>
-    <span id="menu" class="menu w-8 h-8 hidden md:block">
+    <span id="menu" class="menu w-8 h-8 hidden <md:block">
         <div class="menu hover:opacity-75"
             onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))"
             aria-label="Main Menu">
