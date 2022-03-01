@@ -27,15 +27,19 @@ esbuild.build({
 })
     .catch(() => process.exit(1));
 
-// esbuild.build({
-//     entryPoints: ["assets/css/base.css"],
-//     bundle: true,
-//     minify: !isDev,
-//     watch: {
-//         onRebuild(error, result) {
-//             if (error) console.error('watch build failed: ', error);
-//             else console.log('watch build css succeeded: ', result);
-//         }
-//     },
-//     outfile: "static/main.css",
-// })
+if (!isDev) {
+
+    esbuild.build({
+        entryPoints: ["assets/css/build.css"],
+        bundle: true,
+        minify: true,
+        watch: {
+            onRebuild(error, result) {
+                if (error) console.error('watch build failed: ', error);
+                else console.log('watch build css succeeded: ', result);
+            }
+        },
+        outfile: "static/main.css",
+    })
+        .catch(() => process.exit(1));
+}
