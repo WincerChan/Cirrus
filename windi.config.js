@@ -23,12 +23,13 @@ module.exports = helper.defineConfig({
   shortcuts: { ...LINKABLE, ...WIDGET },
   theme: {
     screens: {
-      'three': '1440px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
+      'sm': { max: '640px' }, // mobile
+      'md': { max: '960px' }, // tablet
+      'lg': { max: '1279px' },
+      'xl': { min: '1280px' },
+      'two': { max: '1439px' },
+      'three': { min: '1440px' },
+      '2xl': { min: '1800px' }, // large screen
     },
     // screens: {
     //   'xxl': { 'min': '1600px' },
@@ -38,32 +39,6 @@ module.exports = helper.defineConfig({
     //   'md': { 'max': '960px' }, // pad
     //   'sm': { 'max': '600px' } // phone
     // },
-    maxWidth: {
-      '4/5': '80%',
-      '1/4': '25%',
-      '1/2': '50%',
-      '5/6': '83.33%',
-      '7/8': '87.5%',
-      '3/4': '75%',
-      '2/3': '66.67%',
-      'full': '100%',
-      '7/12': '58.33%',
-      '1/3': '33.33%',
-      '4/9': '45%'
-    },
-    minHeight: {
-      '100': '25rem',
-      '48': '12rem',
-      '36': '9rem',
-      '0': '0',
-      '96': '24rem',
-      'screen': '100vh'
-    },
-    maxHeight: {
-      'summary': '7.3rem',
-      '60': '15rem',
-      '80': '20rem',
-    },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
       'headline': ["Lato", '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', '"Open Sans"', '"Helvetica Neue"', '"sans-serif"'],
@@ -71,36 +46,6 @@ module.exports = helper.defineConfig({
       'button': ["-apple-system", "'Helvetica Neue'", "'PingFang SC'", "'WenQuanYi Micro Hei'", "'noto sans'", "Cantarell", "'Arial'"]
     },
     extend: {
-      opacity: {
-        '6': '0.06',
-        '10': '0.1'
-      },
-      scale: {
-        '115': '1.15'
-      },
-      gridTemplateColumns: {
-        '63': 'repeat(63, minmax(0, 1fr))',
-      },
-      gridColumnStart: {
-        '33': '33',
-      },
-      gridColumnEnd: {
-        '64': '64',
-        '32': '32'
-      },
-      padding: {
-        '1/48': '2.08%',
-        '1/25': '4%',
-        'smallest': '1px',
-        'button': '0.4rem'
-      },
-      margin: {
-        '1/4': '25%',
-        '1/3': '33.333%',
-        '7/24': '29.17%',
-        '1/100': '1%',
-        '1/24': '4.166%'
-      },
       colors: {
         cardtext: '#f2f2f2',
         bg: 'var(--bg-color)',
@@ -128,33 +73,10 @@ module.exports = helper.defineConfig({
         cardcover: 'var(--card-cover)',
         atcheadline: 'var(--article-headline)'
       },
-      inset: {
-        '10': '2.5rem'
-      },
       fontSize: {
         'title': '1.75rem',
         'button': '0.8125rem',
         'code': '0.9375rem'
-      },
-      width: {
-        '36': '9rem',
-        '160': '40rem',
-        '184': '46rem',
-        '204': '51rem',
-        '256': '64rem',
-        '224': '56rem',
-        '288': '72rem',
-        '6/13': '46.15%',
-        '15/16': '93.75%',
-        '19/20': '95%',
-        '2/9': '22.5%'
-      },
-      height: {
-        '36': '9rem',
-        '100': '25rem',
-      },
-      borderRadius: {
-        'big': '.75rem'
       },
       boxShadow: {
         'box-shadow': "0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;",

@@ -3,7 +3,7 @@
         <div class="lazy bg-cardcover flex content-end flex-wrap bg-cover w-full bg-center box-border"
             data-src="{{ .Params.Cover }}">
             <div class=" justify-between w-full items-center flex mb-4">
-                <div class="title-date w-full px-8 <sm:px-6">
+                <div class="title-date w-full px-8 sm:px-6">
                     {{ $category := .Params.Category }}
                     {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                     <div

@@ -1,6 +1,6 @@
 {{ if not (in .Site.Params.mainSections .Type) }}
 
-<div class="text-tagborder flex flex-col items-start <md:mx-0 ">
+<div class="text-tagborder flex flex-col items-start md:mx-0 ">
     <div class="inline-flex items-center flex-wrap my-1 pb-1">
         {{ (resources.Get "icons/tag.svg").Content | safeHTML }}
         <span class="text-lg uppercase my-1 pl-5 font-headline">

@@ -29,7 +29,7 @@
     <div class="flex flex-wrap mb-4 items-end">
         {#await promise}
             {#each placeholder as l}
-                <div class="px-2 w-1/5 rounded-md <sm:w-1/4 pb-6">
+                <div class="px-2 w-1/5 rounded-md sm:w-1/4 pb-6">
                     <figure
                         class="text-center text-sm truncate text-beargray bg-contentbg link-card rounded"
                     >
@@ -37,14 +37,14 @@
                             class="mx-auto  bg-slightgray animate-pulse xl:h-52 h-24"
                         />
                         <div
-                            class="block mx-auto mt-1 truncate p-smallest h-5 w-2/3 bg-slightgray animate-pulse"
+                            class="block mx-auto mt-1 truncate p-[1px] h-5 w-2/3 bg-slightgray animate-pulse"
                         />
                     </figure>
                 </div>
             {/each}
         {:then douban_infos}
             {#each douban_infos as douban}
-                <div class="px-2 w-1/5 <sm:w-1/4 pb-6">
+                <div class="px-2 w-1/5 sm:w-1/4 pb-6">
                     <figure
                         class="text-center text-sm truncate text-beargray  bg-contentbg link-card link-card-shadow rounded-md"
                     >
@@ -64,7 +64,7 @@
                             />
                         </a>
                         <span
-                            class="block truncate p-smallest"
+                            class="block truncate p-[1px]"
                             title={douban.title}>{douban.title}</span
                         >
                     </figure>

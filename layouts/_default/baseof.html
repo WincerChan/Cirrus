@@ -5,11 +5,11 @@
 {{$.Scratch.Set "svelte" true}}
 
 <body class="antialiased text-maintext font-maintext transition ease-linear duration-300">
-    <div class="container mx-auto <md:w-full">
-        <div class="flex mx-auto <sm:block <md:block <lg:(justify-between max-lg-w-screen)">
+    <div class="container mx-auto md:w-full 2xl:w-[96rem] three:w-[83rem] xl:w-[66rem] lg:max-w-[95%] md:max-w-full">
+        <div class="flex mx-auto sm:block md:block lg:justify-between ">
             {{ partial "frame/left-part" . }}
             <div
-                class=" py-10 content-center overflow-hidden px-3 <sm:px-0 flex-grow flex-col min-h-[100vh] <md:min-h-0 flex <md:w-19/20 <sm:w-full article-list <md:mx-auto space-y-12">
+                class=" py-10 content-center overflow-hidden px-3 sm:px-0 flex-grow flex-col min-h-[100vh] md:min-h-0 flex md:w-[95%] sm:w-full article-list md:mx-auto space-y-12">
                 {{ block "main" . }}{{ end }}
             </div>
             {{ partial "frame/right-part" . }}
