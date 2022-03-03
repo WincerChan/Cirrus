@@ -7,7 +7,7 @@
                     {{ $category := .Params.Category }}
                     {{ with $.Site.GetPage (printf "/category/%s" $category) }}
                     <div
-                        class="text-categorytag mt-10 h-8 py-1 font-bold cursor-pointer float-right bg-black text-size-[.9375rem] bg-opacity-25  hover:bg-opacity-50 px-3 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
+                        class="text-categorytag mt-10 h-8 py-1 font-bold cursor-pointer float-right bg-black slight-size bg-opacity-25  hover:bg-opacity-50 px-3 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
                         <a href="{{ .Permalink }}" title="{{ $category }}">
                             {{ $category }}
                         </a>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="p-4 leading-7 article-summary text-justify">
-        <p id="summary" class="text-size-[.9375rem] h-full float-left text-justify overflow-hidden">
+        <p id="summary" class="slight-size h-full float-left text-justify overflow-hidden">
             {{ .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify}}
         </p>
     </div>
