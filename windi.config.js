@@ -22,14 +22,6 @@ module.exports = helper.defineConfig({
   extract: { include: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.html", "./assets/**/*.svelte"] },
   shortcuts: { ...LINKABLE, ...WIDGET },
   theme: {
-    // screens: {
-    //   'xxl': { 'min': '1600px' },
-    //   'xl': { 'min': '1440px' }, // more, 3 column
-    //   'lg': { 'max': '1439px' }, // less, 2 column
-    //   'lm': { 'max': '1072px' },
-    //   'md': { 'max': '960px' }, // pad
-    //   'sm': { 'max': '600px' } // phone
-    // },
     fontFamily: {
       'code': ["Consolas", "Monaco", "'Andale Mono'", "'Ubuntu Mono'", "monospace"],
       'headline': ["Lato", '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', '"Open Sans"', '"Helvetica Neue"', '"sans-serif"'],
@@ -64,22 +56,12 @@ module.exports = helper.defineConfig({
         cardcover: 'var(--card-cover)',
         atcheadline: 'var(--article-headline)'
       },
-      fontSize: {
-        'title': '1.75rem',
-        'button': '0.8125rem',
-        'code': '0.9375rem'
-      },
       boxShadow: {
         'box-shadow': "0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;",
         'box-shadow-hover': "0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;",
         'button': "rgba(0, 0, 0, 0.4) 0px 0px 10px"
       }
     },
-  },
-  variants: {
-    extend: {
-      borderWidth: ['first', 'last']
-    }
   },
   plugins: [],
 
