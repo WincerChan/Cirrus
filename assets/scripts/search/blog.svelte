@@ -66,7 +66,7 @@
                 <div class="card-compact-list space-y-6" id="search-results">
                     {#each data.data as item}
                         <div
-                            class="bg-contentbg rounded-md overflow-hidden font-sans link-card"
+                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden font-sans link-card"
                         >
                             <div class="metadata px-4 py-4">
                                 <a
@@ -113,7 +113,7 @@
                                     Params.page--;
                                     fetchResults();
                                 }}
-                                class="text-center border-2 bg-contentbg rounded font-medium px-5 py-3 link-card border-lightgray hover:border-beargray"
+                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 link-card border-lightgray hover:border-beargray"
                             >
                                 Prev
                             </button>
@@ -127,7 +127,7 @@
                                     Params.page++;
                                     fetchResults();
                                 }}
-                                class="text-center border-2 bg-contentbg rounded font-medium px-5 py-3 link-card border-lightgray hover:border-beargray"
+                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 link-card border-lightgray hover:border-beargray"
                             >
                                 Next
                             </button>

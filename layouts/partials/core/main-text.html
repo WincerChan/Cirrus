@@ -5,7 +5,7 @@
         {{ $date := .Date }}
         {{ $wordcount := .WordCount }}
         {{ with .Params.tags }}
-        <div class="article-tags sm:px-6 slight-size px-5 font-button items-center mt-3">
+        <div class="article-tags sm:px-6 text-[0.9375rem] px-5 font-button items-center mt-3">
             <span class="text-deepgray mr-1"> {{ dateFormat "Jan 2, 2006" $date }} </span>
             <span class="ml-2">/</span>
             {{ range . }}

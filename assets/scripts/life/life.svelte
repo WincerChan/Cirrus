@@ -31,7 +31,7 @@
             {#each placeholder as l}
                 <div class="px-2 sm:w-1/5 rounded-md w-1/4 pb-6">
                     <figure
-                        class="text-center text-sm truncate text-beargray bg-contentbg link-card rounded"
+                        class="text-center text-sm truncate text-beargray bg-[#fffffd] dark:bg-[#2e2e2e] bg-[#fffffd] dark:bg-[#2e2e2e]  link-card rounded"
                     >
                         <div
                             class="mx-auto  bg-slightgray animate-pulse xl:h-52 h-24"
@@ -46,7 +46,7 @@
             {#each douban_infos as douban}
                 <div class="px-2 sm:w-1/5 w-1/4 pb-6">
                     <figure
-                        class="text-center text-sm truncate text-beargray  bg-contentbg link-card link-card-shadow rounded-md"
+                        class="text-center text-sm truncate text-beargray  bg-[#fffffd] dark:bg-[#2e2e2e] link-card link-card-shadow rounded-md"
                     >
                         <a
                             href="https://{douban.type}.douban.com/subject/{douban.id}"

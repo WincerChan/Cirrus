@@ -12,7 +12,7 @@
     {{ range $index, $item := first .Site.Params.archiveYears $archives }}
     {{ $id := lower (replace $item.Key " " "-") }}
     <a href="/archives/#{{ $id }}"
-        class="pointer-default h-10 border-transparent archives-info border hover:border-beargray text-beargray bg-contentbg tag text-xs w-full flex items-center transition ease-linear duration-300 px-3 mr-2 my-1">
+        class="pointer-default h-10 border-transparent archives-info border hover:border-beargray text-beargray bg-[#fffffd] dark:bg-[#2e2e2e] tag text-xs w-full flex items-center transition ease-linear duration-300 px-3 mr-2 my-1">
         <div class="flex items-center justify-between w-full">
             <div class="text-sm px-5">{{ .Key }}</div>
             <div class="text-sm px-5 text-beargray archives-count">{{ len $item.Pages }}</div>
