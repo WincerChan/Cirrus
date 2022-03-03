@@ -54,11 +54,11 @@
     }
 
     #TableOfContents li a:hover {
-        @apply text-hyper transition duration-300;
+        @apply text-cyan-700 dark: text-orange-500 transition duration-300;
     }
 
     #TableOfContents {
-        @apply text-left text-tagborder mt-2;
+        @apply text-left text-[#44403c] dark: text-[#d6d3d1] mt-2;
     }
 
 
@@ -104,7 +104,8 @@
     }
 
     body {
-        @apply bg-bg font-maintext transition ease-linear duration-300;
+        /* windi-zinc */
+        @apply bg-[#f4f4f5] dark: bg-[#18181B] font-maintext transition ease-linear duration-300;
     }
 
     li span {
@@ -115,10 +116,9 @@
         left: -.1rem;
     }
 
-    .summary {
-        color: #757575;
+    #music-info button {
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
     }
-
 
     .seprator {
         content: "";
@@ -145,12 +145,11 @@
     }
 
     article blockquote {
-        @apply border-l-4 border-blockquote pt-3 pl-5 pr-6 pb-3 mb-5 text-deepgray;
+        @apply border-l-4 border-[#d6d3d1] dark: border-[#737373] pt-3 pl-5 pr-6 pb-3 mb-5 text-[#404040] dark: text-[#d4d4d4];
     }
 
 
-
-    .link-card-hover:hover {
+    .ng-cover:hover {
         transform: scale(1.15);
         box-shadow: 0 8px 20px var(--boxshadow-light), 0 0 2px var(--boxshadow-deep);
     }
@@ -177,8 +176,16 @@
     }
 
 
-    content a {
-        @apply link-text mx-1 hover: link-text-hover;
+    content a:hover,
+    .article-tags a:hover {
+        @apply hover: text-[#334155] dark:hover:text-orange-500;
+        box-shadow: 0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;
+    }
+
+    content a,
+    .article-tags a {
+        @apply transition duration-200 ease-linear text-[#475569] dark: text-orange-200;
+        box-shadow: 0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;
     }
 
     .life-desc>p {
@@ -244,7 +251,7 @@
     }
 
     input {
-        background-color: var(--content-bg);
+        @apply bg-[#e4e4e7] dark: bg-[#3F3F46];
     }
 
 
@@ -290,7 +297,7 @@
     }
 
     content p>code {
-        @apply text-codecolor whitespace-pre-wrap break-all;
+        @apply whitespace-pre-wrap break-all text-[#f43f5e] dark: text-[#14b8a6];
     }
 
     content pre {
@@ -298,7 +305,7 @@
     }
 
     content code {
-        @apply text-codecolor mx-1 px-1 rounded text-[0.9375rem] bg-slightgray;
+        @apply mx-1 px-1 rounded text-[0.9375rem] bg-[#f0f3f3] dark: bg-[#2f1e2e];
     }
 
     content code,
@@ -320,5 +327,26 @@
 
     .highlight {
         @apply relative;
+    }
+
+    .card-text {
+        text-shadow: 1px 1px 2px #444
+    }
+
+    .font-maintext {
+        font-family: "-apple-system", STXihei, 华文细黑, Microsoft YaHei, 微软雅黑, SimSun, 宋体, Heiti, 黑体, "sans-serif";
+    }
+
+    .font-headline {
+        font-family: Lato, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", "sans-serif";
+    }
+
+    .font-button {
+        font-family: -apple-system, 'Helvetica Neue', 'PingFang SC', 'WenQuanYi Micro Hei', 'noto sans', Cantarell, 'Arial';
+    }
+
+    .font-code {
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
     }
 </style>

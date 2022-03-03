@@ -40,7 +40,8 @@
     />
     <button
         on:click={decrypt}
-        class="border rounded p-2 text-base bg-hyper text-bqbg">提交</button
+        class="border rounded p-2 text-base bg-hyper text-[#f1f5f9] dark:text-[#1E293B]"
+        >提交</button
     >
     {#if err_msg}
         <span id="error_msg" class="text-red-600 pl-6">🙅Wrong Password！</span>

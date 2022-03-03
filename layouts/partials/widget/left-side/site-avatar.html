@@ -10,8 +10,8 @@
         </li>
         {{ end }}
     </ul>
-    <span id="menu" class="menu w-8 h-8 hidden">
-        <div class="menu hover:opacity-75"
+    <span id="menu" class="w-8 h-8 hidden">
+        <div class="bg-transparent border-none cursor-pointer hover:opacity-75"
             onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))"
             aria-label="Main Menu">
             {{ (resources.Get "icons/menu.svg").Content | safeHTML }}

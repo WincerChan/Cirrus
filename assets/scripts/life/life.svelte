@@ -31,13 +31,13 @@
             {#each placeholder as l}
                 <div class="px-2 sm:w-1/5 rounded-md w-1/4 pb-6">
                     <figure
-                        class="text-center text-sm truncate text-beargray bg-[#fffffd] dark:bg-[#2e2e2e] bg-[#fffffd] dark:bg-[#2e2e2e]  link-card rounded"
+                        class="text-center text-sm truncate text-[#3F3F46] dark:text-[#a8a29e]  bg-[#fffffd] dark:bg-[#2e2e2e] bg-[#fffffd] dark:bg-[#2e2e2e]  transition ease-linear duration-300 rounded"
                     >
                         <div
-                            class="mx-auto  bg-slightgray animate-pulse xl:h-52 h-24"
+                            class="mx-auto bg-[#e4e4e7] dark: bg-[#2f1e2e] animate-pulse xl:h-52 h-24"
                         />
                         <div
-                            class="block mx-auto mt-1 truncate p-[1px] h-5 w-2/3 bg-slightgray animate-pulse"
+                            class="block mx-auto mt-1 truncate p-[1px] h-5 w-2/3 bg-[#e4e4e7] dark: bg-[#2f1e2e] animate-pulse"
                         />
                     </figure>
                 </div>
@@ -46,7 +46,7 @@
             {#each douban_infos as douban}
                 <div class="px-2 sm:w-1/5 w-1/4 pb-6">
                     <figure
-                        class="text-center text-sm truncate text-beargray  bg-[#fffffd] dark:bg-[#2e2e2e] link-card link-card-shadow rounded-md"
+                        class="text-center text-sm truncate text-[#3F3F46] dark:text-[#a8a29e]   bg-[#fffffd] dark:bg-[#2e2e2e] transition ease-linear duration-300 transition ease-linear duration-300-shadow rounded-md"
                     >
                         <a
                             href="https://{douban.type}.douban.com/subject/{douban.id}"

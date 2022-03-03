@@ -40,13 +40,13 @@
         {#await promise}
             <div class="mb-4 md:px-2">
                 <p
-                    class="text-sm text-deepgray w-28 h-5 bg-gray-200 animate-pulse"
+                    class="text-sm text-[#404040] dark:text-[#d4d4d4] w-28 h-5 bg-gray-200 animate-pulse"
                 />
             </div>
             <div class="card-compact-list space-y-6">
                 {#each fake_result as _}
                     <div
-                        class=" bg-gray-200 animate-pulse rounded-md link-card h-[9rem]"
+                        class=" bg-gray-200 animate-pulse rounded-md transition ease-linear duration-300 h-[9rem]"
                     />
                 {/each}
             </div>
@@ -55,10 +55,10 @@
                 <p class="text-xl text-red-600">{data.err_msg}</p>
             {:else}
                 <div class="mb-4 md:px-2">
-                    <p class="text-sm text-deepgray">
+                    <p class="text-sm text-[#404040] dark:text-[#d4d4d4]">
                         共搜索到<span
                             id="search-number"
-                            class="font-code w-6 text-center inline-block"
+                            class="w-6 text-center inline-block"
                             >{data.count}</span
                         >篇文章
                     </p>
@@ -66,7 +66,7 @@
                 <div class="card-compact-list space-y-6" id="search-results">
                     {#each data.data as item}
                         <div
-                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden font-sans link-card"
+                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden font-sans transition ease-linear duration-300"
                         >
                             <div class="metadata px-4 py-4">
                                 <a
@@ -76,18 +76,18 @@
                                 >
                                     <h3
                                         id="search-title"
-                                        class="text-deepgray truncate w-full text-xl hover:text-hyper"
+                                        class="text-[#404040] dark:text-[#d4d4d4] truncate w-full text-xl hover:text-cyan-700 dark: text-orange-500"
                                         contenteditable="false"
                                         bind:innerHTML={item.title}
                                     />
                                 </a>
                                 <div
-                                    class="w-full mt-3 text-beargray font-headline pb-3 sm:pb-0"
+                                    class="w-full mt-3 text-[#3F3F46] dark:text-[#a8a29e]  font-headline pb-3 sm:pb-0"
                                 >
                                     <p class="text-justify">
                                         <span
                                             id="search-date"
-                                            class="h-4 mr-1 items-center text-tagborder"
+                                            class="h-4 mr-1 items-center text-[#44403c] dark:text-[#d6d3d1]"
                                             >{item.date.split("T")[0]}</span
                                         >
                                         <span
@@ -103,7 +103,7 @@
                     {/each}
                 </div>
                 <div
-                    class="mt-16 flex justify-between text-beargray uppercase font-headline"
+                    class="mt-16 flex justify-between text-[#3F3F46] dark:text-[#a8a29e]  uppercase font-headline"
                 >
                     <div>
                         {#if Params.page > 1}
@@ -113,7 +113,7 @@
                                     Params.page--;
                                     fetchResults();
                                 }}
-                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 link-card border-lightgray hover:border-beargray"
+                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 transition ease-linear duration-300 border-[#d4d4d8] hover:border-[#3F3F46] hover:border-[#3F3F46] dark:hover::border-[#a8a29e] "
                             >
                                 Prev
                             </button>
@@ -127,7 +127,7 @@
                                     Params.page++;
                                     fetchResults();
                                 }}
-                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 link-card border-lightgray hover:border-beargray"
+                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 transition ease-linear duration-300 border-[#d4d4d8] hover:border-[#3F3F46] hover:border-[#3F3F46] dark:hover:border-[#a8a29e] "
                             >
                                 Next
                             </button>

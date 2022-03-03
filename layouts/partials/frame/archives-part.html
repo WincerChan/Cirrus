@@ -1,16 +1,17 @@
 <div class="rounded-[.75rem] font-sans">
     <h1
-        class="uppercase pb-4 text-maintext text-size-[1.75rem] leading-[unset] font-medium w-full site-name py-2 sm:px-4">
+        class="uppercase pb-4 dark:text-[#f8fafc] text-[#1c1917] text-size-[1.75rem] leading-[unset] font-medium w-full site-name py-2 sm:px-4">
         {{ .Title }}
     </h1>
     <div class="categories-list space-x-2 overflow-auto w-full mx-auto my-5 flex py-2">
         {{ $covers := site.Params.Category }}
         {{ range .Site.Taxonomies.category }}
 
-        <div class="rounded-lg my-1 bg-cover h-48 items-center flex justify-center lazy bg-center link-card"
+        <div class="rounded-lg my-1 bg-cover h-48 items-center flex justify-center lazy bg-center transition ease-linear duration-300"
             data-src="{{ index $covers .Page.Title }}" style="flex: 0 0 14rem;">
             <a href={{ .Page.Permalink }}>
-                <span class="text-xl text-categorytag card-title">{{ .Page.Title }}（{{ .Count }}）</span>
+                <span class="text-xl text-light-50 dark:text-light-900 card-title">
+                    {{ .Page.Title }}（{{ .Count }}）</span>
             </a>
         </div>
         {{ end }}
@@ -22,7 +23,7 @@
     {{ $pages := ($all | intersect $published) }}
     {{ $archives := $pages.GroupByDate "2006" }}
     {{ range $archives }}
-    <h2 class="pb-8 mt-6 text-maintext text-2xl px-4 sm:px-0" id="{{ .Key }}">{{ .Key }}</h2>
+    <h2 class="pb-8 mt-6 dark:text-[#f8fafc] text-[#1c1917] text-2xl px-4 sm:px-0" id="{{ .Key }}">{{ .Key }}</h2>
     <div class="card-compact-list space-y-6">
         {{ range .Pages }}
         {{ partial "core/card-compact" . }}

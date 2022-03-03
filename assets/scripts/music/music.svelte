@@ -74,7 +74,7 @@
                         class="w-full h-full relative bg-gray-200 animate-pulse"
                     />
                 {:then music_info}
-                    <div class="w-full h-full relative">
+                    <div id="music-player" class="w-full h-full relative">
                         <div
                             class="bg-center bg-no-repeat bg-contain h-full relative"
                             style="background-image: url({music_info.songs[0]
@@ -171,14 +171,14 @@
                                 src={music_link}
                             />
                             <div
-                                class="m-0 w-full cursor-auto flex-grow py-2 relative flex items-center px-3 sm:px-2"
+                                class="m-0 w-full cursor-auto flex-grow py-2 relative flex items-center px-3"
                             >
                                 {#await promise}
                                     <div
-                                        class="h-1 flex-grow bg-gray-200 animate-pulse mr-3 sm:mr-0"
+                                        class="h-1 flex-grow bg-gray-200 animate-pulse pl-3 sm:mr-3"
                                     />
                                 {:then music_info}
-                                    <div class="flex-grow mr-3 ">
+                                    <div class="flex-grow sm:mr-3 ">
                                         <div
                                             style="height: 18px;"
                                             class="cursor-pointer"
@@ -206,7 +206,7 @@
                                             <div
                                                 bind:this={player_thumb}
                                                 style="height: 11px; width: 11px; background-color: rgba(255, 255, 255, 1)"
-                                                class="bottom-4 hidden -left-1 rounded-full shadow-button relative"
+                                                class="bottom-4 hidden -left-1 rounded-full relative"
                                             />
                                         </div>
                                     </div>
