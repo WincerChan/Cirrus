@@ -1,4 +1,50 @@
 <style lang="windi">
+    @media (max-width: 1439px) {
+        #right-side {
+            display: none;
+        }
+
+        #left-side {
+            width: 27%;
+        }
+    }
+
+    /* this layout will make left menu to top */
+    @media (max-width: 1023.9px) {
+        #left-side {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .navbar-collapse {
+            @apply max-h-[0] overflow-hidden;
+            transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
+        }
+
+        .navbar-collapse.expanded {
+            @apply max-h-[22.5rem];
+            transition: max-height 0.6s ease-in-out;
+
+        }
+
+        #menu {
+            display: block;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .container {
+            width: 81rem !important;
+        }
+    }
+
+    @media (min-width: 1800px) {
+        .container {
+            width: 96rem !important;
+        }
+    }
+
+
     #TableOfContents li {
         @apply pl-6 my-2;
     }
@@ -15,18 +61,6 @@
         @apply text-left text-tagborder mt-2;
     }
 
-    @screen md {
-        .navbar-collapse {
-            @apply max-h-[0] overflow-hidden;
-            transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
-        }
-
-        .navbar-collapse.expanded {
-            @apply max-h-[22.5rem];
-            transition: max-height 0.6s ease-in-out;
-
-        }
-    }
 
 
     .line {

@@ -131,7 +131,7 @@
             <div class="relative w-full">
                 <div class="flex">
                     <div class="h-20 text-sm relative w-full">
-                        <div class="truncate sm:m-2 my-2 mx-3 block">
+                        <div class="truncate my-2 mx-3 block">
                             {#await promise}
                                 <div
                                     class="bg-gray-200 h-4 mb-1 animate-pulse w-20"
@@ -178,7 +178,7 @@
                                         class="h-1 flex-grow bg-gray-200 animate-pulse mr-3 sm:mr-0"
                                     />
                                 {:then music_info}
-                                    <div class="flex-grow mr-3 sm:mr-0">
+                                    <div class="flex-grow mr-3 ">
                                         <div
                                             style="height: 18px;"
                                             class="cursor-pointer"
@@ -215,7 +215,7 @@
                                     class="items-center inline-flex"
                                     style="line-height: 25px;"
                                 >
-                                    <div class="hidden sm:block">
+                                    <div class="sm:hidden block">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-4"
@@ -232,16 +232,16 @@
                                         </svg>
                                     </div>
                                     <div class="flex font-code">
-                                        <span class="block sm:hidden"
+                                        <span class="sm:block hidden"
                                             >{formatTime(time || 0)}</span
                                         >
-                                        <span class="hidden sm:block"
+                                        <span class="sm:hidden block"
                                             >{show_time}</span
                                         >
-                                        <span class="sm:hidden block px-1">
+                                        <span class="hidden sm:block sm:px-1">
                                             /
                                         </span>
-                                        <span class="sm:hidden block"
+                                        <span class="hidden sm:block"
                                             >{formatTime(duration || 0)}</span
                                         >
                                     </div>

@@ -20,13 +20,13 @@
 </script>
 
 <div>
-    <div class="flex mt-4 mb-6 md:mx-2">
+    <div class="flex mt-4 mb-6 md:mx-0 mx-2">
         <input
             type="text"
             bind:value={query_params}
             placeholder="请输入关键字"
             id="search-params"
-            class="h-10 mr-1 flex-grow rounded-full outline-none px-6 md:px-3"
+            class="h-10 mr-1 flex-grow rounded-full outline-none px-6 md:px-5 px-3"
         />
         <button
             id="search-button"
@@ -82,7 +82,7 @@
                                     />
                                 </a>
                                 <div
-                                    class="w-full mt-3 text-beargray font-headline sm:pb-3"
+                                    class="w-full mt-3 text-beargray font-headline pb-3 sm:pb-0"
                                 >
                                     <p class="text-justify">
                                         <span

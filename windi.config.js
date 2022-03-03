@@ -22,15 +22,6 @@ module.exports = helper.defineConfig({
   extract: { include: ["./layouts/**/*.html", "./assets/**/*.svg", "./assets/**/*.html", "./assets/**/*.svelte"] },
   shortcuts: { ...LINKABLE, ...WIDGET },
   theme: {
-    screens: {
-      'sm': { max: '640px' }, // mobile
-      'md': { max: '960px' }, // tablet
-      'lg': { max: '1279px' },
-      'xl': { min: '1280px' },
-      'two': { max: '1439px' },
-      'three': { min: '1440px' },
-      '2xl': { min: '1800px' }, // large screen
-    },
     // screens: {
     //   'xxl': { 'min': '1600px' },
     //   'xl': { 'min': '1440px' }, // more, 3 column
