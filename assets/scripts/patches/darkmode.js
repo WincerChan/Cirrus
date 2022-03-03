@@ -18,10 +18,6 @@ const getLS = (k) => {
     }
 }
 
-const resetRootDarkModeAttributeAndLS = () => {
-    document.documentElement.removeAttribute('class');
-    removeLS('theme');
-}
 const getCSSMediaQuery = () => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
@@ -53,12 +49,10 @@ const toggleCustomDarkMode = () => {
 const applyCustomDarkModeSettings = (mode) => {
     const currentSetting = mode || getLS('theme');
 
-    if (currentSetting === getCSSMediaQuery()) {
-        resetRootDarkModeAttributeAndLS();
-    } else if (validColorModeKeys[currentSetting]) {
+    if (validColorModeKeys[currentSetting]) {
         document.documentElement.setAttribute('class', currentSetting);
     } else {
-        resetRootDarkModeAttributeAndLS();
+        document.documentElement.setAttribute('class', getCSSMediaQuery());
     }
 }
 const patchDarkmode = () => {
@@ -67,5 +61,9 @@ const patchDarkmode = () => {
         applyCustomDarkModeSettings(toggleCustomDarkMode())
     })
 }
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
+    document.documentElement.setAttribute('class', e.matches ? 'dark' : 'light');
+})
 
 export default patchDarkmode;

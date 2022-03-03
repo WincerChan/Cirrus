@@ -10,7 +10,17 @@
             const e = document.documentElement,
                 t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
                 n = localStorage.getItem("theme");
-            n === t ? a() : n ? e.setAttribute("class", n) : (e.removeAttribute("class"), localStorage.removeItem("theme"))
+            // n === t ? a() : n ? e.setAttribute("class", n) : (e.removeAttribute("class"), localStorage.removeItem("theme"))
+            if (n === t) {
+                localStorage.removeItem("theme")
+                e.setAttribute("class", n)
+            }
+            if (n === null) {
+                console.log("whhh")
+                e.setAttribute("class", t)
+            } else if (n !== t) {
+                e.setAttribute("class", n)
+            }
         }()
     </script>
     {{ if .Site.IsServer }}

@@ -20,8 +20,9 @@
             {{ end }}
         </div>
         {{ end }}
-        <h1 class=" text-maintext text-size-[1.75rem] font-medium w-full pt-2 pb-3 mb-2 mt-1 sm:px-6 px-5">
-            <span class="lg:text-3xl text-size-[1.75rem] text-atcheadline">{{ .Title }}</span>
+        <h1
+            class=" text-maintext text-size-[1.75rem] leading-[unset] font-medium w-full pt-2 pb-3 mb-2 mt-1 sm:px-6 px-5">
+            <span class="lg:text-3xl text-size-[1.75rem] leading-[unset] text-atcheadline">{{ .Title }}</span>
             {{ if in .Site.Params.mainSections .Type }}
             <sup class=" text-sm text-tagborder "> {{ $wordcount }} Words</sup>
             {{end}}
