@@ -2,7 +2,7 @@
 
 const esbuild = require("esbuild");
 const sveltePlugin = require("esbuild-svelte")
-const processWindiCSS = require("./windi")
+const processWindiCSS = require("./windi.ts")
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -34,18 +34,13 @@ if (!isDev) {
         entryPoints: ["assets/css/build.css"],
         bundle: true,
         minify: true,
-        watch: {
-            onRebuild(error, result) {
-                if (error) console.error('watch build failed: ', error);
-                else console.log('watch build css succeeded: ', result);
-            }
-        },
         outfile: "static/main.css",
     })
         .catch(() => process.exit(1));
 }
 
 // process windicss then concat it and mode.css
-if (isDev) {
+if (!isDev) {
+    console.log("start process windi css")
     processWindiCSS()
 }
