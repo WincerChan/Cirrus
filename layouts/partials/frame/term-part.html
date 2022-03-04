@@ -1,6 +1,6 @@
 <div class="rounded-[.75rem] font-sans">
     <h1
-        class="uppercase pb-8 dark:text-[#f8fafc] text-[#1c1917] text-size-[1.75rem] leading-[unset] font-medium w-full site-name py-2 sm:px-0 px-4">
+        class="uppercase pb-8 dark:text-[#f8fafc] text-[#1c1917] text-size-[1.75rem] leading-[unset] font-medium w-full text-[#44403c] dark:text-[#d6d3d1] py-2 sm:px-0 px-4">
         {{ printf "%s：%s（%d）" .Type .Title (len .Pages) }}
     </h1>
     {{ $published := where .Pages "Params.published" "!=" false }}
