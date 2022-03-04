@@ -76,4 +76,4 @@ const extractStyles = (html) => {
     return parser.parse()
 }
 
-processMatchedFiles()
+module.exports = processMatchedFiles

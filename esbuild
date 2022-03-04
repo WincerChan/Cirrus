@@ -2,6 +2,7 @@
 
 const esbuild = require("esbuild");
 const sveltePlugin = require("esbuild-svelte")
+const processWindiCSS = require("./windi")
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -42,4 +43,9 @@ if (!isDev) {
         outfile: "static/main.css",
     })
         .catch(() => process.exit(1));
+}
+
+// process windicss then concat it and mode.css
+if (isDev) {
+    processWindiCSS()
 }
