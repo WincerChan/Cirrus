@@ -1,7 +1,6 @@
 const { Processor } = require('windicss/lib')
 const { HTMLParser, CSSParser } = require('windicss/utils/parser')
 const { StyleSheet: Ss } = require('windicss/utils/style')
-const htmlparser2 = require('htmlparser2')
 
 const fs = require('fs')
 const glob = require('glob')
