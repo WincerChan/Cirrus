@@ -7,7 +7,7 @@ const instant_load = () => {
     s.src = `https://${disqusUserName}.disqus.com/embed.js`;
     s.setAttribute('data-timestamp', + new Date());
     (d.head || d.body).appendChild(s);
-    btn.classList.toggle('hidden');
+    btn.remove();
 }
 
 const loadDisqus = () => {
