@@ -42,5 +42,11 @@ if (!isDev) {
 // process windicss then concat it and mode.css
 if (!isDev) {
     console.log("start process windi css")
-    processWindiCSS()
+    esbuild.buildSync({
+        entryPoints: ["./windi.ts"],
+        platform: 'node',
+        format: "cjs",
+        outfile: './windi.js',
+    })
+    require("./windi")()
 }
