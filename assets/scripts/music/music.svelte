@@ -62,7 +62,7 @@
         player.currentTime =
             ((e.clientX - left) * s.duration) / s.progress_bar.offsetWidth;
     }
-    function handleMove(e: DragEvent) {
+    function handleMove(e: any) {
         if (e.buttons !== 1) return;
         const clientX =
             e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
@@ -94,9 +94,10 @@
                         >
                             <button
                                 title="播放"
-                                on:click={s.togglePlay(player)}
-                                style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%;"
-                                class="cursor-pointer shadow-button transition duration-75 ease-linear transform hover:scale-105 px-2 w-1/2 h-1/2 left-1/4 top-1/4 rounded-full overflow-hidden border border-white bg-gray-500 absolute"
+                                on:click={() => {
+                                    s.togglePlay(player);
+                                }}
+                                class="cursor-pointer transition duration-75 ease-linear transform hover:scale-105 px-2 w-1/2 h-1/2 left-1/4 top-1/4 rounded-full overflow-hidden border border-white bg-gray-500 absolute"
                             >
                                 {#if s.paused}
                                     <svg
