@@ -1,7 +1,7 @@
 <script context="module">
     let path = document.location.pathname;
-    let encrypted = window.blog_encrypted || false;
-    let music = window.music_id || false;
+    let encrypted = window.blog_encrypted;
+    let music_id = window.music_id || undefined;
 </script>
 
 <script lang="ts">
@@ -19,6 +19,6 @@
     <SearchBlog />
 {:else if encrypted}
     <EncryptBlog />
-{:else if music}
-    <MusicPlayer />
+{:else if music_id}
+    <MusicPlayer {music_id} />
 {/if}

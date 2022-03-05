@@ -1,63 +1,75 @@
-<script context="module">
-    let music_id = window.music_id;
-    let music_link = `https://music.163.com/song/media/outer/url?id=${music_id}.mp3`;
-</script>
+<script lang="ts">
+    class SongProgress {
+        duration: number;
+        elapsed_time: number;
 
-<script>
-    let time,
-        duration,
-        paused = true;
-    let player_thumb,
-        show_thumb = false;
-    let show_time;
-    let player, progress_bar;
-    let promise = fetch(
-        `https://api.itswincer.com/cloudmusic/v1/detail?ids=[${music_id}]`
-    ).then((resp) => {
-        return resp.json();
-    });
-
-    function formatTime(rest) {
-        let minute = Math.floor(rest / 60);
-        let second = Math.floor(rest - minute * 60);
-        let format_m = minute < 10 ? "0" + minute : minute;
-        let format_s = second < 10 ? "0" + second : second;
-        return `${format_m}:${format_s}`;
-    }
-
-    function secToMinSec() {
-        if (time === undefined && duration === undefined) {
-            show_time = "00:00";
-            return;
+        paused: boolean;
+        player_thumb: HTMLDivElement;
+        progress_bar: HTMLProgressElement;
+        constructor() {
+            this.elapsed_time = 0;
+            this.duration = Infinity;
+            this.paused = true;
         }
-        let rest = duration - (time || 0);
-        show_time = formatTime(rest);
-        if (player_thumb) updateThumb(time);
+        get remaining() {
+            return this.duration - this.elapsed_time;
+        }
+        playPercent(current: number | null) {
+            if (current === null) {
+                current = this.elapsed_time;
+            }
+            return current / this.duration;
+        }
+        displayed(rest: number | null) {
+            if (rest === null) {
+                rest = this.remaining;
+            }
+            let minute = Math.floor(rest / 60);
+            let second = Math.floor(rest - minute * 60);
+            let format_m = minute < 10 ? "0" + minute : minute;
+            let format_s = second < 10 ? "0" + second : second;
+            return `${format_m}:${format_s}`;
+        }
+        timeGoOn(time: number) {
+            this.elapsed_time = time;
+            if (!this.player_thumb) {
+                return;
+            }
+            this.setPlayerThumbPosition();
+        }
+        togglePlay(player: HTMLAudioElement) {
+            this.paused ? player.play() : player.pause();
+        }
+        setPlayerThumbPosition() {
+            this.player_thumb.style.left = `${
+                this.playPercent(null) * this.progress_bar.offsetWidth - 6
+            }px`;
+        }
     }
-    function togglePlay() {
-        paused ? player.play() : player.pause();
-    }
-    function updateTime(offset) {
-        player.currentTime = (duration * offset) / progress_bar.offsetWidth;
-        player_thumb.style.left = `${offset - 4}px`;
-    }
-    function updateThumb() {
-        player_thumb.style.left = `${
-            (time / duration) * progress_bar.offsetWidth - 4
-        }px`;
-    }
-    function handleClick(e) {
+    export let music_id: string;
+    let s = new SongProgress(),
+        player: HTMLAudioElement,
+        currentTime: number = 0;
+    $: s.timeGoOn(currentTime);
+    let music_info = `https://api.itswincer.com/cloudmusic/v1/detail?ids=[${music_id}]`,
+        music_link = `https://music.163.com/song/media/outer/url?id=${music_id}.mp3`,
+        promise = fetch(music_info).then((resp) => {
+            return resp.json();
+        });
+
+    function handleClick(e: MouseEvent) {
         const { left, right } = this.getBoundingClientRect();
-        updateTime(e.clientX - left);
+        player.currentTime =
+            ((e.clientX - left) * s.duration) / s.progress_bar.offsetWidth;
     }
-    function handleMove(e) {
+    function handleMove(e: DragEvent) {
         if (e.buttons !== 1) return;
         const clientX =
             e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
         const { left, right } = this.getBoundingClientRect();
-        updateTime(clientX - left);
+        currentTime =
+            (s.duration * (clientX - left)) / s.progress_bar.offsetWidth;
     }
-    $: if (duration) secToMinSec(time);
 </script>
 
 <div
@@ -82,11 +94,11 @@
                         >
                             <button
                                 title="播放"
-                                on:click={togglePlay}
+                                on:click={s.togglePlay(player)}
                                 style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%;"
-                                class="cursor-pointer shadow-button transition duration-75 ease-linear hover:scale-105 px-2 w-1/2 h-1/2 left-1/4 top-1/4 rounded-full overflow-hidden border border-white bg-gray-500 absolute"
+                                class="cursor-pointer shadow-button transition duration-75 ease-linear transform hover:scale-105 px-2 w-1/2 h-1/2 left-1/4 top-1/4 rounded-full overflow-hidden border border-white bg-gray-500 absolute"
                             >
-                                {#if paused}
+                                {#if s.paused}
                                     <svg
                                         style="width: 100%; height: 100%; color: white; "
                                         viewBox="0 0 26 26"
@@ -165,9 +177,9 @@
                         >
                             <audio
                                 bind:this={player}
-                                bind:currentTime={time}
-                                bind:duration
-                                bind:paused
+                                bind:currentTime
+                                bind:duration={s.duration}
+                                bind:paused={s.paused}
                                 src={music_link}
                             />
                             <div
@@ -180,33 +192,32 @@
                                 {:then music_info}
                                     <div class="flex-grow sm:mr-3 ">
                                         <div
-                                            style="height: 18px;"
-                                            class="cursor-pointer"
+                                            class="cursor-pointer h-4"
                                             on:click={handleClick}
                                             on:mousemove={handleMove}
                                             on:touchmove|preventDefault={handleMove}
                                             on:mouseleave={() => {
-                                                player_thumb.classList.add(
+                                                s.player_thumb.classList.add(
                                                     "hidden"
                                                 );
                                             }}
                                             on:focus
                                             on:mouseover={() => {
-                                                player_thumb.classList.remove(
+                                                s.player_thumb.classList.remove(
                                                     "hidden"
                                                 );
                                             }}
                                         >
                                             <progress
-                                                bind:this={progress_bar}
-                                                class="h-1 relative mb-1 w-full bg-gray-200 flex-grow text-gray-100"
-                                                style="background-color: rgba(255, 255, 255, 0.3);"
-                                                value={time / duration || 0}
+                                                bind:this={s.progress_bar}
+                                                class="h-1 z-10 bottom-[5px] bg-white bg-opacity-30 relative w-full bg-gray-200 flex-grow text-gray-100"
+                                                value={s.playPercent(
+                                                    currentTime
+                                                )}
                                             />
                                             <div
-                                                bind:this={player_thumb}
-                                                style="height: 11px; width: 11px; background-color: rgba(255, 255, 255, 1)"
-                                                class="bottom-4 hidden -left-1 rounded-full relative"
+                                                bind:this={s.player_thumb}
+                                                class="bottom-4 h-[10px] w-[10px] bg-white hidden -left-1 rounded-full relative"
                                             />
                                         </div>
                                     </div>
@@ -233,16 +244,18 @@
                                     </div>
                                     <div class="flex font-code">
                                         <span class="sm:block hidden"
-                                            >{formatTime(time || 0)}</span
+                                            >{s.displayed(currentTime)}</span
                                         >
                                         <span class="sm:hidden block"
-                                            >{show_time}</span
+                                            >{s.displayed(
+                                                s.duration - currentTime
+                                            )}</span
                                         >
                                         <span class="hidden sm:block sm:px-1">
                                             /
                                         </span>
                                         <span class="hidden sm:block"
-                                            >{formatTime(duration || 0)}</span
+                                            >{s.displayed(s.duration)}</span
                                         >
                                     </div>
                                 </div>
