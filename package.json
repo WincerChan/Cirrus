@@ -7,6 +7,7 @@
   "license": "GPL-3.0-only",
   "private": true,
   "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "crypto-js": "^4.1.1",
     "esbuild": "^0.14.23",
     "esbuild-svelte": "^0.6.2",
