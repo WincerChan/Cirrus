@@ -3,9 +3,9 @@
     console.log(window.backendAPI);
 </script>
 
-<script>
+<script lang="ts">
     import Params from "./params";
-    let promise = Promise.resolve([]);
+    let promise: Promise<SearchResult> = Promise.resolve({});
     let fake_result = [0, 1, 2, 3];
     let query_params = "";
     let show_result = false;

@@ -1,11 +1,11 @@
 (() => {
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_version.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_version.js
   try {
-    self["workbox:core:5.1.4"] && _();
+    self["workbox:core:6.5.0"] && _();
   } catch (e) {
   }
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/models/messages/messages.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/models/messages/messages.js
   var messages = {
     "invalid-value": ({ paramName, validValueDescription, value }) => {
       if (!paramName || !validValueDescription) {
@@ -23,16 +23,18 @@
       if (!expectedType || !paramName || !moduleName || !funcName) {
         throw new Error(`Unexpected input to 'incorrect-type' error.`);
       }
-      return `The parameter '${paramName}' passed into '${moduleName}.${className ? className + "." : ""}${funcName}()' must be of type ${expectedType}.`;
+      const classNameStr = className ? `${className}.` : "";
+      return `The parameter '${paramName}' passed into '${moduleName}.${classNameStr}${funcName}()' must be of type ${expectedType}.`;
     },
-    "incorrect-class": ({ expectedClass, paramName, moduleName, className, funcName, isReturnValueProblem }) => {
-      if (!expectedClass || !moduleName || !funcName) {
+    "incorrect-class": ({ expectedClassName, paramName, moduleName, className, funcName, isReturnValueProblem }) => {
+      if (!expectedClassName || !moduleName || !funcName) {
         throw new Error(`Unexpected input to 'incorrect-class' error.`);
       }
+      const classNameStr = className ? `${className}.` : "";
       if (isReturnValueProblem) {
-        return `The return value from '${moduleName}.${className ? className + "." : ""}${funcName}()' must be an instance of class ${expectedClass.name}.`;
+        return `The return value from '${moduleName}.${classNameStr}${funcName}()' must be an instance of class ${expectedClassName}.`;
       }
-      return `The parameter '${paramName}' passed into '${moduleName}.${className ? className + "." : ""}${funcName}()' must be an instance of class ${expectedClass.name}.`;
+      return `The parameter '${paramName}' passed into '${moduleName}.${classNameStr}${funcName}()' must be an instance of class ${expectedClassName}.`;
     },
     "missing-a-method": ({ expectedMethod, paramName, moduleName, className, funcName }) => {
       if (!expectedMethod || !paramName || !moduleName || !className || !funcName) {
@@ -47,13 +49,13 @@
       if (!firstEntry || !secondEntry) {
         throw new Error(`Unexpected input to 'add-to-cache-list-duplicate-entries' error.`);
       }
-      return `Two of the entries passed to 'workbox-precaching.PrecacheController.addToCacheList()' had the URL ${firstEntry._entryId} but different revision details. Workbox is unable to cache and version the asset correctly. Please remove one of the entries.`;
+      return `Two of the entries passed to 'workbox-precaching.PrecacheController.addToCacheList()' had the URL ${firstEntry} but different revision details. Workbox is unable to cache and version the asset correctly. Please remove one of the entries.`;
     },
-    "plugin-error-request-will-fetch": ({ thrownError }) => {
-      if (!thrownError) {
+    "plugin-error-request-will-fetch": ({ thrownErrorMessage }) => {
+      if (!thrownErrorMessage) {
         throw new Error(`Unexpected input to 'plugin-error-request-will-fetch', error.`);
       }
-      return `An error was thrown by a plugins 'requestWillFetch()' method. The thrown error message was: '${thrownError.message}'.`;
+      return `An error was thrown by a plugins 'requestWillFetch()' method. The thrown error message was: '${thrownErrorMessage}'.`;
     },
     "invalid-cache-name": ({ cacheNameId, value }) => {
       if (!cacheNameId) {
@@ -144,7 +146,7 @@
       return message;
     },
     "bad-precaching-response": ({ url, status }) => {
-      return `The precaching request for '${url}' failed with an HTTP status of ${status}.`;
+      return `The precaching request for '${url}' failed` + (status ? ` with an HTTP status of ${status}.` : `.`);
     },
     "non-precached-url": ({ url }) => {
       return `createHandlerBoundToURL('${url}') was called, but that URL is not precached. Please pass in a URL that is precached instead.`;
@@ -154,10 +156,20 @@
     },
     "missing-precache-entry": ({ cacheName, url }) => {
       return `Unable to find a precached response in ${cacheName} for ${url}.`;
+    },
+    "cross-origin-copy-response": ({ origin }) => {
+      return `workbox-core.copyResponse() can only be used with same-origin responses. It was passed a response with origin ${origin}.`;
+    },
+    "opaque-streams-source": ({ type }) => {
+      const message = `One of the workbox-streams sources resulted in an '${type}' response.`;
+      if (type === "opaqueredirect") {
+        return `${message} Please do not use a navigation request that results in a redirect as a source.`;
+      }
+      return `${message} Please ensure your sources are CORS-enabled.`;
     }
   };
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/models/messages/messageGenerator.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/models/messages/messageGenerator.js
   var generatorFunction = (code, details = {}) => {
     const message = messages[code];
     if (!message) {
@@ -167,7 +179,7 @@
   };
   var messageGenerator = false ? fallback : generatorFunction;
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/WorkboxError.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/WorkboxError.js
   var WorkboxError = class extends Error {
     constructor(errorCode, details) {
       const message = messageGenerator(errorCode, details);
@@ -177,7 +189,7 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/assert.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/assert.js
   var isArray = (value, details) => {
     if (!Array.isArray(value)) {
       throw new WorkboxError("not-an-array", details);
@@ -198,7 +210,7 @@
   };
   var isInstance = (object, expectedClass, details) => {
     if (!(object instanceof expectedClass)) {
-      details["expectedClass"] = expectedClass;
+      details["expectedClassName"] = expectedClass.name;
       throw new WorkboxError("incorrect-class", details);
     }
   };
@@ -228,7 +240,7 @@
     isArrayOfClass
   };
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/logger.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/logger.js
   var logger = false ? null : (() => {
     if (!("__WB_DISABLE_DEV_LOGS" in self)) {
       self.__WB_DISABLE_DEV_LOGS = false;
@@ -279,13 +291,13 @@
     return api;
   })();
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/_version.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/_version.js
   try {
-    self["workbox:routing:5.1.4"] && _();
+    self["workbox:routing:6.5.0"] && _();
   } catch (e) {
   }
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/utils/constants.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/utils/constants.js
   var defaultMethod = "GET";
   var validMethods = [
     "DELETE",
@@ -296,7 +308,7 @@
     "PUT"
   ];
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/utils/normalizeHandler.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/utils/normalizeHandler.js
   var normalizeHandler = (handler) => {
     if (handler && typeof handler === "object") {
       if (true) {
@@ -321,7 +333,7 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/Route.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/Route.js
   var Route = class {
     constructor(match, handler, method = defaultMethod) {
       if (true) {
@@ -339,9 +351,12 @@
       this.match = match;
       this.method = method;
     }
+    setCatchHandler(handler) {
+      this.catchHandler = normalizeHandler(handler);
+    }
   };
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/RegExpRoute.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/RegExpRoute.js
   var RegExpRoute = class extends Route {
     constructor(regExp, handler, method) {
       if (true) {
@@ -359,7 +374,7 @@
         }
         if (url.origin !== location.origin && result.index !== 0) {
           if (true) {
-            logger.debug(`The regular expression '${regExp}' only partially matched against the cross-origin URL '${url}'. RegExpRoute's will only handle cross-origin requests if they match the entire URL.`);
+            logger.debug(`The regular expression '${regExp.toString()}' only partially matched against the cross-origin URL '${url.toString()}'. RegExpRoute's will only handle cross-origin requests if they match the entire URL.`);
           }
           return;
         }
@@ -369,16 +384,17 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/getFriendlyURL.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/getFriendlyURL.js
   var getFriendlyURL = (url) => {
     const urlObj = new URL(String(url), location.href);
     return urlObj.href.replace(new RegExp(`^${location.origin}`), "");
   };
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/Router.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/Router.js
   var Router = class {
     constructor() {
       this._routes = /* @__PURE__ */ new Map();
+      this._defaultHandlerMap = /* @__PURE__ */ new Map();
     }
     get routes() {
       return this._routes;
@@ -404,11 +420,11 @@
               entry = [entry];
             }
             const request = new Request(...entry);
-            return this.handleRequest({ request });
+            return this.handleRequest({ request, event });
           }));
           event.waitUntil(requestPromises);
           if (event.ports && event.ports[0]) {
-            requestPromises.then(() => event.ports[0].postMessage(true));
+            void requestPromises.then(() => event.ports[0].postMessage(true));
           }
         }
       });
@@ -429,15 +445,18 @@
         }
         return;
       }
-      const { params, route } = this.findMatchingRoute({ url, request, event });
+      const sameOrigin = url.origin === location.origin;
+      const { params, route } = this.findMatchingRoute({
+        event,
+        request,
+        sameOrigin,
+        url
+      });
       let handler = route && route.handler;
       const debugMessages = [];
       if (true) {
         if (handler) {
-          debugMessages.push([
-            `Found a route to handle this request:`,
-            route
-          ]);
+          debugMessages.push([`Found a route to handle this request:`, route]);
           if (params) {
             debugMessages.push([
               `Passing the following params to the route's handler:`,
@@ -446,11 +465,12 @@
           }
         }
       }
-      if (!handler && this._defaultHandler) {
+      const method = request.method;
+      if (!handler && this._defaultHandlerMap.has(method)) {
         if (true) {
-          debugMessages.push(`Failed to find a matching route. Falling back to the default handler.`);
+          debugMessages.push(`Failed to find a matching route. Falling back to the default handler for ${method}.`);
         }
-        handler = this._defaultHandler;
+        handler = this._defaultHandlerMap.get(method);
       }
       if (!handler) {
         if (true) {
@@ -475,41 +495,51 @@
       } catch (err) {
         responsePromise = Promise.reject(err);
       }
-      if (responsePromise instanceof Promise && this._catchHandler) {
-        responsePromise = responsePromise.catch((err) => {
-          if (true) {
-            logger.groupCollapsed(`Error thrown when responding to:  ${getFriendlyURL(url)}. Falling back to Catch Handler.`);
-            logger.error(`Error thrown by:`, route);
-            logger.error(err);
-            logger.groupEnd();
+      const catchHandler = route && route.catchHandler;
+      if (responsePromise instanceof Promise && (this._catchHandler || catchHandler)) {
+        responsePromise = responsePromise.catch(async (err) => {
+          if (catchHandler) {
+            if (true) {
+              logger.groupCollapsed(`Error thrown when responding to:  ${getFriendlyURL(url)}. Falling back to route's Catch Handler.`);
+              logger.error(`Error thrown by:`, route);
+              logger.error(err);
+              logger.groupEnd();
+            }
+            try {
+              return await catchHandler.handle({ url, request, event, params });
+            } catch (catchErr) {
+              if (catchErr instanceof Error) {
+                err = catchErr;
+              }
+            }
           }
-          return this._catchHandler.handle({ url, request, event });
+          if (this._catchHandler) {
+            if (true) {
+              logger.groupCollapsed(`Error thrown when responding to:  ${getFriendlyURL(url)}. Falling back to global Catch Handler.`);
+              logger.error(`Error thrown by:`, route);
+              logger.error(err);
+              logger.groupEnd();
+            }
+            return this._catchHandler.handle({ url, request, event });
+          }
+          throw err;
         });
       }
       return responsePromise;
     }
-    findMatchingRoute({ url, request, event }) {
-      if (true) {
-        finalAssertExports.isInstance(url, URL, {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "findMatchingRoute",
-          paramName: "options.url"
-        });
-        finalAssertExports.isInstance(request, Request, {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "findMatchingRoute",
-          paramName: "options.request"
-        });
-      }
+    findMatchingRoute({ url, sameOrigin, request, event }) {
       const routes = this._routes.get(request.method) || [];
       for (const route of routes) {
         let params;
-        const matchResult = route.match({ url, request, event });
+        const matchResult = route.match({ url, sameOrigin, request, event });
         if (matchResult) {
+          if (true) {
+            if (matchResult instanceof Promise) {
+              logger.warn(`While routing ${getFriendlyURL(url)}, an async matchCallback function was used. Please convert the following route to use a synchronous matchCallback function:`, route);
+            }
+          }
           params = matchResult;
-          if (Array.isArray(matchResult) && matchResult.length === 0) {
+          if (Array.isArray(params) && params.length === 0) {
             params = void 0;
           } else if (matchResult.constructor === Object && Object.keys(matchResult).length === 0) {
             params = void 0;
@@ -521,8 +551,8 @@
       }
       return {};
     }
-    setDefaultHandler(handler) {
-      this._defaultHandler = normalizeHandler(handler);
+    setDefaultHandler(handler, method = defaultMethod) {
+      this._defaultHandlerMap.set(method, normalizeHandler(handler));
     }
     setCatchHandler(handler) {
       this._catchHandler = normalizeHandler(handler);
@@ -580,7 +610,7 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/utils/getOrCreateDefaultRouter.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/utils/getOrCreateDefaultRouter.js
   var defaultRouter;
   var getOrCreateDefaultRouter = () => {
     if (!defaultRouter) {
@@ -591,7 +621,7 @@
     return defaultRouter;
   };
 
-  // node_modules/.pnpm/workbox-routing@5.1.4/node_modules/workbox-routing/registerRoute.js
+  // node_modules/.pnpm/workbox-routing@6.5.1/node_modules/workbox-routing/registerRoute.js
   function registerRoute(capture, handler, method) {
     let route;
     if (typeof capture === "string") {
@@ -613,7 +643,7 @@
       const matchCallback = ({ url }) => {
         if (true) {
           if (url.pathname === captureUrl.pathname && url.origin !== captureUrl.origin) {
-            logger.debug(`${capture} only partially matches the cross-origin URL ${url}. This route will only handle cross-origin requests if they match the entire URL.`);
+            logger.debug(`${capture} only partially matches the cross-origin URL ${url.toString()}. This route will only handle cross-origin requests if they match the entire URL.`);
           }
         }
         return url.href === captureUrl.href;
@@ -637,7 +667,7 @@
     return route;
   }
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/cacheNames.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/cacheNames.js
   var _cacheNameDetails = {
     googleAnalytics: "googleAnalytics",
     precache: "precache-v2",
@@ -678,10 +708,44 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/models/quotaErrorCallbacks.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/cacheMatchIgnoreParams.js
+  function stripParams(fullURL, ignoreParams) {
+    const strippedURL = new URL(fullURL);
+    for (const param of ignoreParams) {
+      strippedURL.searchParams.delete(param);
+    }
+    return strippedURL.href;
+  }
+  async function cacheMatchIgnoreParams(cache, request, ignoreParams, matchOptions) {
+    const strippedRequestURL = stripParams(request.url, ignoreParams);
+    if (request.url === strippedRequestURL) {
+      return cache.match(request, matchOptions);
+    }
+    const keysOptions = Object.assign(Object.assign({}, matchOptions), { ignoreSearch: true });
+    const cacheKeys = await cache.keys(request, keysOptions);
+    for (const cacheKey of cacheKeys) {
+      const strippedCacheKeyURL = stripParams(cacheKey.url, ignoreParams);
+      if (strippedRequestURL === strippedCacheKeyURL) {
+        return cache.match(cacheKey, matchOptions);
+      }
+    }
+    return;
+  }
+
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/Deferred.js
+  var Deferred = class {
+    constructor() {
+      this.promise = new Promise((resolve, reject) => {
+        this.resolve = resolve;
+        this.reject = reject;
+      });
+    }
+  };
+
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/models/quotaErrorCallbacks.js
   var quotaErrorCallbacks = /* @__PURE__ */ new Set();
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/executeQuotaErrorCallbacks.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/executeQuotaErrorCallbacks.js
   async function executeQuotaErrorCallbacks() {
     if (true) {
       logger.log(`About to run ${quotaErrorCallbacks.size} callbacks to clean up caches.`);
@@ -697,281 +761,364 @@
     }
   }
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/utils/pluginUtils.js
-  var pluginUtils = {
-    filter: (plugins, callbackName) => {
-      return plugins.filter((plugin) => callbackName in plugin);
-    }
-  };
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/timeout.js
+  function timeout(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/cacheWrapper.js
-  var _getEffectiveRequest = async ({ request, mode, plugins = [] }) => {
-    const cacheKeyWillBeUsedPlugins = pluginUtils.filter(plugins, "cacheKeyWillBeUsed");
-    let effectiveRequest = request;
-    for (const plugin of cacheKeyWillBeUsedPlugins) {
-      effectiveRequest = await plugin["cacheKeyWillBeUsed"].call(plugin, { mode, request: effectiveRequest });
-      if (typeof effectiveRequest === "string") {
-        effectiveRequest = new Request(effectiveRequest);
-      }
-      if (true) {
-        finalAssertExports.isInstance(effectiveRequest, Request, {
-          moduleName: "Plugin",
-          funcName: "cacheKeyWillBeUsed",
-          isReturnValueProblem: true
-        });
-      }
-    }
-    return effectiveRequest;
-  };
-  var _isResponseSafeToCache = async ({ request, response, event, plugins = [] }) => {
-    let responseToCache = response;
-    let pluginsUsed = false;
-    for (const plugin of plugins) {
-      if ("cacheWillUpdate" in plugin) {
-        pluginsUsed = true;
-        const pluginMethod = plugin["cacheWillUpdate"];
-        responseToCache = await pluginMethod.call(plugin, {
-          request,
-          response: responseToCache,
-          event
-        });
-        if (true) {
-          if (responseToCache) {
-            finalAssertExports.isInstance(responseToCache, Response, {
-              moduleName: "Plugin",
-              funcName: "cacheWillUpdate",
-              isReturnValueProblem: true
-            });
-          }
-        }
-        if (!responseToCache) {
-          break;
-        }
-      }
-    }
-    if (!pluginsUsed) {
-      if (true) {
-        if (responseToCache) {
-          if (responseToCache.status !== 200) {
-            if (responseToCache.status === 0) {
-              logger.warn(`The response for '${request.url}' is an opaque response. The caching strategy that you're using will not cache opaque responses by default.`);
-            } else {
-              logger.debug(`The response for '${request.url}' returned a status code of '${response.status}' and won't be cached as a result.`);
-            }
-          }
-        }
-      }
-      responseToCache = responseToCache && responseToCache.status === 200 ? responseToCache : void 0;
-    }
-    return responseToCache ? responseToCache : null;
-  };
-  var matchWrapper = async ({ cacheName, request, event, matchOptions, plugins = [] }) => {
-    const cache = await self.caches.open(cacheName);
-    const effectiveRequest = await _getEffectiveRequest({
-      plugins,
-      request,
-      mode: "read"
-    });
-    let cachedResponse = await cache.match(effectiveRequest, matchOptions);
-    if (true) {
-      if (cachedResponse) {
-        logger.debug(`Found a cached response in '${cacheName}'.`);
-      } else {
-        logger.debug(`No cached response found in '${cacheName}'.`);
-      }
-    }
-    for (const plugin of plugins) {
-      if ("cachedResponseWillBeUsed" in plugin) {
-        const pluginMethod = plugin["cachedResponseWillBeUsed"];
-        cachedResponse = await pluginMethod.call(plugin, {
-          cacheName,
-          event,
-          matchOptions,
-          cachedResponse,
-          request: effectiveRequest
-        });
-        if (true) {
-          if (cachedResponse) {
-            finalAssertExports.isInstance(cachedResponse, Response, {
-              moduleName: "Plugin",
-              funcName: "cachedResponseWillBeUsed",
-              isReturnValueProblem: true
-            });
-          }
-        }
-      }
-    }
-    return cachedResponse;
-  };
-  var putWrapper = async ({ cacheName, request, response, event, plugins = [], matchOptions }) => {
-    if (true) {
-      if (request.method && request.method !== "GET") {
-        throw new WorkboxError("attempt-to-cache-non-get-request", {
-          url: getFriendlyURL(request.url),
-          method: request.method
-        });
-      }
-    }
-    const effectiveRequest = await _getEffectiveRequest({
-      plugins,
-      request,
-      mode: "write"
-    });
-    if (!response) {
-      if (true) {
-        logger.error(`Cannot cache non-existent response for '${getFriendlyURL(effectiveRequest.url)}'.`);
-      }
-      throw new WorkboxError("cache-put-with-no-response", {
-        url: getFriendlyURL(effectiveRequest.url)
-      });
-    }
-    const responseToCache = await _isResponseSafeToCache({
-      event,
-      plugins,
-      response,
-      request: effectiveRequest
-    });
-    if (!responseToCache) {
-      if (true) {
-        logger.debug(`Response '${getFriendlyURL(effectiveRequest.url)}' will not be cached.`, responseToCache);
-      }
-      return;
-    }
-    const cache = await self.caches.open(cacheName);
-    const updatePlugins = pluginUtils.filter(plugins, "cacheDidUpdate");
-    const oldResponse = updatePlugins.length > 0 ? await matchWrapper({ cacheName, matchOptions, request: effectiveRequest }) : null;
-    if (true) {
-      logger.debug(`Updating the '${cacheName}' cache with a new Response for ${getFriendlyURL(effectiveRequest.url)}.`);
-    }
-    try {
-      await cache.put(effectiveRequest, responseToCache);
-    } catch (error) {
-      if (error.name === "QuotaExceededError") {
-        await executeQuotaErrorCallbacks();
-      }
-      throw error;
-    }
-    for (const plugin of updatePlugins) {
-      await plugin["cacheDidUpdate"].call(plugin, {
-        cacheName,
-        event,
-        oldResponse,
-        newResponse: responseToCache,
-        request: effectiveRequest
-      });
-    }
-  };
-  var cacheWrapper = {
-    put: putWrapper,
-    match: matchWrapper
-  };
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/_version.js
+  try {
+    self["workbox:strategies:6.5.0"] && _();
+  } catch (e) {
+  }
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/fetchWrapper.js
-  var wrappedFetch = async ({ request, fetchOptions, event, plugins = [] }) => {
-    if (typeof request === "string") {
-      request = new Request(request);
-    }
-    if (event instanceof FetchEvent && event.preloadResponse) {
-      const possiblePreloadResponse = await event.preloadResponse;
-      if (possiblePreloadResponse) {
-        if (true) {
-          logger.log(`Using a preloaded navigation response for '${getFriendlyURL(request.url)}'`);
-        }
-        return possiblePreloadResponse;
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/StrategyHandler.js
+  function toRequest(input) {
+    return typeof input === "string" ? new Request(input) : input;
+  }
+  var StrategyHandler = class {
+    constructor(strategy, options) {
+      this._cacheKeys = {};
+      if (true) {
+        finalAssertExports.isInstance(options.event, ExtendableEvent, {
+          moduleName: "workbox-strategies",
+          className: "StrategyHandler",
+          funcName: "constructor",
+          paramName: "options.event"
+        });
       }
+      Object.assign(this, options);
+      this.event = options.event;
+      this._strategy = strategy;
+      this._handlerDeferred = new Deferred();
+      this._extendLifetimePromises = [];
+      this._plugins = [...strategy.plugins];
+      this._pluginStateMap = /* @__PURE__ */ new Map();
+      for (const plugin of this._plugins) {
+        this._pluginStateMap.set(plugin, {});
+      }
+      this.event.waitUntil(this._handlerDeferred.promise);
     }
-    if (true) {
-      finalAssertExports.isInstance(request, Request, {
-        paramName: "request",
-        expectedClass: Request,
-        moduleName: "workbox-core",
-        className: "fetchWrapper",
-        funcName: "wrappedFetch"
-      });
-    }
-    const failedFetchPlugins = pluginUtils.filter(plugins, "fetchDidFail");
-    const originalRequest = failedFetchPlugins.length > 0 ? request.clone() : null;
-    try {
-      for (const plugin of plugins) {
-        if ("requestWillFetch" in plugin) {
-          const pluginMethod = plugin["requestWillFetch"];
-          const requestClone = request.clone();
-          request = await pluginMethod.call(plugin, {
-            request: requestClone,
-            event
-          });
+    async fetch(input) {
+      const { event } = this;
+      let request = toRequest(input);
+      if (request.mode === "navigate" && event instanceof FetchEvent && event.preloadResponse) {
+        const possiblePreloadResponse = await event.preloadResponse;
+        if (possiblePreloadResponse) {
           if (true) {
-            if (request) {
-              finalAssertExports.isInstance(request, Request, {
-                moduleName: "Plugin",
-                funcName: "cachedResponseWillBeUsed",
-                isReturnValueProblem: true
-              });
-            }
+            logger.log(`Using a preloaded navigation response for '${getFriendlyURL(request.url)}'`);
           }
+          return possiblePreloadResponse;
         }
       }
-    } catch (err) {
-      throw new WorkboxError("plugin-error-request-will-fetch", {
-        thrownError: err
-      });
-    }
-    const pluginFilteredRequest = request.clone();
-    try {
-      let fetchResponse;
-      if (request.mode === "navigate") {
-        fetchResponse = await fetch(request);
-      } else {
-        fetchResponse = await fetch(request, fetchOptions);
+      const originalRequest = this.hasCallback("fetchDidFail") ? request.clone() : null;
+      try {
+        for (const cb of this.iterateCallbacks("requestWillFetch")) {
+          request = await cb({ request: request.clone(), event });
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          throw new WorkboxError("plugin-error-request-will-fetch", {
+            thrownErrorMessage: err.message
+          });
+        }
       }
-      if (true) {
-        logger.debug(`Network request for '${getFriendlyURL(request.url)}' returned a response with status '${fetchResponse.status}'.`);
-      }
-      for (const plugin of plugins) {
-        if ("fetchDidSucceed" in plugin) {
-          fetchResponse = await plugin["fetchDidSucceed"].call(plugin, {
+      const pluginFilteredRequest = request.clone();
+      try {
+        let fetchResponse;
+        fetchResponse = await fetch(request, request.mode === "navigate" ? void 0 : this._strategy.fetchOptions);
+        if (true) {
+          logger.debug(`Network request for '${getFriendlyURL(request.url)}' returned a response with status '${fetchResponse.status}'.`);
+        }
+        for (const callback of this.iterateCallbacks("fetchDidSucceed")) {
+          fetchResponse = await callback({
             event,
             request: pluginFilteredRequest,
             response: fetchResponse
           });
-          if (true) {
-            if (fetchResponse) {
-              finalAssertExports.isInstance(fetchResponse, Response, {
-                moduleName: "Plugin",
-                funcName: "fetchDidSucceed",
-                isReturnValueProblem: true
-              });
+        }
+        return fetchResponse;
+      } catch (error) {
+        if (true) {
+          logger.log(`Network request for '${getFriendlyURL(request.url)}' threw an error.`, error);
+        }
+        if (originalRequest) {
+          await this.runCallbacks("fetchDidFail", {
+            error,
+            event,
+            originalRequest: originalRequest.clone(),
+            request: pluginFilteredRequest.clone()
+          });
+        }
+        throw error;
+      }
+    }
+    async fetchAndCachePut(input) {
+      const response = await this.fetch(input);
+      const responseClone = response.clone();
+      void this.waitUntil(this.cachePut(input, responseClone));
+      return response;
+    }
+    async cacheMatch(key) {
+      const request = toRequest(key);
+      let cachedResponse;
+      const { cacheName, matchOptions } = this._strategy;
+      const effectiveRequest = await this.getCacheKey(request, "read");
+      const multiMatchOptions = Object.assign(Object.assign({}, matchOptions), { cacheName });
+      cachedResponse = await caches.match(effectiveRequest, multiMatchOptions);
+      if (true) {
+        if (cachedResponse) {
+          logger.debug(`Found a cached response in '${cacheName}'.`);
+        } else {
+          logger.debug(`No cached response found in '${cacheName}'.`);
+        }
+      }
+      for (const callback of this.iterateCallbacks("cachedResponseWillBeUsed")) {
+        cachedResponse = await callback({
+          cacheName,
+          matchOptions,
+          cachedResponse,
+          request: effectiveRequest,
+          event: this.event
+        }) || void 0;
+      }
+      return cachedResponse;
+    }
+    async cachePut(key, response) {
+      const request = toRequest(key);
+      await timeout(0);
+      const effectiveRequest = await this.getCacheKey(request, "write");
+      if (true) {
+        if (effectiveRequest.method && effectiveRequest.method !== "GET") {
+          throw new WorkboxError("attempt-to-cache-non-get-request", {
+            url: getFriendlyURL(effectiveRequest.url),
+            method: effectiveRequest.method
+          });
+        }
+        const vary = response.headers.get("Vary");
+        if (vary) {
+          logger.debug(`The response for ${getFriendlyURL(effectiveRequest.url)} has a 'Vary: ${vary}' header. Consider setting the {ignoreVary: true} option on your strategy to ensure cache matching and deletion works as expected.`);
+        }
+      }
+      if (!response) {
+        if (true) {
+          logger.error(`Cannot cache non-existent response for '${getFriendlyURL(effectiveRequest.url)}'.`);
+        }
+        throw new WorkboxError("cache-put-with-no-response", {
+          url: getFriendlyURL(effectiveRequest.url)
+        });
+      }
+      const responseToCache = await this._ensureResponseSafeToCache(response);
+      if (!responseToCache) {
+        if (true) {
+          logger.debug(`Response '${getFriendlyURL(effectiveRequest.url)}' will not be cached.`, responseToCache);
+        }
+        return false;
+      }
+      const { cacheName, matchOptions } = this._strategy;
+      const cache = await self.caches.open(cacheName);
+      const hasCacheUpdateCallback = this.hasCallback("cacheDidUpdate");
+      const oldResponse = hasCacheUpdateCallback ? await cacheMatchIgnoreParams(cache, effectiveRequest.clone(), ["__WB_REVISION__"], matchOptions) : null;
+      if (true) {
+        logger.debug(`Updating the '${cacheName}' cache with a new Response for ${getFriendlyURL(effectiveRequest.url)}.`);
+      }
+      try {
+        await cache.put(effectiveRequest, hasCacheUpdateCallback ? responseToCache.clone() : responseToCache);
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error.name === "QuotaExceededError") {
+            await executeQuotaErrorCallbacks();
+          }
+          throw error;
+        }
+      }
+      for (const callback of this.iterateCallbacks("cacheDidUpdate")) {
+        await callback({
+          cacheName,
+          oldResponse,
+          newResponse: responseToCache.clone(),
+          request: effectiveRequest,
+          event: this.event
+        });
+      }
+      return true;
+    }
+    async getCacheKey(request, mode) {
+      const key = `${request.url} | ${mode}`;
+      if (!this._cacheKeys[key]) {
+        let effectiveRequest = request;
+        for (const callback of this.iterateCallbacks("cacheKeyWillBeUsed")) {
+          effectiveRequest = toRequest(await callback({
+            mode,
+            request: effectiveRequest,
+            event: this.event,
+            params: this.params
+          }));
+        }
+        this._cacheKeys[key] = effectiveRequest;
+      }
+      return this._cacheKeys[key];
+    }
+    hasCallback(name) {
+      for (const plugin of this._strategy.plugins) {
+        if (name in plugin) {
+          return true;
+        }
+      }
+      return false;
+    }
+    async runCallbacks(name, param) {
+      for (const callback of this.iterateCallbacks(name)) {
+        await callback(param);
+      }
+    }
+    *iterateCallbacks(name) {
+      for (const plugin of this._strategy.plugins) {
+        if (typeof plugin[name] === "function") {
+          const state = this._pluginStateMap.get(plugin);
+          const statefulCallback = (param) => {
+            const statefulParam = Object.assign(Object.assign({}, param), { state });
+            return plugin[name](statefulParam);
+          };
+          yield statefulCallback;
+        }
+      }
+    }
+    waitUntil(promise) {
+      this._extendLifetimePromises.push(promise);
+      return promise;
+    }
+    async doneWaiting() {
+      let promise;
+      while (promise = this._extendLifetimePromises.shift()) {
+        await promise;
+      }
+    }
+    destroy() {
+      this._handlerDeferred.resolve(null);
+    }
+    async _ensureResponseSafeToCache(response) {
+      let responseToCache = response;
+      let pluginsUsed = false;
+      for (const callback of this.iterateCallbacks("cacheWillUpdate")) {
+        responseToCache = await callback({
+          request: this.request,
+          response: responseToCache,
+          event: this.event
+        }) || void 0;
+        pluginsUsed = true;
+        if (!responseToCache) {
+          break;
+        }
+      }
+      if (!pluginsUsed) {
+        if (responseToCache && responseToCache.status !== 200) {
+          responseToCache = void 0;
+        }
+        if (true) {
+          if (responseToCache) {
+            if (responseToCache.status !== 200) {
+              if (responseToCache.status === 0) {
+                logger.warn(`The response for '${this.request.url}' is an opaque response. The caching strategy that you're using will not cache opaque responses by default.`);
+              } else {
+                logger.debug(`The response for '${this.request.url}' returned a status code of '${response.status}' and won't be cached as a result.`);
+              }
             }
           }
         }
       }
-      return fetchResponse;
-    } catch (error) {
-      if (true) {
-        logger.error(`Network request for '${getFriendlyURL(request.url)}' threw an error.`, error);
-      }
-      for (const plugin of failedFetchPlugins) {
-        await plugin["fetchDidFail"].call(plugin, {
-          error,
-          event,
-          originalRequest: originalRequest.clone(),
-          request: pluginFilteredRequest.clone()
-        });
-      }
-      throw error;
+      return responseToCache;
     }
   };
-  var fetchWrapper = {
-    fetch: wrappedFetch
+
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/Strategy.js
+  var Strategy = class {
+    constructor(options = {}) {
+      this.cacheName = cacheNames.getRuntimeName(options.cacheName);
+      this.plugins = options.plugins || [];
+      this.fetchOptions = options.fetchOptions;
+      this.matchOptions = options.matchOptions;
+    }
+    handle(options) {
+      const [responseDone] = this.handleAll(options);
+      return responseDone;
+    }
+    handleAll(options) {
+      if (options instanceof FetchEvent) {
+        options = {
+          event: options,
+          request: options.request
+        };
+      }
+      const event = options.event;
+      const request = typeof options.request === "string" ? new Request(options.request) : options.request;
+      const params = "params" in options ? options.params : void 0;
+      const handler = new StrategyHandler(this, { event, request, params });
+      const responseDone = this._getResponse(handler, request, event);
+      const handlerDone = this._awaitComplete(responseDone, handler, request, event);
+      return [responseDone, handlerDone];
+    }
+    async _getResponse(handler, request, event) {
+      await handler.runCallbacks("handlerWillStart", { event, request });
+      let response = void 0;
+      try {
+        response = await this._handle(request, handler);
+        if (!response || response.type === "error") {
+          throw new WorkboxError("no-response", { url: request.url });
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          for (const callback of handler.iterateCallbacks("handlerDidError")) {
+            response = await callback({ error, event, request });
+            if (response) {
+              break;
+            }
+          }
+        }
+        if (!response) {
+          throw error;
+        } else if (true) {
+          logger.log(`While responding to '${getFriendlyURL(request.url)}', an ${error instanceof Error ? error.toString() : ""} error occurred. Using a fallback response provided by a handlerDidError plugin.`);
+        }
+      }
+      for (const callback of handler.iterateCallbacks("handlerWillRespond")) {
+        response = await callback({ event, request, response });
+      }
+      return response;
+    }
+    async _awaitComplete(responseDone, handler, request, event) {
+      let response;
+      let error;
+      try {
+        response = await responseDone;
+      } catch (error2) {
+      }
+      try {
+        await handler.runCallbacks("handlerDidRespond", {
+          event,
+          request,
+          response
+        });
+        await handler.doneWaiting();
+      } catch (waitUntilError) {
+        if (waitUntilError instanceof Error) {
+          error = waitUntilError;
+        }
+      }
+      await handler.runCallbacks("handlerDidComplete", {
+        event,
+        request,
+        response,
+        error
+      });
+      handler.destroy();
+      if (error) {
+        throw error;
+      }
+    }
   };
 
-  // node_modules/.pnpm/workbox-strategies@5.1.4/node_modules/workbox-strategies/_version.js
-  try {
-    self["workbox:strategies:5.1.4"] && _();
-  } catch (e) {
-  }
-
-  // node_modules/.pnpm/workbox-strategies@5.1.4/node_modules/workbox-strategies/utils/messages.js
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/utils/messages.js
   var messages2 = {
     strategyStart: (strategyName, request) => `Using ${strategyName} to respond to '${getFriendlyURL(request.url)}'`,
     printFinalResponse: (response) => {
@@ -983,43 +1130,30 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-strategies@5.1.4/node_modules/workbox-strategies/CacheFirst.js
-  var CacheFirst = class {
-    constructor(options = {}) {
-      this._cacheName = cacheNames.getRuntimeName(options.cacheName);
-      this._plugins = options.plugins || [];
-      this._fetchOptions = options.fetchOptions;
-      this._matchOptions = options.matchOptions;
-    }
-    async handle({ event, request }) {
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/CacheFirst.js
+  var CacheFirst = class extends Strategy {
+    async _handle(request, handler) {
       const logs = [];
-      if (typeof request === "string") {
-        request = new Request(request);
-      }
       if (true) {
         finalAssertExports.isInstance(request, Request, {
           moduleName: "workbox-strategies",
-          className: "CacheFirst",
+          className: this.constructor.name,
           funcName: "makeRequest",
           paramName: "request"
         });
       }
-      let response = await cacheWrapper.match({
-        cacheName: this._cacheName,
-        request,
-        event,
-        matchOptions: this._matchOptions,
-        plugins: this._plugins
-      });
-      let error;
+      let response = await handler.cacheMatch(request);
+      let error = void 0;
       if (!response) {
         if (true) {
-          logs.push(`No response found in the '${this._cacheName}' cache. Will respond with a network request.`);
+          logs.push(`No response found in the '${this.cacheName}' cache. Will respond with a network request.`);
         }
         try {
-          response = await this._getFromNetwork(request, event);
+          response = await handler.fetchAndCachePut(request);
         } catch (err) {
-          error = err;
+          if (err instanceof Error) {
+            error = err;
+          }
         }
         if (true) {
           if (response) {
@@ -1030,11 +1164,11 @@
         }
       } else {
         if (true) {
-          logs.push(`Found a cached response in the '${this._cacheName}' cache.`);
+          logs.push(`Found a cached response in the '${this.cacheName}' cache.`);
         }
       }
       if (true) {
-        logger.groupCollapsed(messages2.strategyStart("CacheFirst", request));
+        logger.groupCollapsed(messages2.strategyStart(this.constructor.name, request));
         for (const log of logs) {
           logger.log(log);
         }
@@ -1046,35 +1180,9 @@
       }
       return response;
     }
-    async _getFromNetwork(request, event) {
-      const response = await fetchWrapper.fetch({
-        request,
-        event,
-        fetchOptions: this._fetchOptions,
-        plugins: this._plugins
-      });
-      const responseClone = response.clone();
-      const cachePutPromise = cacheWrapper.put({
-        cacheName: this._cacheName,
-        request,
-        response: responseClone,
-        event,
-        plugins: this._plugins
-      });
-      if (event) {
-        try {
-          event.waitUntil(cachePutPromise);
-        } catch (error) {
-          if (true) {
-            logger.warn(`Unable to ensure service worker stays alive when updating cache for '${getFriendlyURL(request.url)}'.`);
-          }
-        }
-      }
-      return response;
-    }
   };
 
-  // node_modules/.pnpm/workbox-strategies@5.1.4/node_modules/workbox-strategies/plugins/cacheOkAndOpaquePlugin.js
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/plugins/cacheOkAndOpaquePlugin.js
   var cacheOkAndOpaquePlugin = {
     cacheWillUpdate: async ({ response }) => {
       if (response.status === 200 || response.status === 0) {
@@ -1084,39 +1192,31 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-strategies@5.1.4/node_modules/workbox-strategies/NetworkFirst.js
-  var NetworkFirst = class {
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/NetworkFirst.js
+  var NetworkFirst = class extends Strategy {
     constructor(options = {}) {
-      this._cacheName = cacheNames.getRuntimeName(options.cacheName);
-      if (options.plugins) {
-        const isUsingCacheWillUpdate = options.plugins.some((plugin) => !!plugin.cacheWillUpdate);
-        this._plugins = isUsingCacheWillUpdate ? options.plugins : [cacheOkAndOpaquePlugin, ...options.plugins];
-      } else {
-        this._plugins = [cacheOkAndOpaquePlugin];
+      super(options);
+      if (!this.plugins.some((p) => "cacheWillUpdate" in p)) {
+        this.plugins.unshift(cacheOkAndOpaquePlugin);
       }
       this._networkTimeoutSeconds = options.networkTimeoutSeconds || 0;
       if (true) {
         if (this._networkTimeoutSeconds) {
           finalAssertExports.isType(this._networkTimeoutSeconds, "number", {
             moduleName: "workbox-strategies",
-            className: "NetworkFirst",
+            className: this.constructor.name,
             funcName: "constructor",
             paramName: "networkTimeoutSeconds"
           });
         }
       }
-      this._fetchOptions = options.fetchOptions;
-      this._matchOptions = options.matchOptions;
     }
-    async handle({ event, request }) {
+    async _handle(request, handler) {
       const logs = [];
-      if (typeof request === "string") {
-        request = new Request(request);
-      }
       if (true) {
         finalAssertExports.isInstance(request, Request, {
           moduleName: "workbox-strategies",
-          className: "NetworkFirst",
+          className: this.constructor.name,
           funcName: "handle",
           paramName: "makeRequest"
         });
@@ -1124,18 +1224,22 @@
       const promises = [];
       let timeoutId;
       if (this._networkTimeoutSeconds) {
-        const { id, promise } = this._getTimeoutPromise({ request, event, logs });
+        const { id, promise } = this._getTimeoutPromise({ request, logs, handler });
         timeoutId = id;
         promises.push(promise);
       }
-      const networkPromise = this._getNetworkPromise({ timeoutId, request, event, logs });
+      const networkPromise = this._getNetworkPromise({
+        timeoutId,
+        request,
+        logs,
+        handler
+      });
       promises.push(networkPromise);
-      let response = await Promise.race(promises);
-      if (!response) {
-        response = await networkPromise;
-      }
+      const response = await handler.waitUntil((async () => {
+        return await handler.waitUntil(Promise.race(promises)) || await networkPromise;
+      })());
       if (true) {
-        logger.groupCollapsed(messages2.strategyStart("NetworkFirst", request));
+        logger.groupCollapsed(messages2.strategyStart(this.constructor.name, request));
         for (const log of logs) {
           logger.log(log);
         }
@@ -1147,14 +1251,14 @@
       }
       return response;
     }
-    _getTimeoutPromise({ request, logs, event }) {
+    _getTimeoutPromise({ request, logs, handler }) {
       let timeoutId;
       const timeoutPromise = new Promise((resolve) => {
         const onNetworkTimeout = async () => {
           if (true) {
             logs.push(`Timing out the network response at ${this._networkTimeoutSeconds} seconds.`);
           }
-          resolve(await this._respondFromCache({ request, event }));
+          resolve(await handler.cacheMatch(request));
         };
         timeoutId = setTimeout(onNetworkTimeout, this._networkTimeoutSeconds * 1e3);
       });
@@ -1163,18 +1267,15 @@
         id: timeoutId
       };
     }
-    async _getNetworkPromise({ timeoutId, request, logs, event }) {
+    async _getNetworkPromise({ timeoutId, request, logs, handler }) {
       let error;
       let response;
       try {
-        response = await fetchWrapper.fetch({
-          request,
-          event,
-          fetchOptions: this._fetchOptions,
-          plugins: this._plugins
-        });
-      } catch (err) {
-        error = err;
+        response = await handler.fetchAndCachePut(request);
+      } catch (fetchError) {
+        if (fetchError instanceof Error) {
+          error = fetchError;
+        }
       }
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -1187,107 +1288,60 @@
         }
       }
       if (error || !response) {
-        response = await this._respondFromCache({ request, event });
+        response = await handler.cacheMatch(request);
         if (true) {
           if (response) {
-            logs.push(`Found a cached response in the '${this._cacheName}' cache.`);
+            logs.push(`Found a cached response in the '${this.cacheName}' cache.`);
           } else {
-            logs.push(`No response found in the '${this._cacheName}' cache.`);
-          }
-        }
-      } else {
-        const responseClone = response.clone();
-        const cachePut = cacheWrapper.put({
-          cacheName: this._cacheName,
-          request,
-          response: responseClone,
-          event,
-          plugins: this._plugins
-        });
-        if (event) {
-          try {
-            event.waitUntil(cachePut);
-          } catch (err) {
-            if (true) {
-              logger.warn(`Unable to ensure service worker stays alive when updating cache for '${getFriendlyURL(request.url)}'.`);
-            }
+            logs.push(`No response found in the '${this.cacheName}' cache.`);
           }
         }
       }
       return response;
     }
-    _respondFromCache({ event, request }) {
-      return cacheWrapper.match({
-        cacheName: this._cacheName,
-        request,
-        event,
-        matchOptions: this._matchOptions,
-        plugins: this._plugins
-      });
-    }
   };
 
-  // node_modules/.pnpm/workbox-strategies@5.1.4/node_modules/workbox-strategies/StaleWhileRevalidate.js
-  var StaleWhileRevalidate = class {
+  // node_modules/.pnpm/workbox-strategies@6.5.1/node_modules/workbox-strategies/StaleWhileRevalidate.js
+  var StaleWhileRevalidate = class extends Strategy {
     constructor(options = {}) {
-      this._cacheName = cacheNames.getRuntimeName(options.cacheName);
-      this._plugins = options.plugins || [];
-      if (options.plugins) {
-        const isUsingCacheWillUpdate = options.plugins.some((plugin) => !!plugin.cacheWillUpdate);
-        this._plugins = isUsingCacheWillUpdate ? options.plugins : [cacheOkAndOpaquePlugin, ...options.plugins];
-      } else {
-        this._plugins = [cacheOkAndOpaquePlugin];
+      super(options);
+      if (!this.plugins.some((p) => "cacheWillUpdate" in p)) {
+        this.plugins.unshift(cacheOkAndOpaquePlugin);
       }
-      this._fetchOptions = options.fetchOptions;
-      this._matchOptions = options.matchOptions;
     }
-    async handle({ event, request }) {
+    async _handle(request, handler) {
       const logs = [];
-      if (typeof request === "string") {
-        request = new Request(request);
-      }
       if (true) {
         finalAssertExports.isInstance(request, Request, {
           moduleName: "workbox-strategies",
-          className: "StaleWhileRevalidate",
+          className: this.constructor.name,
           funcName: "handle",
           paramName: "request"
         });
       }
-      const fetchAndCachePromise = this._getFromNetwork({ request, event });
-      let response = await cacheWrapper.match({
-        cacheName: this._cacheName,
-        request,
-        event,
-        matchOptions: this._matchOptions,
-        plugins: this._plugins
+      const fetchAndCachePromise = handler.fetchAndCachePut(request).catch(() => {
       });
+      void handler.waitUntil(fetchAndCachePromise);
+      let response = await handler.cacheMatch(request);
       let error;
       if (response) {
         if (true) {
-          logs.push(`Found a cached response in the '${this._cacheName}' cache. Will update with the network response in the background.`);
-        }
-        if (event) {
-          try {
-            event.waitUntil(fetchAndCachePromise);
-          } catch (error2) {
-            if (true) {
-              logger.warn(`Unable to ensure service worker stays alive when updating cache for '${getFriendlyURL(request.url)}'.`);
-            }
-          }
+          logs.push(`Found a cached response in the '${this.cacheName}' cache. Will update with the network response in the background.`);
         }
       } else {
         if (true) {
-          logs.push(`No response found in the '${this._cacheName}' cache. Will wait for the network response.`);
+          logs.push(`No response found in the '${this.cacheName}' cache. Will wait for the network response.`);
         }
         try {
           response = await fetchAndCachePromise;
         } catch (err) {
-          error = err;
+          if (err instanceof Error) {
+            error = err;
+          }
         }
       }
       if (true) {
-        logger.groupCollapsed(messages2.strategyStart("StaleWhileRevalidate", request));
+        logger.groupCollapsed(messages2.strategyStart(this.constructor.name, request));
         for (const log of logs) {
           logger.log(log);
         }
@@ -1299,183 +1353,226 @@
       }
       return response;
     }
-    async _getFromNetwork({ request, event }) {
-      const response = await fetchWrapper.fetch({
-        request,
-        event,
-        fetchOptions: this._fetchOptions,
-        plugins: this._plugins
-      });
-      const cachePutPromise = cacheWrapper.put({
-        cacheName: this._cacheName,
-        request,
-        response: response.clone(),
-        event,
-        plugins: this._plugins
-      });
-      if (event) {
-        try {
-          event.waitUntil(cachePutPromise);
-        } catch (error) {
-          if (true) {
-            logger.warn(`Unable to ensure service worker stays alive when updating cache for '${getFriendlyURL(request.url)}'.`);
-          }
+  };
+
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/_private/dontWaitFor.js
+  function dontWaitFor(promise) {
+    void promise.then(() => {
+    });
+  }
+
+  // node_modules/.pnpm/idb@6.1.5/node_modules/idb/build/esm/wrap-idb-value.js
+  var instanceOfAny = (object, constructors) => constructors.some((c) => object instanceof c);
+  var idbProxyableTypes;
+  var cursorAdvanceMethods;
+  function getIdbProxyableTypes() {
+    return idbProxyableTypes || (idbProxyableTypes = [
+      IDBDatabase,
+      IDBObjectStore,
+      IDBIndex,
+      IDBCursor,
+      IDBTransaction
+    ]);
+  }
+  function getCursorAdvanceMethods() {
+    return cursorAdvanceMethods || (cursorAdvanceMethods = [
+      IDBCursor.prototype.advance,
+      IDBCursor.prototype.continue,
+      IDBCursor.prototype.continuePrimaryKey
+    ]);
+  }
+  var cursorRequestMap = /* @__PURE__ */ new WeakMap();
+  var transactionDoneMap = /* @__PURE__ */ new WeakMap();
+  var transactionStoreNamesMap = /* @__PURE__ */ new WeakMap();
+  var transformCache = /* @__PURE__ */ new WeakMap();
+  var reverseTransformCache = /* @__PURE__ */ new WeakMap();
+  function promisifyRequest(request) {
+    const promise = new Promise((resolve, reject) => {
+      const unlisten = () => {
+        request.removeEventListener("success", success);
+        request.removeEventListener("error", error);
+      };
+      const success = () => {
+        resolve(wrap(request.result));
+        unlisten();
+      };
+      const error = () => {
+        reject(request.error);
+        unlisten();
+      };
+      request.addEventListener("success", success);
+      request.addEventListener("error", error);
+    });
+    promise.then((value) => {
+      if (value instanceof IDBCursor) {
+        cursorRequestMap.set(value, request);
+      }
+    }).catch(() => {
+    });
+    reverseTransformCache.set(promise, request);
+    return promise;
+  }
+  function cacheDonePromiseForTransaction(tx) {
+    if (transactionDoneMap.has(tx))
+      return;
+    const done = new Promise((resolve, reject) => {
+      const unlisten = () => {
+        tx.removeEventListener("complete", complete);
+        tx.removeEventListener("error", error);
+        tx.removeEventListener("abort", error);
+      };
+      const complete = () => {
+        resolve();
+        unlisten();
+      };
+      const error = () => {
+        reject(tx.error || new DOMException("AbortError", "AbortError"));
+        unlisten();
+      };
+      tx.addEventListener("complete", complete);
+      tx.addEventListener("error", error);
+      tx.addEventListener("abort", error);
+    });
+    transactionDoneMap.set(tx, done);
+  }
+  var idbProxyTraps = {
+    get(target, prop, receiver) {
+      if (target instanceof IDBTransaction) {
+        if (prop === "done")
+          return transactionDoneMap.get(target);
+        if (prop === "objectStoreNames") {
+          return target.objectStoreNames || transactionStoreNamesMap.get(target);
+        }
+        if (prop === "store") {
+          return receiver.objectStoreNames[1] ? void 0 : receiver.objectStore(receiver.objectStoreNames[0]);
         }
       }
-      return response;
-    }
-  };
-
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/dontWaitFor.js
-  function dontWaitFor(promise) {
-    promise.then(() => {
-    });
-  }
-
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/DBWrapper.js
-  var DBWrapper = class {
-    constructor(name, version, { onupgradeneeded, onversionchange } = {}) {
-      this._db = null;
-      this._name = name;
-      this._version = version;
-      this._onupgradeneeded = onupgradeneeded;
-      this._onversionchange = onversionchange || (() => this.close());
-    }
-    get db() {
-      return this._db;
-    }
-    async open() {
-      if (this._db)
-        return;
-      this._db = await new Promise((resolve, reject) => {
-        let openRequestTimedOut = false;
-        setTimeout(() => {
-          openRequestTimedOut = true;
-          reject(new Error("The open request was blocked and timed out"));
-        }, this.OPEN_TIMEOUT);
-        const openRequest = indexedDB.open(this._name, this._version);
-        openRequest.onerror = () => reject(openRequest.error);
-        openRequest.onupgradeneeded = (evt) => {
-          if (openRequestTimedOut) {
-            openRequest.transaction.abort();
-            openRequest.result.close();
-          } else if (typeof this._onupgradeneeded === "function") {
-            this._onupgradeneeded(evt);
-          }
-        };
-        openRequest.onsuccess = () => {
-          const db = openRequest.result;
-          if (openRequestTimedOut) {
-            db.close();
-          } else {
-            db.onversionchange = this._onversionchange.bind(this);
-            resolve(db);
-          }
-        };
-      });
-      return this;
-    }
-    async getKey(storeName, query) {
-      return (await this.getAllKeys(storeName, query, 1))[0];
-    }
-    async getAll(storeName, query, count) {
-      return await this.getAllMatching(storeName, { query, count });
-    }
-    async getAllKeys(storeName, query, count) {
-      const entries = await this.getAllMatching(storeName, { query, count, includeKeys: true });
-      return entries.map((entry) => entry.key);
-    }
-    async getAllMatching(storeName, {
-      index,
-      query = null,
-      direction = "next",
-      count,
-      includeKeys = false
-    } = {}) {
-      return await this.transaction([storeName], "readonly", (txn, done) => {
-        const store = txn.objectStore(storeName);
-        const target = index ? store.index(index) : store;
-        const results = [];
-        const request = target.openCursor(query, direction);
-        request.onsuccess = () => {
-          const cursor = request.result;
-          if (cursor) {
-            results.push(includeKeys ? cursor : cursor.value);
-            if (count && results.length >= count) {
-              done(results);
-            } else {
-              cursor.continue();
-            }
-          } else {
-            done(results);
-          }
-        };
-      });
-    }
-    async transaction(storeNames, type, callback) {
-      await this.open();
-      return await new Promise((resolve, reject) => {
-        const txn = this._db.transaction(storeNames, type);
-        txn.onabort = () => reject(txn.error);
-        txn.oncomplete = () => resolve();
-        callback(txn, (value) => resolve(value));
-      });
-    }
-    async _call(method, storeName, type, ...args) {
-      const callback = (txn, done) => {
-        const objStore = txn.objectStore(storeName);
-        const request = objStore[method].apply(objStore, args);
-        request.onsuccess = () => done(request.result);
-      };
-      return await this.transaction([storeName], type, callback);
-    }
-    close() {
-      if (this._db) {
-        this._db.close();
-        this._db = null;
+      return wrap(target[prop]);
+    },
+    set(target, prop, value) {
+      target[prop] = value;
+      return true;
+    },
+    has(target, prop) {
+      if (target instanceof IDBTransaction && (prop === "done" || prop === "store")) {
+        return true;
       }
+      return prop in target;
     }
   };
-  DBWrapper.prototype.OPEN_TIMEOUT = 2e3;
-  var methodsToWrap = {
-    readonly: ["get", "count", "getKey", "getAll", "getAllKeys"],
-    readwrite: ["add", "put", "clear", "delete"]
-  };
-  for (const [mode, methods] of Object.entries(methodsToWrap)) {
-    for (const method of methods) {
-      if (method in IDBObjectStore.prototype) {
-        DBWrapper.prototype[method] = async function(storeName, ...args) {
-          return await this._call(method, storeName, mode, ...args);
-        };
-      }
-    }
+  function replaceTraps(callback) {
+    idbProxyTraps = callback(idbProxyTraps);
   }
+  function wrapFunction(func) {
+    if (func === IDBDatabase.prototype.transaction && !("objectStoreNames" in IDBTransaction.prototype)) {
+      return function(storeNames, ...args) {
+        const tx = func.call(unwrap(this), storeNames, ...args);
+        transactionStoreNamesMap.set(tx, storeNames.sort ? storeNames.sort() : [storeNames]);
+        return wrap(tx);
+      };
+    }
+    if (getCursorAdvanceMethods().includes(func)) {
+      return function(...args) {
+        func.apply(unwrap(this), args);
+        return wrap(cursorRequestMap.get(this));
+      };
+    }
+    return function(...args) {
+      return wrap(func.apply(unwrap(this), args));
+    };
+  }
+  function transformCachableValue(value) {
+    if (typeof value === "function")
+      return wrapFunction(value);
+    if (value instanceof IDBTransaction)
+      cacheDonePromiseForTransaction(value);
+    if (instanceOfAny(value, getIdbProxyableTypes()))
+      return new Proxy(value, idbProxyTraps);
+    return value;
+  }
+  function wrap(value) {
+    if (value instanceof IDBRequest)
+      return promisifyRequest(value);
+    if (transformCache.has(value))
+      return transformCache.get(value);
+    const newValue = transformCachableValue(value);
+    if (newValue !== value) {
+      transformCache.set(value, newValue);
+      reverseTransformCache.set(newValue, value);
+    }
+    return newValue;
+  }
+  var unwrap = (value) => reverseTransformCache.get(value);
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/_private/deleteDatabase.js
-  var deleteDatabase = async (name) => {
-    await new Promise((resolve, reject) => {
-      const request = indexedDB.deleteDatabase(name);
-      request.onerror = () => {
-        reject(request.error);
-      };
-      request.onblocked = () => {
-        reject(new Error("Delete blocked"));
-      };
-      request.onsuccess = () => {
-        resolve();
-      };
+  // node_modules/.pnpm/idb@6.1.5/node_modules/idb/build/esm/index.js
+  function openDB(name, version, { blocked, upgrade, blocking, terminated } = {}) {
+    const request = indexedDB.open(name, version);
+    const openPromise = wrap(request);
+    if (upgrade) {
+      request.addEventListener("upgradeneeded", (event) => {
+        upgrade(wrap(request.result), event.oldVersion, event.newVersion, wrap(request.transaction));
+      });
+    }
+    if (blocked)
+      request.addEventListener("blocked", () => blocked());
+    openPromise.then((db) => {
+      if (terminated)
+        db.addEventListener("close", () => terminated());
+      if (blocking)
+        db.addEventListener("versionchange", () => blocking());
+    }).catch(() => {
     });
-  };
+    return openPromise;
+  }
+  function deleteDB(name, { blocked } = {}) {
+    const request = indexedDB.deleteDatabase(name);
+    if (blocked)
+      request.addEventListener("blocked", () => blocked());
+    return wrap(request).then(() => void 0);
+  }
+  var readMethods = ["get", "getKey", "getAll", "getAllKeys", "count"];
+  var writeMethods = ["put", "add", "delete", "clear"];
+  var cachedMethods = /* @__PURE__ */ new Map();
+  function getMethod(target, prop) {
+    if (!(target instanceof IDBDatabase && !(prop in target) && typeof prop === "string")) {
+      return;
+    }
+    if (cachedMethods.get(prop))
+      return cachedMethods.get(prop);
+    const targetFuncName = prop.replace(/FromIndex$/, "");
+    const useIndex = prop !== targetFuncName;
+    const isWrite = writeMethods.includes(targetFuncName);
+    if (!(targetFuncName in (useIndex ? IDBIndex : IDBObjectStore).prototype) || !(isWrite || readMethods.includes(targetFuncName))) {
+      return;
+    }
+    const method = async function(storeName, ...args) {
+      const tx = this.transaction(storeName, isWrite ? "readwrite" : "readonly");
+      let target2 = tx.store;
+      if (useIndex)
+        target2 = target2.index(args.shift());
+      return (await Promise.all([
+        target2[targetFuncName](...args),
+        isWrite && tx.done
+      ]))[0];
+    };
+    cachedMethods.set(prop, method);
+    return method;
+  }
+  replaceTraps((oldTraps) => ({
+    ...oldTraps,
+    get: (target, prop, receiver) => getMethod(target, prop) || oldTraps.get(target, prop, receiver),
+    has: (target, prop) => !!getMethod(target, prop) || oldTraps.has(target, prop)
+  }));
 
-  // node_modules/.pnpm/workbox-expiration@5.1.4/node_modules/workbox-expiration/_version.js
+  // node_modules/.pnpm/workbox-expiration@6.5.1/node_modules/workbox-expiration/_version.js
   try {
-    self["workbox:expiration:5.1.4"] && _();
+    self["workbox:expiration:6.5.0"] && _();
   } catch (e) {
   }
 
-  // node_modules/.pnpm/workbox-expiration@5.1.4/node_modules/workbox-expiration/models/CacheTimestampsModel.js
+  // node_modules/.pnpm/workbox-expiration@6.5.1/node_modules/workbox-expiration/models/CacheTimestampsModel.js
   var DB_NAME = "workbox-expiration";
-  var OBJECT_STORE_NAME = "cache-entries";
+  var CACHE_OBJECT_STORE = "cache-entries";
   var normalizeURL = (unNormalizedUrl) => {
     const url = new URL(unNormalizedUrl, location.href);
     url.hash = "";
@@ -1483,17 +1580,19 @@
   };
   var CacheTimestampsModel = class {
     constructor(cacheName) {
+      this._db = null;
       this._cacheName = cacheName;
-      this._db = new DBWrapper(DB_NAME, 1, {
-        onupgradeneeded: (event) => this._handleUpgrade(event)
-      });
     }
-    _handleUpgrade(event) {
-      const db = event.target.result;
-      const objStore = db.createObjectStore(OBJECT_STORE_NAME, { keyPath: "id" });
+    _upgradeDb(db) {
+      const objStore = db.createObjectStore(CACHE_OBJECT_STORE, { keyPath: "id" });
       objStore.createIndex("cacheName", "cacheName", { unique: false });
       objStore.createIndex("timestamp", "timestamp", { unique: false });
-      deleteDatabase(this._cacheName);
+    }
+    _upgradeDbAndDeleteOldDbs(db) {
+      this._upgradeDb(db);
+      if (this._cacheName) {
+        void deleteDB(this._cacheName);
+      }
     }
     async setTimestamp(url, timestamp) {
       url = normalizeURL(url);
@@ -1503,38 +1602,37 @@
         cacheName: this._cacheName,
         id: this._getId(url)
       };
-      await this._db.put(OBJECT_STORE_NAME, entry);
+      const db = await this.getDb();
+      const tx = db.transaction(CACHE_OBJECT_STORE, "readwrite", {
+        durability: "relaxed"
+      });
+      await tx.store.put(entry);
+      await tx.done;
     }
     async getTimestamp(url) {
-      const entry = await this._db.get(OBJECT_STORE_NAME, this._getId(url));
-      return entry.timestamp;
+      const db = await this.getDb();
+      const entry = await db.get(CACHE_OBJECT_STORE, this._getId(url));
+      return entry === null || entry === void 0 ? void 0 : entry.timestamp;
     }
     async expireEntries(minTimestamp, maxCount) {
-      const entriesToDelete = await this._db.transaction(OBJECT_STORE_NAME, "readwrite", (txn, done) => {
-        const store = txn.objectStore(OBJECT_STORE_NAME);
-        const request = store.index("timestamp").openCursor(null, "prev");
-        const entriesToDelete2 = [];
-        let entriesNotDeletedCount = 0;
-        request.onsuccess = () => {
-          const cursor = request.result;
-          if (cursor) {
-            const result = cursor.value;
-            if (result.cacheName === this._cacheName) {
-              if (minTimestamp && result.timestamp < minTimestamp || maxCount && entriesNotDeletedCount >= maxCount) {
-                entriesToDelete2.push(cursor.value);
-              } else {
-                entriesNotDeletedCount++;
-              }
-            }
-            cursor.continue();
+      const db = await this.getDb();
+      let cursor = await db.transaction(CACHE_OBJECT_STORE).store.index("timestamp").openCursor(null, "prev");
+      const entriesToDelete = [];
+      let entriesNotDeletedCount = 0;
+      while (cursor) {
+        const result = cursor.value;
+        if (result.cacheName === this._cacheName) {
+          if (minTimestamp && result.timestamp < minTimestamp || maxCount && entriesNotDeletedCount >= maxCount) {
+            entriesToDelete.push(cursor.value);
           } else {
-            done(entriesToDelete2);
+            entriesNotDeletedCount++;
           }
-        };
-      });
+        }
+        cursor = await cursor.continue();
+      }
       const urlsDeleted = [];
       for (const entry of entriesToDelete) {
-        await this._db.delete(OBJECT_STORE_NAME, entry.id);
+        await db.delete(CACHE_OBJECT_STORE, entry.id);
         urlsDeleted.push(entry.url);
       }
       return urlsDeleted;
@@ -1542,9 +1640,17 @@
     _getId(url) {
       return this._cacheName + "|" + normalizeURL(url);
     }
+    async getDb() {
+      if (!this._db) {
+        this._db = await openDB(DB_NAME, 1, {
+          upgrade: this._upgradeDbAndDeleteOldDbs.bind(this)
+        });
+      }
+      return this._db;
+    }
   };
 
-  // node_modules/.pnpm/workbox-expiration@5.1.4/node_modules/workbox-expiration/CacheExpiration.js
+  // node_modules/.pnpm/workbox-expiration@6.5.1/node_modules/workbox-expiration/CacheExpiration.js
   var CacheExpiration = class {
     constructor(cacheName, config = {}) {
       this._isRunning = false;
@@ -1582,6 +1688,7 @@
       }
       this._maxEntries = config.maxEntries;
       this._maxAgeSeconds = config.maxAgeSeconds;
+      this._matchOptions = config.matchOptions;
       this._cacheName = cacheName;
       this._timestampModel = new CacheTimestampsModel(cacheName);
     }
@@ -1595,7 +1702,7 @@
       const urlsExpired = await this._timestampModel.expireEntries(minTimestamp, this._maxEntries);
       const cache = await self.caches.open(this._cacheName);
       for (const url of urlsExpired) {
-        await cache.delete(url);
+        await cache.delete(url, this._matchOptions);
       }
       if (true) {
         if (urlsExpired.length > 0) {
@@ -1636,7 +1743,7 @@
       } else {
         const timestamp = await this._timestampModel.getTimestamp(url);
         const expireOlderThan = Date.now() - this._maxAgeSeconds * 1e3;
-        return timestamp < expireOlderThan;
+        return timestamp !== void 0 ? timestamp < expireOlderThan : true;
       }
     }
     async delete() {
@@ -1645,7 +1752,7 @@
     }
   };
 
-  // node_modules/.pnpm/workbox-core@5.1.4/node_modules/workbox-core/registerQuotaErrorCallback.js
+  // node_modules/.pnpm/workbox-core@6.5.1/node_modules/workbox-core/registerQuotaErrorCallback.js
   function registerQuotaErrorCallback(callback) {
     if (true) {
       finalAssertExports.isType(callback, "function", {
@@ -1660,7 +1767,7 @@
     }
   }
 
-  // node_modules/.pnpm/workbox-expiration@5.1.4/node_modules/workbox-expiration/ExpirationPlugin.js
+  // node_modules/.pnpm/workbox-expiration@6.5.1/node_modules/workbox-expiration/ExpirationPlugin.js
   var ExpirationPlugin = class {
     constructor(config = {}) {
       this.cachedResponseWillBeUsed = async ({ event, request, cacheName, cachedResponse }) => {
