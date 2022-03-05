@@ -5,7 +5,7 @@
     };
 </script>
 
-<script>
+<script lang="ts">
     import { tick } from "svelte";
 
     import lazyLoadThing from "../lazyload/core";

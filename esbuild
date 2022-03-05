@@ -2,6 +2,7 @@
 
 const esbuild = require("esbuild");
 const sveltePlugin = require("esbuild-svelte");
+const sveltePreprocess = require("svelte-preprocess");
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -13,7 +14,9 @@ esbuild.build({
     watch: isDev,
     sourcemap: isDev,
     minify: !isDev,
-    plugins: [sveltePlugin()],
+    plugins: [sveltePlugin({
+        preprocess: sveltePreprocess()
+    })],
     logLevel: "info"
 })
     .catch(() => process.exit(1));
@@ -47,6 +50,8 @@ if (!isDev) {
         format: "cjs",
         outfile: './windi.js',
     })
-    await require("./windi.js")()
-    require('fs').rmSync('./windi.js')
+    const processWindi = require("./windi.js")
+    processWindi().then(() => {
+        require('fs').rmSync('./windi.js')
+    })
 }
