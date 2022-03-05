@@ -9,8 +9,6 @@
     import SearchBlog from "./search/blog.svelte";
     import EncryptBlog from "./encrypt/blog.svelte";
     import MusicPlayer from "./music/music.svelte";
-
-    import "./entrypoint.js";
 </script>
 
 {#if path === "/life/"}

@@ -12,10 +12,9 @@ specifiers:
   svelte-preprocess: ^4.10.4
   typescript: ^4.6.2
   windicss: ^3.5.0
-  workbox-core: ^6.3.0
-  workbox-expiration: ^5.1.4
-  workbox-routing: ^5.1.4
-  workbox-strategies: ^5.1.4
+  workbox-expiration: 6.5.1
+  workbox-routing: ^6.5.1
+  workbox-strategies: ^6.5.1
 
 dependencies:
   crypto-js: 4.1.1
@@ -31,10 +30,9 @@ devDependencies:
   svelte-preprocess: 4.10.4_svelte@3.43.1+typescript@4.6.2
   typescript: 4.6.2
   windicss: 3.5.0
-  workbox-core: 6.3.0
-  workbox-expiration: 5.1.4
-  workbox-routing: 5.1.4
-  workbox-strategies: 5.1.4
+  workbox-expiration: 6.5.1
+  workbox-routing: 6.5.1
+  workbox-strategies: 6.5.1
 
 packages:
 
@@ -415,6 +413,10 @@ packages:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
     dev: true
 
+  /idb/6.1.5:
+    resolution: {integrity: sha512-IJtugpKkiVXQn5Y+LteyBCNk1N8xpGV3wWZk9EVtZWH8DYkjBn0bX1XnGP9RkyZF0sAcywa6unHqSWKe7q4LGw==}
+    dev: true
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -721,31 +723,27 @@ packages:
     hasBin: true
     dev: true
 
-  /workbox-core/5.1.4:
-    resolution: {integrity: sha512-+4iRQan/1D8I81nR2L5vcbaaFskZC2CL17TLbvWVzQ4qiF/ytOGF6XeV54pVxAvKUtkLANhk8TyIUMtiMw2oDg==}
+  /workbox-core/6.5.1:
+    resolution: {integrity: sha512-qObXZ39aFJ2N8X7IUbGrJHKWguliCuU1jOXM/I4MTT84u9BiKD2rHMkIzgeRP1Ixu9+cXU4/XHJq3Cy0Qqc5hw==}
     dev: true
 
-  /workbox-core/6.3.0:
-    resolution: {integrity: sha512-SufToEV3SOLwwz3j+P4pgkfpzLRUlR17sX3p/LrMHP/brYKvJQqjTwtSvaCkkAX0RPHX2TFHmN8xhPP1bpmomg==}
-    dev: true
-
-  /workbox-expiration/5.1.4:
-    resolution: {integrity: sha512-oDO/5iC65h2Eq7jctAv858W2+CeRW5e0jZBMNRXpzp0ZPvuT6GblUiHnAsC5W5lANs1QS9atVOm4ifrBiYY7AQ==}
+  /workbox-expiration/6.5.1:
+    resolution: {integrity: sha512-iY/cTADAQATMmPkUBRmQdacqq0TJd2wMHimBQz+tRnPGHSMH+/BoLPABPnu7O7rT/g/s59CUYYRGxe3mEgoJCA==}
     dependencies:
-      workbox-core: 5.1.4
+      idb: 6.1.5
+      workbox-core: 6.5.1
     dev: true
 
-  /workbox-routing/5.1.4:
-    resolution: {integrity: sha512-8ljknRfqE1vEQtnMtzfksL+UXO822jJlHTIR7+BtJuxQ17+WPZfsHqvk1ynR/v0EHik4x2+826Hkwpgh4GKDCw==}
+  /workbox-routing/6.5.1:
+    resolution: {integrity: sha512-yAAncdTwanvlR8KPjubyvFKeAok8ZcIws6UKxvIAg0I+wsf7UYi93DXNuZr6RBSQrByrN6HkCyjuhmk8P63+PA==}
     dependencies:
-      workbox-core: 5.1.4
+      workbox-core: 6.5.1
     dev: true
 
-  /workbox-strategies/5.1.4:
-    resolution: {integrity: sha512-VVS57LpaJTdjW3RgZvPwX0NlhNmscR7OQ9bP+N/34cYMDzXLyA6kqWffP6QKXSkca1OFo/v6v7hW7zrrguo6EA==}
+  /workbox-strategies/6.5.1:
+    resolution: {integrity: sha512-JNaTXPy8wXzKkr+6za7/eJX9opoZk7UgY261I2kPxl80XQD8lMjz0vo9EOcBwvD72v3ZhGJbW84ZaDwFEhFvWA==}
     dependencies:
-      workbox-core: 5.1.4
-      workbox-routing: 5.1.4
+      workbox-core: 6.5.1
     dev: true
 
   /wrappy/1.0.2:
