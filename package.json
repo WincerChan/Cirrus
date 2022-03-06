@@ -28,7 +28,7 @@
   "scripts": {
     "start": "pnpm start:esbuild & pnpm start:windicss & pnpm start:hugo",
     "start:esbuild": "./esbuild --dev",
-    "start:windicss": "node_modules/.bin/windicss -f windi.config.js -ato static/windi.css --dev --style",
+    "start:windicss": "node_modules/.bin/windicss '{layouts,assets}/**/*.{html,svg,svelte}'  -to static/windi.css --dev --style",
     "start:hugo": "hugo serve --disableFastRender",
     "build": "pnpm build:esbuild; pnpm build:hugo; pnpm build:encrypt",
     "build:esbuild": "./esbuild --windi",
