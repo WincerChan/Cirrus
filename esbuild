@@ -3,15 +3,10 @@
 const esbuild = require("esbuild");
 const sveltePlugin = require("esbuild-svelte");
 const sveltePreprocess = require("svelte-preprocess");
-const CryptoJS = require("crypto-js");
-const cheerio = require("cheerio");
 const fs = require("fs")
 
 const isDev = process.env.NODE_ENV !== "production";
 
-const needCryptBlogSlugs = [
-    "d67271d8"
-]
 
 // 1. extract windi class and replace source html
 // process windicss then concat it and mode.css
@@ -35,18 +30,6 @@ if (!isDev) {
         outfile: "static/main.css",
     })
         .catch(() => process.exit(1));
-}
-// 2.  encrypt blog
-if (!isDev) {
-    console.log("start encrypt blog")
-    needCryptBlogSlugs.forEach(slug => {
-        let html = fs.readFileSync(`public/posts/${slug}/index.html`).toString()
-        const $ = cheerio.load(html);
-        const cipherText = CryptoJS.AES.encrypt($("content").html(), $("content").data("password")).toString()
-        $("content").html(cipherText);
-        $("content").removeAttr("data-password");
-        fs.writeFileSync(`public/posts/${slug}/test.html`, $.html());
-    })
 }
 // 3. bundle all js files.
 esbuild.build({
