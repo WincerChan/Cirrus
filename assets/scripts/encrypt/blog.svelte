@@ -3,14 +3,14 @@
     let password: string,
         show_input: boolean = true,
         err_msg = false;
-    const ele = document.getElementsByTagName("content")[0];
+    const ele: HTMLDivElement = document.getElementsByTagName("content")[0];
     function decrypt() {
-        let key = enc.Utf8.parse(password),
-            cipher = enc.Hex.parse(ele.innerHTML);
-        let decrypted = AES.decrypt(cipher, key);
+        let key = password,
+            cipher = ele.innerHTML;
         try {
+            let decrypted = AES.decrypt(cipher, key);
             ele.innerHTML = decrypted.toString(enc.Utf8);
-            ele.classList.toggle("hidden");
+            ele.style.display = "block";
             show_input = false;
         } catch {
             err_msg = true;
@@ -22,7 +22,7 @@
     <div class="mt-2 mb-10 ml-6">
         <input
             type="password"
-            placeholder="🔑 Input Password, Press `Enter`"
+            placeholder="🔑 Input Password"
             bind:value={password}
             class="transition ease-linear duration-300 dark:bg-transparent bg-transparent border-[#0d9488] w-56 sm:w-72 border-b-2 px-2 py-1 focus:border-hyper focus:outline-none"
         />
