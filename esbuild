@@ -12,7 +12,6 @@ const outputPrefix = isDev ? "static" : "BlogContent/wir";
 
 // 1. extract windi class and replace source html
 if (compileWindi || compileAsset) {
-    console.log("start process windi css")
     esbuild.buildSync({
         entryPoints: ["./windi.ts"],
         platform: 'node',
@@ -23,7 +22,6 @@ if (compileWindi || compileAsset) {
     processWindi().then(() => {
         require('fs').rmSync('./windi.js')
     })
-    console.log("success process windi css")
 }
 
 if (compileAsset) {
