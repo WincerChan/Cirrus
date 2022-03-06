@@ -27,8 +27,6 @@ vendor
 node_modules
 resources/
 public
-content/
-content
 static/*.css
 wir/
 wir
@@ -36,3 +34,6 @@ wir
 BlogContent/
 .vscode
 *.log
+static/bundle.js*
+_blogs/
+.hugo_build.lock

@@ -18,18 +18,6 @@ DisablePathToLower = true
         lineNos = true
         noClasses = false
 
-[module]
-    noVendor = ""
-    private = '*.*'
-    proxy = "direct"
-    replacements = "github.com/WincerChan/BlogContent -> ../BlogContent"
-    [[module.imports]]
-        path = "github.com/WincerChan/BlogContent"
-        disabled = false
-        [[module.imports.mounts]]
-            source = "content"
-            target = "content"
-
 [permalinks]
     posts = "posts/:slug"
     page = "/:slug/"

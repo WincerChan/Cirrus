@@ -20,7 +20,7 @@ if (compileWindi || compileAsset) {
     })
     const processWindi = require("./windi.js")
     processWindi().then(() => {
-        require('fs').rmSync('./windi.js')
+        require('fs').rm('./windi.js')
     })
 }
 
