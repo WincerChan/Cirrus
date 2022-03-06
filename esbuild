@@ -25,6 +25,7 @@ if (compileWindi || compileAsset) {
             esbuild.build({
                 entryPoints: ["assets/css/build.css"],
                 bundle: true,
+                minify: true,
                 outfile: `${outputPrefix}/css/main.min.css`,
             })
                 .catch(() => process.exit(1));
