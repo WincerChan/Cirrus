@@ -28,7 +28,7 @@
     />
     <button
         on:click={decrypt}
-        class="rounded p-2 text-sm bg-[#0d9488] hover:opacity-80 transition ease-linear duration-300 text-[#f1f5f9] dark:text-[#1E293B]"
+        class="rounded-md px-3 py-2 text-sm bg-[#0d9488] hover:opacity-80 transition ease-linear duration-300 text-[#f1f5f9] dark:text-[#1E293B]"
         >Submit</button
     >
     {#if err_msg}
