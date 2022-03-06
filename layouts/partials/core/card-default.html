@@ -15,11 +15,11 @@
                     </div>
                     {{ end }}
                     <div class="my-1">
-                        <span class="text-[#f1f5f9] dark:text-[#e5e5e5]">
+                        <span class="text-[#f1f5f9] dark:text-[#e5e5e5] card-text">
                             {{ dateFormat " Jan 2, 2006" .Date }}</span>
                     </div>
                     <h3
-                        class="font-maintext text-[#f5f5f5] dark:text-[#e5e5e5] pb-[.6rem] pt-2 text-2xl items-center justify-between">
+                        class="font-maintext text-[#f5f5f5] dark:text-[#e5e5e5] pb-[.6rem] pt-2 text-2xl card-title items-center justify-between">
                         <a href="{{ .RelPermalink }}">
                             {{ .Params.Title }}
                         </a>
