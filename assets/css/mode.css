@@ -8,12 +8,6 @@ content a[target=_blank]::after {
     display: inline-block;
 }
 
-content a:hover, .article-tags a:hover {
-    --tw-shadow: 0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;;
-    -webkit-box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .chroma {
   background-color: var(--chroma-bg); 
 }

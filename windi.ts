@@ -23,7 +23,7 @@ const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles
     fs.writeFileSync(OUTPUT_STYLES_FILE, outputStyle)
 }
 
-const processMatchedFiles = async () => {
+const processMatchedFiles = async (replaceSource: boolean) => {
     let matchedFiles = await glob.sync(MATCH_CLASSES_FILES),
         fileStyles = {},
         fileHTMLs = {};
@@ -33,7 +33,8 @@ const processMatchedFiles = async () => {
         let content = fs.readFileSync(file).toString();
         let r = extractClasses(content)
         fileStyles[file] = r.styles;
-        fileHTMLs[file] = r.outputHTML;
+        if (replaceSource)
+            fileHTMLs[file] = r.outputHTML;
     })
     let styles = fs.readFileSync(MATCH_STYLES_FILE).toString()
     fileStyles[MATCH_STYLES_FILE] = extractStyles(styles);

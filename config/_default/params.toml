@@ -10,8 +10,8 @@ disqusUserName = "wincer"
 backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
-    version = "wir@1.8.4"
-    jsSRI = "sha384-Zt4I9zynysZQEEbmqx9iATOXCDOFDlQjTnIINctOwZjfsO0ntMxJ8iWQw79zu6Wt"
+    version = "wir@1.8.7"
+    jsSRI = "sha384-G198sGCnJ6t/mGLKm5tUMdP/Ts+eyzNswMJvs8XYZNW5kmNqHFW9YViG6jcy+nA9"
 
 [Sitemap]
     changeFreq = "weekly"
