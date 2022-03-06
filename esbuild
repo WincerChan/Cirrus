@@ -27,7 +27,7 @@ if (compileAsset) {
     windi.then(() => {
         const processWindi = require("./windi.js")
         processWindi().then(() => {
-            require('fs').rm('./windi.js')
+            console.log("end compile ")
         })
         esbuild.build({
             entryPoints: ["assets/css/build.css"],
