@@ -8,9 +8,9 @@ const isDev = process.argv[2] === "--dev";
 const compileWindi = process.argv[2] === "--asset";
 const compileAsset = process.argv[2] === "--windi";
 
+const outputPrefix = isDev ? "static" : "BlogContent/wir";
 
 // 1. extract windi class and replace source html
-// process windicss then concat it and mode.css
 if (compileWindi || compileAsset) {
     console.log("start process windi css")
     esbuild.buildSync({
@@ -23,12 +23,16 @@ if (compileWindi || compileAsset) {
     processWindi().then(() => {
         require('fs').rmSync('./windi.js')
     })
+    console.log("success process windi css")
+}
+
+if (compileAsset) {
     // concat windi.css and mode.css
     esbuild.build({
         entryPoints: ["assets/css/build.css"],
         bundle: true,
         minify: true,
-        outfile: "static/main.css",
+        outfile: `${outputPrefix}/css/main.min.css`,
     })
         .catch(() => process.exit(1));
 }
@@ -38,7 +42,7 @@ if (compileAsset || isDev) {
         entryPoints: ["assets/scripts/main.ts",],
         bundle: true,
         format: "iife",
-        outfile: "static/bundle.js",
+        outfile: `${outputPrefix}/js/defer.prod.js`,
         watch: isDev,
         sourcemap: isDev,
         minify: !isDev,
@@ -48,6 +52,9 @@ if (compileAsset || isDev) {
         logLevel: "info"
     })
         .catch(() => process.exit(1));
+
+}
+if (!compileAsset) {
     esbuild.build({
         entryPoints: ["assets/scripts/workbox.js"],
         bundle: true,
@@ -57,5 +64,4 @@ if (compileAsset || isDev) {
         outfile: "static/service-worker.js",
     })
         .catch(() => process.exit(1));
-
 }
