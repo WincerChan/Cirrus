@@ -1,0 +1,350 @@
+<style lang="windi">
+    @media (max-width: 1439px) {
+        #right-side {
+            display: none;
+        }
+
+        #left-side {
+            width: 27%;
+        }
+    }
+
+    /* this layout will make left menu to top */
+    @media (max-width: 1023.9px) {
+        #left-side {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .navbar-collapse {
+            @apply max-h-[0] overflow-hidden;
+            transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
+        }
+
+        .navbar-collapse.expanded {
+            @apply max-h-[22.5rem];
+            transition: max-height 0.6s ease-in-out;
+
+        }
+
+        #menu {
+            display: block;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .core-container {
+            width: 81rem !important;
+        }
+    }
+
+    @media (min-width: 1800px) {
+        .core-container {
+            width: 96rem !important;
+        }
+    }
+
+
+    #TableOfContents li {
+        @apply pl-6 my-2;
+    }
+
+    #TableOfContents li a {
+        @apply pr-2 py-1;
+    }
+
+    #TableOfContents li a:hover {
+        @apply text-cyan-700 dark: text-orange-500 transition duration-300;
+    }
+
+    #TableOfContents {
+        @apply text-left text-[#44403c] dark: text-[#d6d3d1] mt-2;
+    }
+
+
+
+    .line {
+        fill: none;
+        stroke: #bababa;
+        stroke-width: 6;
+        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line1 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+    }
+
+    .line2 {
+        stroke-dasharray: 60 60;
+        stroke-width: 6;
+    }
+
+    .line3 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+    }
+
+    .opened .line1 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+        stroke-width: 6;
+    }
+
+    .opened .line2 {
+        stroke-dasharray: 1 60;
+        stroke-dashoffset: -30;
+        stroke-width: 6;
+    }
+
+    .opened .line3 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+        stroke-width: 6;
+    }
+
+    body {
+        /* windi-zinc */
+        @apply bg-[#f4f4f5] dark: bg-[#18181B] font-maintext transition ease-linear duration-300;
+    }
+
+    li span {
+        @apply font-headline;
+    }
+
+    .label sup {
+        left: -.1rem;
+    }
+
+    #music-player button {
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%;
+    }
+
+    .seprator {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 3rem;
+        background: #757575;
+    }
+
+
+
+    article h2,
+    article h3,
+    article h4 {
+        @apply pl-5 pr-6 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose;
+    }
+
+    article h3 {
+        @apply text-xl;
+    }
+
+    article h4 {
+        @apply text-lg;
+    }
+
+    article blockquote {
+        @apply border-l-4 border-[#d6d3d1] dark: border-[#737373] pt-3 pl-5 pr-6 pb-3 mb-5 text-[#404040] dark: text-[#d4d4d4];
+    }
+
+
+    .ng-cover:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 20px var(--boxshadow-light), 0 0 2px var(--boxshadow-deep);
+    }
+
+
+    content p {
+        @apply text-justify;
+    }
+
+    content p>img {
+        @apply mx-auto;
+    }
+
+    article #input {
+        @apply pl-6;
+    }
+
+    content>p {
+        @apply px-6 mb-3;
+    }
+
+    .text-shadow {
+        text-shadow: 1px 1px 4px #444;
+    }
+
+
+    content a:hover,
+    .article-tags a:hover {
+        @apply hover: text-[#334155] dark:hover:text-orange-500;
+        box-shadow: 0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;
+    }
+
+    content a,
+    .article-tags a {
+        @apply transition duration-200 ease-linear text-[#475569] dark: text-orange-200;
+        box-shadow: 0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;
+    }
+
+    .life-desc>p {
+        @apply mb-3;
+    }
+
+
+    content>ol,
+    content>ul,
+    section>ol {
+        @apply pl-16 my-2;
+    }
+
+    content hr {
+        @apply seprator m-6 w-24 border-none;
+    }
+
+
+    content>ol ol,
+    content>ol ul,
+    content>ul ol,
+    content>ul ul {
+        padding-left: 3rem;
+    }
+
+    content table {
+        @apply text-center mx-auto mb-8 table-auto;
+    }
+
+    content .highlight table {
+        @apply text-left;
+    }
+
+    content table tr>th {
+        @apply px-4 py-2;
+    }
+
+    content table tr>td {
+        @apply border px-4 py-2;
+    }
+
+    content {
+        @apply leading-relaxed;
+    }
+
+    .card-title {
+        text-shadow: 1px 1px 8px #444;
+    }
+
+    .card-tag {
+        text-shadow: 1px 1px 2px #444;
+    }
+
+
+    progress::-moz-progress-bar {
+        background: rgba(255, 255, 255, 0.7);
+    }
+
+    #search-results b {
+        color: var(--code) !important;
+        font-style: unset;
+        font-weight: unset;
+    }
+
+    input {
+        @apply bg-[#e4e4e7] dark: bg-[#3F3F46];
+    }
+
+
+
+    progress::-webkit-progress-value {
+        background: rgba(255, 255, 255, 0.7);
+    }
+
+    #summary {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    ul ul {
+        border-left: 2px dotted var(--chroma-w);
+    }
+
+    content ol {
+        @apply list-decimal;
+    }
+
+    content ul {
+        @apply list-disc;
+    }
+
+    content li {
+        @apply pr-6 my-2;
+    }
+
+
+    content a[target=_blank] {
+        margin-right: 1.25rem;
+    }
+
+
+    code::before {
+        content: attr(data-lang);
+        color: var(--chroma-w);
+        text-transform: uppercase;
+        @apply text-4xl absolute right-2 top-2;
+    }
+
+    content p>code {
+        @apply whitespace-pre-wrap break-all text-[#f43f5e] dark: text-[#14b8a6];
+    }
+
+    content pre {
+        @apply pl-6 my-4 font-code;
+    }
+
+    content code {
+        @apply mx-1 px-1 rounded text-[0.9375rem] bg-[#f0f3f3] dark: bg-[#2f1e2e];
+    }
+
+
+
+    content .highlight {
+        @apply my-6;
+    }
+
+
+    content pre>code {
+        background-color: unset;
+        color: unset;
+        margin: unset;
+        padding: unset;
+    }
+
+    .highlight {
+        @apply relative;
+    }
+
+    .card-text {
+        text-shadow: 1px 1px 2px #444
+    }
+
+    .font-maintext {
+        font-family: "-apple-system", STXihei, 华文细黑, Microsoft YaHei, 微软雅黑, SimSun, 宋体, Heiti, 黑体, "sans-serif";
+    }
+
+    .font-headline {
+        font-family: Lato, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", "sans-serif";
+    }
+
+    .font-button {
+        font-family: -apple-system, 'Helvetica Neue', 'PingFang SC', 'WenQuanYi Micro Hei', 'noto sans', Cantarell, 'Arial';
+    }
+
+    .font-code {
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+    }
+</style>

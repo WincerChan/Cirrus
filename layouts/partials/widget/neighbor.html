@@ -1,9 +1,8 @@
 <div class="neighbor grid-cols-63 grid text-white">
-    <div
-        class="col-start-1 col-end-32 shadow-lg {{ if not .NextInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
-        {{ with .NextInSection }}
+    {{ with .NextInSection }}
+    <div class="col-start-1 col-end-32 shadow-lg  rounded-lg overflow-hidden relative z-10">
         <a href="{{ .RelPermalink }}">
-            <div class="lazy px-8 h-56 md:h-48 bg-center bg-cover flex items-center justify-center link-card hover:zoomout text-shadow"
+            <div class="lazy ng-cover px-8 md:h-56 h-48 bg-center bg-cover flex items-center justify-center transition ease-linear duration-300 text-shadow"
                 data-src="{{ .Params.Cover }}">
                 <div class="text-center">
                     <span class="block text-2xl font-bold uppercase">Next</span>
@@ -11,13 +10,12 @@
                 </div>
             </div>
         </a>
-        {{ end }}
     </div>
-    <div
-        class="col-start-33 col-end-64 shadow-lg {{ if not .PrevInSection }} hidden {{ end }} rounded-lg link-card overflow-hidden relative z-10">
-        {{ with .PrevInSection }}
+    {{ end }}
+    {{ with .PrevInSection }}
+    <div class="col-start-33 col-end-64 shadow-lg rounded-lg overflow-hidden relative z-10">
         <a href="{{ .RelPermalink }}">
-            <div class="lazy px-8 h-56 md:h-48 bg-center bg-cover flex items-center justify-center link-card hover:zoomout text-shadow"
+            <div class="lazy ng-cover px-8 md:h-56 h-48 bg-center bg-cover flex items-center justify-center transition ease-linear duration-300 text-shadow"
                 data-src="{{ .Params.Cover }}">
                 <div class="text-center">
                     <span class="block text-2xl font-bold uppercase">Previous</span>
@@ -25,6 +23,6 @@
                 </div>
             </div>
         </a>
-        {{ end }}
     </div>
+    {{ end }}
 </div>

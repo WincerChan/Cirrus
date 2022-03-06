@@ -10,12 +10,24 @@
             const e = document.documentElement,
                 t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
                 n = localStorage.getItem("theme");
-            n === t ? a() : n ? e.setAttribute("data-theme", n) : (e.removeAttribute("data-theme"), localStorage.removeItem("theme"))
+            // n === t ? a() : n ? e.setAttribute("class", n) : (e.removeAttribute("class"), localStorage.removeItem("theme"))
+            if (n === t) {
+                localStorage.removeItem("theme")
+                e.setAttribute("class", n)
+            }
+            if (n === null) {
+                console.log("whhh")
+                e.setAttribute("class", t)
+            } else if (n !== t) {
+                e.setAttribute("class", n)
+            }
         }()
     </script>
     {{ if .Site.IsServer }}
     <link rel="preload" as="script" href="/bundle.js">
-    <link href="/build.css" rel="preload stylesheet" as="style">
+    {{ $mode := resources.Get "css/mode.css" | resources.ToCSS }}
+    <link rel="preload stylesheet" href="{{ $mode.Permalink }}" as="style">
+    <link href="/windi.css" rel="preload stylesheet" as="style">
     {{ else }}
     <link rel="preload" as="script" integrity="{{ .Site.Params.StaticVendor.jsSRI }}"
         href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">

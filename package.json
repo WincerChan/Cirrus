@@ -7,40 +7,34 @@
   "license": "GPL-3.0-only",
   "private": true,
   "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "crypto-js": "^4.1.1",
-    "postcss": "^8.1.1",
-    "postcss-cli": "^8.1.0",
-    "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.43.1",
-    "tailwindcss": "^2.2.16"
+    "esbuild": "^0.14.23",
+    "esbuild-svelte": "^0.6.2",
+    "svelte": "^3.43.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.8",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^15.1.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
-    "@rollup/plugin-replace": "^2.3.3",
-    "autoprefixer": "^10.3.7",
-    "cssnano": "^5.0.8",
-    "install": "^0.13.0",
-    "postcss-scss": "^4.0.1",
-    "rollup": "^2.32.1",
-    "rollup-plugin-terser": "^7.0.2",
-    "svelte-preprocess": "^4.9.8",
-    "workbox-core": "^6.3.0",
-    "workbox-expiration": "^5.1.4",
-    "workbox-routing": "^5.1.4",
-    "workbox-strategies": "^5.1.4"
+    "@tsconfig/svelte": "^3.0.0",
+    "@types/node": "^17.0.21",
+    "glob": "^7.2.0",
+    "svelte-check": "^2.4.5",
+    "svelte-preprocess": "^4.10.4",
+    "typescript": "^4.6.2",
+    "windicss": "^3.5.0",
+    "workbox-expiration": "6.5.1",
+    "workbox-routing": "^6.5.1",
+    "workbox-strategies": "^6.5.1"
   },
   "scripts": {
-    "start": "pnpm start:rollup & pnpm start:hugo & pnpm start:tailwindcss",
-    "start:tailwindcss": "postcss assets/sass/main.css -o static/build.css -w",
-    "start:rollup": "rollup -c rollup.config.js -w",
+    "start": "pnpm start:esbuild & pnpm start:windicss & pnpm start:hugo",
+    "start:esbuild": "./esbuild --dev",
+    "start:windicss": "node_modules/.bin/windicss -f windi.config.js -ato static/windi.css --dev --style",
     "start:hugo": "hugo serve --disableFastRender",
-    "build:rollup": "rollup -c rollup.config.js",
+    "build": "pnpm build:esbuild; pnpm build:hugo; pnpm build:encrypt",
+    "build:esbuild": "./esbuild --windi",
+    "build:encrypt": "./encrypt",
     "build:hugo": "hugo --minify",
-    "build:tailwindcss": "env NODE_ENV=production postcss assets/sass/main.css -o BlogContent/wir/css/main.min.css",
-    "build": "pnpm build:rollup ; pnpm build:hugo; pnpm build:tailwindcss"
+    "asset": "pnpm asset:esbuild",
+    "asset:esbuild": "./esbuild --asset"
   }
 }

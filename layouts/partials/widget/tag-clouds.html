@@ -1,6 +1,6 @@
 {{ if not (in .Site.Params.mainSections .Type) }}
 
-<div class="text-tagborder flex flex-col items-start md:mx-0 ">
+<div class=" flex flex-col items-start md:mx-0 ">
     <div class="inline-flex items-center flex-wrap my-1 pb-1">
         {{ (resources.Get "icons/tag.svg").Content | safeHTML }}
         <span class="text-lg uppercase my-1 pl-5 font-headline">
@@ -11,7 +11,7 @@
             {{ end }}
         </span>
     </div>
-    <div class="flex-wrap flex text-beargray pb-1 font-button">
+    <div class="flex-wrap flex text-[#3F3F46] dark:text-[#a8a29e]  pb-1 font-button">
         {{ $.Scratch.Set "tags" (slice) }}
         {{ partial "widget/right-side/site-tags" . }}
 

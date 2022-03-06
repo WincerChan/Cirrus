@@ -1,48 +1,40 @@
-<script>
-    import { enc, AES, mode, pad } from "crypto-js";
-    let password, input_pass;
-    $: err_msg = null;
-    const ele = document.getElementsByTagName("content")[0];
-    const aes_block_size = 16;
-    function fillToPassword() {
-        let pwd = "";
-        for (let i = password.length; i < aes_block_size; i++) pwd += "a";
-        return pwd + password;
-    }
+<script lang="ts">
+    import { enc, AES } from "crypto-js";
+    let password: string,
+        show_input: boolean = true,
+        err_msg = false;
+    const ele: HTMLDivElement = document.getElementsByTagName("content")[0];
     function decrypt() {
-        let pwd = fillToPassword();
-        console.log(pwd);
-        let key = enc.Utf8.parse(pwd),
-            encryptedHexStr = enc.Hex.parse(ele.innerHTML),
-            encryptedBase64Str = enc.Base64.stringify(encryptedHexStr);
-        let decrypted = AES.decrypt(encryptedBase64Str, key, {
-            iv: key,
-            mode: mode.CBC,
-            padding: pad.Pkcs7,
-        });
+        let key = password,
+            cipher = ele.innerHTML;
         try {
+            let decrypted = AES.decrypt(cipher, key);
             ele.innerHTML = decrypted.toString(enc.Utf8);
-            ele.classList.remove("hidden");
-            input_pass.remove();
+            ele.style.display = "block";
+            show_input = false;
         } catch {
-            console.log("Error Password");
             err_msg = true;
         }
     }
 </script>
 
-<div class="my-4 ml-6" bind:this={input_pass}>
-    <input
-        type="text"
-        placeholder="🔑 Input Password, Press `Enter`"
-        bind:value={password}
-        class="transition ease-linear duration-300 border-hyper w-64 border-b-2 px-2 py-1 focus:border-hyper focus:outline-none"
-    />
-    <button
-        on:click={decrypt}
-        class="border rounded p-2 text-base bg-hyper text-bqbg">提交</button
-    >
-    {#if err_msg}
-        <span id="error_msg" class="text-red-600 pl-6">🙅Wrong Password！</span>
-    {/if}
-</div>
+{#if show_input}
+    <div class="mt-2 mb-10 ml-6">
+        <input
+            type="password"
+            placeholder="🔑 Input Password"
+            bind:value={password}
+            class="transition ease-linear duration-300 dark:bg-transparent bg-transparent border-[#0d9488] w-56 sm:w-72 border-b-2 px-2 py-1 focus:outline-none"
+        />
+        <button
+            on:click={decrypt}
+            class="rounded-md px-3 py-2 text-sm bg-[#0d9488] hover:opacity-80 transition ease-linear duration-300 text-[#f1f5f9] dark:text-[#1E293B]"
+            >Submit</button
+        >
+        {#if err_msg}
+            <span id="error_msg" class="text-red-600 pl-6"
+                >🙅Wrong Password！</span
+            >
+        {/if}
+    </div>
+{/if}

@@ -1,20 +1,24 @@
-<div class="bg-contentbg flex flex-wrap rounded-xl overflow-hidden font-sans rounded-lg link-card">
+<div
+    class="bg-[#fffffd] dark:bg-[#2e2e2e] flex flex-wrap rounded-xl overflow-hidden rounded-lg transition ease-linear duration-300">
     <div class="metadata w-2/3 px-4 py-4">
         <a href="{{ .RelPermalink }}">
-            <h3 class="text-deepgray truncate w-full text-xl hover:text-hyper">{{ .Title }}</h3>
+            <h3
+                class="text-[#404040] dark:text-[#d4d4d4] hover:text-cyan-700 truncate w-full text-xl dark:hover:text-orange-400">
+                {{ .Title }}
+            </h3>
         </a>
-        <div class="inline-flex w-full text-beargray font-headline  pb-2 sm:pb-3">
-            <footer class="flex h-4 items-center">
+        <div class="inline-flex w-full text-[#3F3F46] dark:text-[#a8a29e] font-headline  sm:pb-2 pb-3">
+            <footer class="my-2 flex h-4 items-center">
                 {{ dateFormat "Monday, Jan 2, 2006" .Date }}
             </footer>
         </div>
-        <div class="flex flex-wrap items-center text-beargray pt-2">
-            <p class="truncate">
+        <div class="flex flex-wrap items-center text-[#3F3F46] dark:text-[#a8a29e]  pt-2">
+            <p class="truncate article-tags">
                 Cat.:
                 {{ $category := .Params.Category }}
                 {{ with $.Site.GetPage (printf "/category/%s" $category) }}
-                <span class="text-base text-hyper pl-1 pr-4">
-                    <a href="{{ .RelPermalink }}" class="hover">{{ $category }}</a>
+                <span class="text-base pl-1 pr-4">
+                    <a href="{{ .RelPermalink }}">{{ $category }}</a>
                 </span>
                 {{ end }}
                 Tags:

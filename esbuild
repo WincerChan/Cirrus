@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+const esbuild = require("esbuild");
+const sveltePlugin = require("esbuild-svelte");
+const sveltePreprocess = require("svelte-preprocess");
+
+const isDev = process.argv[2] === "--dev";
+const compileWindi = process.argv[2] === "--windi";
+const compileAsset = process.argv[2] === "--asset";
+
+const outputPrefix = isDev ? "static" : "BlogContent/wir";
+
+// 1. extract windi class and replace source html
+if (compileWindi || compileAsset) {
+    esbuild.buildSync({
+        entryPoints: ["./windi.ts"],
+        platform: 'node',
+        format: "cjs",
+        outfile: './windi.js',
+    })
+    const processWindi = require("./windi.js")
+    processWindi().then(() => {
+        require('fs').rmSync('./windi.js')
+    })
+}
+
+if (compileAsset) {
+    // concat windi.css and mode.css
+    esbuild.build({
+        entryPoints: ["assets/css/build.css"],
+        bundle: true,
+        minify: true,
+        outfile: `${outputPrefix}/css/main.min.css`,
+    })
+        .catch(() => process.exit(1));
+}
+// 3. bundle all js files.
+if (compileAsset || isDev) {
+    esbuild.build({
+        entryPoints: ["assets/scripts/main.ts",],
+        bundle: true,
+        format: "iife",
+        outfile: `${outputPrefix}/js/defer.prod.js`,
+        watch: isDev,
+        sourcemap: isDev,
+        minify: !isDev,
+        plugins: [sveltePlugin({
+            preprocess: sveltePreprocess()
+        })],
+        logLevel: "info"
+    })
+        .catch(() => process.exit(1));
+
+}
+if (!compileAsset) {
+    esbuild.build({
+        entryPoints: ["assets/scripts/workbox.js"],
+        bundle: true,
+        format: "iife",
+        minify: !isDev,
+        watch: isDev,
+        outfile: "static/service-worker.js",
+    })
+        .catch(() => process.exit(1));
+}

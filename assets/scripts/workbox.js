@@ -1,9 +1,7 @@
 import { registerRoute } from "workbox-routing";
 import { CacheFirst, StaleWhileRevalidate, NetworkFirst } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
-import { skipWaiting } from "workbox-core";
 
-skipWaiting();
 
 registerRoute(
     ({ request }) => request.destination === "script" || request.destination === 'style',

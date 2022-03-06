@@ -1,10 +1,10 @@
 {{ if eq .style "span" }}
-<span class="text-base text-hyper px-1">
-    <a href="{{ .link }}" class="hover" title="{{ .name }}">{{ .name }}</a>
+<span class="text-base  px-1">
+    <a href="{{ .link }}" title="{{ .name }}">{{ .name }}</a>
 </span>
 {{ else if eq .style "button" }}
 <a href="{{ .link }}" title="{{ .name }}" style="line-height: 32px" level="{{ .count }}"
-    class="text-sm text-buttontext hover:bg-buttontext hover:text-bqbg   cursor-pointer bg-opacity-25 hover:bg-opacity-50 px-3 mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
+    class="text-sm text-[#334155] dark:text-orange-200 dark:text-opacity-60 hover:bg-[#334155] hover:text-[#f1f5f9] dark:hover:text-[#1E293B] dark:hover:bg-orange-200 dark:hover:bg-opacity-80 cursor-pointer bg-opacity-25 px-3 mx-1 mt-1 mb-2 font-button inline-block transition ease-linear duration-300 rounded-lg">
     <span>
         #{{ .name }}
     </span>

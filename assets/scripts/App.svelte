@@ -1,23 +1,22 @@
 <script context="module">
-    let location = window.location;
-    let encrypted = window.blog_encrypted || false;
-    let music = window.music_id || false;
+    let path = document.location.pathname;
+    let encrypted = window.blog_encrypted;
+    let music_id = window.music_id || undefined;
 </script>
 
-<script>
-    import { onMount } from "svelte";
-
-    import "./entrypoint.js";
-    let Place;
-    onMount(async () => {
-        if (location.pathname.startsWith("/life/"))
-            Place = (await import("./life/life.svelte")).default;
-        else if (location.pathname.startsWith("/search/"))
-            Place = (await import("./search/blog.svelte")).default;
-        else if (encrypted)
-            Place = (await import("./encrypt/blog.svelte")).default;
-        else if (music) Place = (await import("./music/music.svelte")).default;
-    });
+<script lang="ts">
+    import MovieCollects from "./life/life.svelte";
+    import SearchBlog from "./search/blog.svelte";
+    import EncryptBlog from "./encrypt/blog.svelte";
+    import MusicPlayer from "./music/music.svelte";
 </script>
 
-<svelte:component this={Place} />
+{#if path === "/life/"}
+    <MovieCollects />
+{:else if path === "/search/"}
+    <SearchBlog />
+{:else if encrypted}
+    <EncryptBlog />
+{:else if music_id}
+    <MusicPlayer {music_id} />
+{/if}
