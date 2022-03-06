@@ -31,7 +31,6 @@
     "start:esbuild": "./esbuild",
     "start:hugo": "hugo serve --disableFastRender",
     "build:hugo": "hugo --minify",
-    "build:windicss": "node_modules/.bin/windicss -f windi.config.js -ato static/windi.css --style",
     "build": "pnpm build:esbuild ; pnpm build:hugo; pnpm build:tailwindcss",
     "build:esbuild": "env NODE_ENV=production ./esbuild"
   }
