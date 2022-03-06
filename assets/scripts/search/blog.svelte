@@ -76,7 +76,7 @@
                                 >
                                     <h3
                                         id="search-title"
-                                        class="text-[#404040] dark:text-[#d4d4d4] truncate w-full text-xl hover:text-cyan-700 dark: text-orange-500"
+                                        class="text-[#404040] dark:text-[#d4d4d4] truncate w-full text-xl hover:text-cyan-700 dark:hover:text-orange-500"
                                         contenteditable="false"
                                         bind:innerHTML={item.title}
                                     />

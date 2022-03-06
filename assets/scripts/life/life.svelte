@@ -34,10 +34,10 @@
                         class="text-center text-sm truncate text-[#3F3F46] dark:text-[#a8a29e]  bg-[#fffffd] dark:bg-[#2e2e2e] bg-[#fffffd] dark:bg-[#2e2e2e]  transition ease-linear duration-300 rounded"
                     >
                         <div
-                            class="mx-auto bg-[#e4e4e7] dark: bg-[#2f1e2e] animate-pulse xl:h-52 h-24"
+                            class="mx-auto bg-[#e4e4e7] dark:bg-[#2f1e2e] animate-pulse xl:h-52 h-24"
                         />
                         <div
-                            class="block mx-auto mt-1 truncate p-[1px] h-5 w-2/3 bg-[#e4e4e7] dark: bg-[#2f1e2e] animate-pulse"
+                            class="block mx-auto mt-1 truncate p-[1px] h-5 w-2/3 bg-[#e4e4e7] dark:bg-[#2f1e2e] animate-pulse"
                         />
                     </figure>
                 </div>
