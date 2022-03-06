@@ -24,7 +24,7 @@
             type="password"
             placeholder="🔑 Input Password"
             bind:value={password}
-            class="transition ease-linear duration-300 dark:bg-transparent bg-transparent border-[#0d9488] w-56 sm:w-72 border-b-2 px-2 py-1 focus:border-hyper focus:outline-none"
+            class="transition ease-linear duration-300 dark:bg-transparent bg-transparent border-[#0d9488] w-56 sm:w-72 border-b-2 px-2 py-1 focus:outline-none"
         />
         <button
             on:click={decrypt}
