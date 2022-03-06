@@ -8,7 +8,7 @@ const isDev = process.argv[2] === "--dev";
 const compileWindi = process.argv[2] === "--windi";
 const compileAsset = process.argv[2] === "--asset";
 
-const outputPrefix = isDev ? "static" : "BlogContent/wir";
+const outputPrefix = isDev ? "static" : "_blogs/wir";
 
 // 1. extract windi class and replace source html
 if (compileWindi || compileAsset) {
