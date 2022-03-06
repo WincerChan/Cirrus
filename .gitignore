@@ -36,3 +36,4 @@ wir
 BlogContent/
 .vscode
 *.log
+static/bundle.js*
