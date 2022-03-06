@@ -27,11 +27,14 @@
   },
   "scripts": {
     "start": "pnpm start:esbuild & pnpm start:windicss & pnpm start:hugo",
+    "start:esbuild": "./esbuild --dev",
     "start:windicss": "node_modules/.bin/windicss -f windi.config.js -ato static/windi.css --dev --style",
-    "start:esbuild": "./esbuild",
     "start:hugo": "hugo serve --disableFastRender",
+    "build": "pnpm build:esbuild; pnpm build:hugo; pnpm build:encrypt",
+    "build:esbuild": "./esbuild --windi",
+    "build:encrypt": "./encrypt",
     "build:hugo": "hugo --minify",
-    "build": "pnpm build:esbuild ; pnpm build:hugo; pnpm build:tailwindcss",
-    "build:esbuild": "env NODE_ENV=production ./esbuild"
+    "asset": "pnpm asset:esbuild",
+    "asset:esbuild": "./esbuild --asset"
   }
 }

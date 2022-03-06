@@ -4,12 +4,14 @@ const esbuild = require("esbuild");
 const sveltePlugin = require("esbuild-svelte");
 const sveltePreprocess = require("svelte-preprocess");
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = process.argv[2] === "--dev";
+const compileWindi = process.argv[2] === "--asset";
+const compileAsset = process.argv[2] === "--windi";
 
 
 // 1. extract windi class and replace source html
 // process windicss then concat it and mode.css
-if (!isDev) {
+if (compileWindi || compileAsset) {
     console.log("start process windi css")
     esbuild.buildSync({
         entryPoints: ["./windi.ts"],
@@ -31,27 +33,29 @@ if (!isDev) {
         .catch(() => process.exit(1));
 }
 // 3. bundle all js files.
-esbuild.build({
-    entryPoints: ["assets/scripts/main.ts",],
-    bundle: true,
-    format: "iife",
-    outfile: "static/bundle.js",
-    watch: isDev,
-    sourcemap: isDev,
-    minify: !isDev,
-    plugins: [sveltePlugin({
-        preprocess: sveltePreprocess()
-    })],
-    logLevel: "info"
-})
-    .catch(() => process.exit(1));
-esbuild.build({
-    entryPoints: ["assets/scripts/workbox.js"],
-    bundle: true,
-    format: "iife",
-    minify: !isDev,
-    watch: isDev,
-    outfile: "static/service-worker.js",
-})
-    .catch(() => process.exit(1));
+if (compileAsset || isDev) {
+    esbuild.build({
+        entryPoints: ["assets/scripts/main.ts",],
+        bundle: true,
+        format: "iife",
+        outfile: "static/bundle.js",
+        watch: isDev,
+        sourcemap: isDev,
+        minify: !isDev,
+        plugins: [sveltePlugin({
+            preprocess: sveltePreprocess()
+        })],
+        logLevel: "info"
+    })
+        .catch(() => process.exit(1));
+    esbuild.build({
+        entryPoints: ["assets/scripts/workbox.js"],
+        bundle: true,
+        format: "iife",
+        minify: !isDev,
+        watch: isDev,
+        outfile: "static/service-worker.js",
+    })
+        .catch(() => process.exit(1));
 
+}
