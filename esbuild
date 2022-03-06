@@ -22,14 +22,13 @@ if (compileWindi || compileAsset) {
         const processWindi = require("./windi.js")
         processWindi(!compileAsset).then(() => {
             console.log("end compile ")
+            esbuild.build({
+                entryPoints: ["assets/css/build.css"],
+                bundle: true,
+                outfile: `${outputPrefix}/css/main.min.css`,
+            })
+                .catch(() => process.exit(1));
         })
-        esbuild.build({
-            entryPoints: ["assets/css/build.css"],
-            bundle: true,
-            minify: true,
-            outfile: `${outputPrefix}/css/main.min.css`,
-        })
-            .catch(() => process.exit(1));
     })
         .catch(() => process.exit(1));
 }
