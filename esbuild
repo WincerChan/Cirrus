@@ -5,8 +5,8 @@ const sveltePlugin = require("esbuild-svelte");
 const sveltePreprocess = require("svelte-preprocess");
 
 const isDev = process.argv[2] === "--dev";
-const compileWindi = process.argv[2] === "--asset";
-const compileAsset = process.argv[2] === "--windi";
+const compileWindi = process.argv[2] === "--windi";
+const compileAsset = process.argv[2] === "--asset";
 
 const outputPrefix = isDev ? "static" : "BlogContent/wir";
 
