@@ -27,8 +27,10 @@ const compileWindi = async () => {
 const concatWindiCSS = async () => {
     await compileWindi();
     console.log("end compile windi");
-    await require("./windi.js")(!isCompileAsset)
-    console.log("end replace html");
+    if (!isDev) {
+        await require("./windi.js")(!isCompileAsset)
+        console.log("end replace html");
+    }
     if (isCompileAsset) {
         return esbuild.build({
             entryPoints: ["assets/css/build.css"],
