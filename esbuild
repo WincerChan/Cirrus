@@ -5,63 +5,86 @@ const sveltePlugin = require("esbuild-svelte");
 const sveltePreprocess = require("svelte-preprocess");
 
 const isDev = process.argv[2] === "--dev";
-const compileWindi = process.argv[2] === "--windi";
-const compileAsset = process.argv[2] === "--asset";
+const isCompileWindi = process.argv[2] === "--windi";
+const isCompileAsset = process.argv[2] === "--asset";
 
 const outputPrefix = isDev ? "static" : "_blogs/wir";
 
-let windi;
 // 1. extract windi class and replace source html
-if (compileWindi || compileAsset) {
-    windi = esbuild.build({
-        entryPoints: ["./windi.ts"],
-        platform: 'node',
-        format: "cjs",
-        outfile: './windi.js',
-    }).then(() => {
-        const processWindi = require("./windi.js")
-        processWindi(!compileAsset).then(() => {
-            console.log("end compile ")
-            esbuild.build({
-                entryPoints: ["assets/css/build.css"],
-                bundle: true,
-                minify: true,
-                outfile: `${outputPrefix}/css/main.min.css`,
-            })
-                .catch(() => process.exit(1));
+const compileWindi = async () => {
+    if (isCompileWindi || isCompileAsset) {
+        return esbuild.build({
+            entryPoints: ["./windi.ts"],
+            platform: 'node',
+            format: "cjs",
+            outfile: './windi.js',
         })
-    })
-        .catch(() => process.exit(1));
+            .catch(() => process.exit(1));
+    } else {
+        return Promise.resolve()
+    }
 }
+const concatWindiCSS = async () => {
+    await compileWindi();
+    console.log("end compile windi");
+    await require("./windi.js")(!isCompileAsset)
+    console.log("end replace html");
+    if (isCompileAsset) {
+        return esbuild.build({
+            entryPoints: ["assets/css/build.css"],
+            bundle: true,
+            minify: true,
+            outfile: `${outputPrefix}/css/main.min.css`,
+        })
+            .catch(() => process.exit(1));
+    } else {
+        return Promise.resolve()
+    }
 
+}
 
 // 3. bundle all js files.
-if (compileAsset || isDev) {
-
-    esbuild.build({
-        entryPoints: ["assets/scripts/main.ts",],
-        bundle: true,
-        format: "iife",
-        outfile: isDev ? `${outputPrefix}/bundle.js` : `${outputPrefix}/js/defer.prod.js`,
-        watch: isDev,
-        sourcemap: isDev,
-        minify: !isDev,
-        plugins: [sveltePlugin({
-            preprocess: sveltePreprocess()
-        })],
-        logLevel: "info"
-    })
-        .catch(() => process.exit(1));
-
+const compileSvelte = async () => {
+    await concatWindiCSS();
+    console.log("end concat windi css");
+    if (isCompileAsset || isDev) {
+        return esbuild.build({
+            entryPoints: ["assets/scripts/main.ts",],
+            bundle: true,
+            format: "iife",
+            outfile: isDev ? `${outputPrefix}/bundle.js` : `${outputPrefix}/js/defer.prod.js`,
+            watch: isDev,
+            sourcemap: isDev,
+            minify: !isDev,
+            plugins: [sveltePlugin({
+                preprocess: sveltePreprocess()
+            })],
+            logLevel: "info"
+        })
+            .catch(() => process.exit(1));
+    } else {
+        return Promise.resolve()
+    }
 }
-if (!compileAsset) {
-    esbuild.build({
-        entryPoints: ["assets/scripts/workbox.js"],
-        bundle: true,
-        format: "iife",
-        minify: !isDev,
-        watch: isDev,
-        outfile: "static/service-worker.js",
-    })
-        .catch(() => process.exit(1));
+// 4. compile workbox file
+const compileWorkbox = async () => {
+    if (!isCompileAsset) {
+        return esbuild.build({
+            entryPoints: ["assets/scripts/workbox.js"],
+            bundle: true,
+            format: "iife",
+            minify: !isDev,
+            watch: isDev,
+            outfile: "static/service-worker.js",
+        })
+            .catch(() => process.exit(1));
+    } else {
+        return Promise.resolve()
+    }
 }
+
+// run build
+Promise.all([
+    compileSvelte(),
+    compileWorkbox()
+])
