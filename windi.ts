@@ -14,9 +14,11 @@ const MATCH_STYLES_FILE = 'assets/css/windi.html'
 const OUTPUT_STYLES_FILE = 'static/windi.css'
 
 const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles: { [s: string]: unknown }) => {
+    let allWriteFiles = [];
     for (const file in fileHTMLs) {
-        fs.writeFileSync(`${file}`, fileHTMLs[file])
+        allWriteFiles.push(fs.writeFileSync(`${file}`, fileHTMLs[file]))
     }
+    Promise.all(allWriteFiles);
     const outputStyle = Object.values(fileStyles).reduce((acc, curr) => acc.extend(curr), new Ss())
         .combine()
         .build(true)
