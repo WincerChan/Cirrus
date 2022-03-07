@@ -1,6 +1,7 @@
 import { Processor } from 'windicss/lib'
 import { HTMLParser, CSSParser } from 'windicss/utils/parser'
 import { StyleSheet as Ss } from 'windicss/utils/style'
+import { promisify } from "util";
 
 import fs from 'fs'
 import glob from 'glob'
@@ -13,16 +14,33 @@ const MATCH_STYLES_FILE = 'assets/css/windi.html'
 
 const OUTPUT_STYLES_FILE = 'static/windi.css'
 
+const allWriteFiles = [];
+
+const writeFilePromise = promisify(fs.writeFile)
+const renameFilePromise = promisify(fs.rename)
+const restoreCompiledFiles = async () => {
+    allWriteFiles.forEach(x => {
+        x.then(file => {
+            renameFilePromise(`${file}.cw`, file);
+        })
+    })
+}
+
 const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles: { [s: string]: unknown }) => {
-    let allWriteFiles = [];
+
     for (const file in fileHTMLs) {
-        allWriteFiles.push(fs.writeFileSync(`${file}`, fileHTMLs[file]))
+        allWriteFiles.push(renameFilePromise(file, `${file}.cw`)
+            .then(() =>
+                writeFilePromise(`${file}`, fileHTMLs[file])
+            ).then(() => file)
+        )
     }
-    Promise.all(allWriteFiles);
     const outputStyle = Object.values(fileStyles).reduce((acc, curr) => acc.extend(curr), new Ss())
         .combine()
         .build(true)
-    fs.writeFileSync(OUTPUT_STYLES_FILE, outputStyle)
+    return Promise.all(allWriteFiles).then(() =>
+        fs.writeFileSync(OUTPUT_STYLES_FILE, outputStyle)
+    )
 }
 
 const processMatchedFiles = async (replaceSource: boolean) => {
@@ -35,12 +53,11 @@ const processMatchedFiles = async (replaceSource: boolean) => {
         let content = fs.readFileSync(file).toString();
         let r = extractClasses(content)
         fileStyles[file] = r.styles;
-        if (replaceSource)
-            fileHTMLs[file] = r.outputHTML;
+        fileHTMLs[file] = r.outputHTML;
     })
     let styles = fs.readFileSync(MATCH_STYLES_FILE).toString()
     fileStyles[MATCH_STYLES_FILE] = extractStyles(styles);
-    replaceWithCompiledFiles(fileHTMLs, fileStyles);
+    await replaceWithCompiledFiles(fileHTMLs, fileStyles);
 }
 
 const extractClasses = (html: string) => {
@@ -78,4 +95,4 @@ const extractStyles = (html: string) => {
     return parser.parse()
 }
 
-module.exports = processMatchedFiles
+module.exports = { processMatchedFiles, restoreCompiledFiles }
