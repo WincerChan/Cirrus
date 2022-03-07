@@ -37,11 +37,12 @@ if (compileWindi || compileAsset) {
 
 // 3. bundle all js files.
 if (compileAsset || isDev) {
+
     esbuild.build({
         entryPoints: ["assets/scripts/main.ts",],
         bundle: true,
         format: "iife",
-        outfile: `${outputPrefix}/js/defer.prod.js`,
+        outfile: isDev ? `${outputPrefix}/bundle.js` : `${outputPrefix}/js/defer.prod.js`,
         watch: isDev,
         sourcemap: isDev,
         minify: !isDev,
