@@ -19,6 +19,7 @@ const allWriteFiles = [];
 const writeFilePromise = promisify(fs.writeFile)
 const renameFilePromise = promisify(fs.rename)
 const restoreCompiledFiles = async () => {
+    console.log("restore compiled files", allWriteFiles)
     allWriteFiles.forEach(x => {
         x.then(file => {
             renameFilePromise(`${file}.cw`, file);

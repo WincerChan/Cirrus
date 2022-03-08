@@ -10,6 +10,7 @@ const isCompileAsset = process.argv[2] === "--asset";
 
 const outputPrefix = isDev ? "static" : "_blogs/wir";
 console.log('is dev', isDev)
+let callback;
 
 // 1. extract windi class and replace source html
 const compileWindi = async () => {
@@ -28,11 +29,9 @@ const compileWindi = async () => {
 const concatWindiCSS = async () => {
     await compileWindi();
     console.log("end compile windi");
+    const w = require("./windi.js");
     if (!isDev) {
-        const w = require("./windi.js")
         await w.processMatchedFiles()
-        console.log("end replace html");
-        console.log(Date.now())
     }
     if (isCompileAsset) {
         return esbuild.build({
@@ -41,17 +40,19 @@ const concatWindiCSS = async () => {
             minify: true,
             outfile: `${outputPrefix}/css/main.min.css`,
         })
-            .then(() => w.restoreCompiledFiles())
-            .catch(() => process.exit(1));
+            .then(() => w.restoreCompiledFiles)
+    } else if (isCompileWindi) {
+        return Promise.resolve(w.restoreCompiledFiles)
     } else {
-        return Promise.resolve()
+        return Promise.resolve(() => { })
     }
 
 }
 
 // 3. bundle all js files.
 const compileSvelte = async () => {
-    const fn = await concatWindiCSS();
+    callback = await concatWindiCSS();
+    console.log(callback)
     console.log("end concat windi css");
     if (isCompileAsset || isDev) {
         return esbuild.build({
@@ -67,9 +68,10 @@ const compileSvelte = async () => {
             })],
             logLevel: "info"
         })
+            .then(callback)
             .catch(() => process.exit(1));
     } else {
-        return Promise.resolve()
+        return callback()
     }
 }
 // 4. compile workbox file
