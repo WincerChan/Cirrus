@@ -1,4 +1,4 @@
-import { Processor } from 'windicss/lib'
+const { Processor } = require('windicss/lib')
 import { HTMLParser, CSSParser } from 'windicss/utils/parser'
 import { StyleSheet as Ss } from 'windicss/utils/style'
 import { promisify } from "util";
@@ -19,16 +19,15 @@ const allWriteFiles = [];
 const writeFilePromise = promisify(fs.writeFile)
 const renameFilePromise = promisify(fs.rename)
 const restoreCompiledFiles = async () => {
-    console.log("restore compiled files", allWriteFiles)
     allWriteFiles.forEach(x => {
         x.then(file => {
             renameFilePromise(`${file}.cw`, file);
         })
     })
+    fs.rmSync('./windi.js')
 }
 
-const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles: { [s: string]: unknown }) => {
-
+const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles: { [x: string]: Ss }) => {
     for (const file in fileHTMLs) {
         allWriteFiles.push(renameFilePromise(file, `${file}.cw`)
             .then(() =>
