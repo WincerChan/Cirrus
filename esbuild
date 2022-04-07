@@ -39,8 +39,6 @@ const concatWindiCSS = async () => {
             outfile: `${outputPrefix}/css/main.min.css`,
         })
             .then(() => w.restoreCompiledFiles)
-    } else if (isCompileWindi) {
-        return Promise.resolve(w.restoreCompiledFiles)
     } else {
         return Promise.resolve(() => { })
     }

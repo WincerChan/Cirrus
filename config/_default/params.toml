@@ -11,7 +11,7 @@ backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
     version = "wir@1.8.9"
-    jsSRI = "sha384-HViyLi6g9QPiOzfW/nEnld/b1nl6vuSUmuyBIChJOhpRk/T3blMUSPy/XOzJkGOb⏎"
+    jsSRI = "sha384-HViyLi6g9QPiOzfW/nEnld/b1nl6vuSUmuyBIChJOhpRk/T3blMUSPy/XOzJkGOb"
 
 [Sitemap]
     changeFreq = "weekly"
