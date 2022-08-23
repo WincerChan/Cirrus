@@ -3,15 +3,17 @@ import addToggleMenu from './patches/menu';
 import lazyLoadThing from './lazyload/core'
 import registerServiceWorker from './lazyload/serviceworker'
 import patchDarkmode from './patches/darkmode'
+import hideArchives from './patches/archive'
 
 
 window.ga_tid = 'UA-101362832-1';
-window.ga_api = 'https://divine-credit-5273.loerfy.workers.dev'
+window.ga_api = 'https://divine-credit-5273.loerfy.workers.dev';
+window.hideArchives = hideArchives
 z();
 
 window.addEventListener("load", () => {
     patchDarkmode()
-    addToggleMenu()
+    // addToggleMenu()
     lazyLoadThing();
     registerServiceWorker();
 })

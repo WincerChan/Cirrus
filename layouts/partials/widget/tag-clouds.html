@@ -1,17 +1,10 @@
 {{ if not (in .Site.Params.mainSections .Type) }}
 
-<div class=" flex flex-col items-start md:mx-0 ">
-    <div class="inline-flex items-center flex-wrap my-1 pb-1">
-        {{ (resources.Get "icons/tag.svg").Content | safeHTML }}
-        <span class="text-lg uppercase my-1 pl-5 font-headline">
-            {{ if in .Site.Params.mainSections .Type }}
-            Tags
-            {{ else }}
-            Featured tags
-            {{ end }}
-        </span>
+<div class="pt-5 w-full flex flex-col items-start">
+    <div class="mb-4">
+        <span class="text-base text-[#696969] mb-4">推荐</span>
     </div>
-    <div class="flex-wrap flex text-[#3F3F46] dark:text-[#a8a29e]  pb-1 font-button">
+    <div class="flex-wrap flex text-[#3F3F46] dark:text-[#a8a29e] leading-9 mb-6 pb-1 font-button">
         {{ $.Scratch.Set "tags" (slice) }}
         {{ partial "widget/right-side/site-tags" . }}
 

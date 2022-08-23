@@ -103,13 +103,25 @@
         stroke-width: 6;
     }
 
+    .card-shadow {
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    }
+
     body {
         /* windi-zinc */
-        @apply bg-[#f4f4f5] dark: bg-[#18181B] font-maintext transition ease-linear duration-300;
+        @apply bg-[#fafafa] dark: bg-[#18181B] font-maintext transition ease-linear duration-300;
     }
 
     li span {
         @apply font-headline;
+    }
+
+    aside a {
+        @apply border border-transparent;
+    }
+
+    aside a:hover {
+        @apply transition duration-200 ease-linear cursor-pointer rounded-full border border-[#DCDCDC] border-opacity-80;
     }
 
     .label sup {
@@ -178,15 +190,17 @@
 
 
     content a:hover,
-    .article-tags a:hover {
-        @apply hover: text-[#334155] dark:hover:text-orange-500;
-        box-shadow: 0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;
+    .article-tags a:hover,
+    extra>a:hover {
+        @apply hover: text-[#154384] dark:hover:text-orange-500;
+        box-shadow: 0 -.5rem 0 #cacdcfd5 inset;
     }
 
     content a,
-    .article-tags a {
-        @apply transition duration-200 ease-linear text-[#475569] dark: text-orange-200;
-        box-shadow: 0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;
+    .article-tags a,
+    extra>a {
+        @apply transition duration-200 ease-linear text-[#2763B6] dark: text-orange-200;
+        box-shadow: 0 -.2rem 0 #cacdcfd5 inset;
     }
 
     .life-desc>p {
@@ -323,9 +337,6 @@
         padding: unset;
     }
 
-    .highlight {
-        @apply relative;
-    }
 
     .card-text {
         text-shadow: 1px 1px 2px #444

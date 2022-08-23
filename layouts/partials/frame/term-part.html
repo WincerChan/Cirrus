@@ -1,13 +1,14 @@
-<div class="rounded-[.75rem]">
-    <h1
-        class="uppercase pb-8 dark:text-[#f8fafc] text-[#1c1917] text-size-[1.75rem] leading-[unset] font-medium w-full text-[#44403c] dark:text-[#d6d3d1] py-2 sm:px-0 px-4">
-        {{ printf "%s：%s（%d）" .Type .Title (len .Pages) }}
-    </h1>
-    {{ $published := where .Pages "Params.published" "!=" false }}
-    <div class="space-y-6">
-        {{ range $published }}
-        {{ partial "core/card-compact" . }}
-        {{ end }}
-    </div>
+<h1 class="py-4 dark:text-[#f8fafc] text-[#393939] text-size-[1.75rem] font-medium w-full text-[#44403c] leading-8">
+    {{ if eq .Type "category" }}
+    {{ printf "分类：%s" .Title }}
+    {{ else if eq .Type "tags" }}
+    {{ printf "分类：%s" .Title }}
+    {{ end }}
+</h1>
+<p class="text-xl mb-5 mt-2 leading-8">共计 {{ len .Pages }} 篇文章</p>
+{{ $published := where .Pages "Params.published" "!=" false }}
+<div class="flex flex-wrap justify-between">
+    {{ range $published }}
+    {{ partial "core/card-small" . }}
+    {{ end }}
 </div>
-{{ partial "footer/site-footer.html" . }}

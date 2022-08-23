@@ -1,8 +1,8 @@
 baseURL = "https://blog.itswincer.com/"
-languageCode = "en-us"
+languageCode = "zh-Hans"
 title = "Wincer's Blog"
 hasCJKLanguage = true
-paginate = 6
+paginate = 5
 canonifyURLS = true
 disableKinds  = ["RSS", "sitemap"]
 ignoreErrors = ["error-output-taxonomy"]

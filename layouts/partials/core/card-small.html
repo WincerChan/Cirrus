@@ -1,0 +1,8 @@
+<div
+    class="flex flex-shrink-0 border border-opacity-50 my-3 border-[#dcdcdc] bg-[#fffffd] dark:bg-[#2e2e2e] w-[calc(100%/2-0.75rem)]">
+    <div class="lazy flex-none h-25 w-25 bg-cover bg-center" data-src="{{ .Params.Cover }}"></div>
+    <div class="flex-grow flex flex-col justify-between px-4 pt-2 pb-3 text-[0.9375rem] text-[#636363]">
+        <h2 class="text-lg font-maintext text-[#343434]">{{ .Params.Title }}</h2>
+        {{ partial "widget/date-category.html" . }}
+    </div>
+</div>

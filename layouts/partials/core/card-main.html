@@ -1,0 +1,18 @@
+<div class="bg-[#fffffd] dark:bg-[#2e2e2e] flex border border-opacity-50 border-[#dcdcdc]">
+    <div class="lazy flex-none h-80 w-80 bg-cover bg-center" data-src="{{ .Params.Cover }}"></div>
+    <div class="px-6 py-4 flex flex-col text-[0.9375rem] h-80">
+        <h2 class="text-2xl font-maintext font-medium leading-loose text-[#393939]">
+            {{ .Params.Title }}
+        </h2>
+        <h3 class="text-xl font-maintext font-medium leading-loose text-[#636363]">
+            如果有的话，就是 h3
+        </h3>
+        <p class=" leading-7 max-h-36 mt-2 text-justify overflow-hidden">
+            {{ .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify}}
+        </p>
+        <extra class="mt-auto py-2 leading-5 text-[#636363] justify-between flex">
+            {{ partial "widget/date-category.html" . }}
+            <a href="{{ .RelPermalink }}" class="text-[#2763B6]">继续阅读</a>
+        </extra>
+    </div>
+</div>

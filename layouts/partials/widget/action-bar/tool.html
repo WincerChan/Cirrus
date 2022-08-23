@@ -1,0 +1,20 @@
+<div class="flex h-14">
+    <span class="cursor-pointer px-3 flex items-center" title="Switch Mode">
+        <label for="checkbox" class="theme-switch cursor-pointer">
+            <input type="checkbox" id="checkbox" class="hidden">
+            <span class="slider round">
+                {{ (resources.Get "icons/light.svg").Content | safeHTML }}
+            </span>
+        </label>
+    </span>
+    <a class="px-3 flex items-center" href="/search/">
+        <span class="cursor-pointer" title="Search">
+            {{ (resources.Get "icons/search.svg").Content | safeHTML }}
+        </span>
+    </a>
+    <a class="flex items-center px-3" href="/atom.xml">
+        <span class="cursor-pointer" title="RSS">
+            {{ (resources.Get "icons/rss.svg").Content | safeHTML }}
+        </span>
+    </a>
+</div>
