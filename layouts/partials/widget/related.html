@@ -1,29 +1,24 @@
 {{ $category := .Params.Category }}
 {{ $title := .Params.Title }}
 
-{{ if in .Site.Params.mainSections .Type }}
-<div class="seprator mt-6 mb-3"></div>
-<div class="text-[#3F3F46] dark:text-[#a8a29e] -600 flex flex-col items-start md:mx-0">
-    <div class="inline-flex items-center flex-wrap my-1">
-        {{ (resources.Get "icons/library.svg").Content | safeHTML }}
-        <span class="text-lg uppercase text-[#44403c] dark:text-[#d6d3d1] my-1 pl-5 font-headline">Relateds </span>
+<div class="w-full pt-5 pb-6">
+
+    <div class="mb-4">
+        <span class="text-base text-[#696969] dark:text-[#b5b5b5]">相关文章</span>
     </div>
-    <ol class="text-left text-[#44403c] dark:text-[#d6d3d1]">
+    <ol class="text-left text-[#44403c] leading-7 w-full dark:text-[#d6d3d1]">
         {{range first 6 (index .Site.Taxonomies.category $category)}}
         {{ if ne .Title $title }}
         <li>
-            <div>
-                <footer class=" my-2 text-sm mb-0 mt-3">
-                    {{ dateFormat "2006-01-02" .Params.Date }}
-                </footer>
-                <a href="{{.Permalink}}"
-                    class="truncate hover:text-cyan-700 dark:hover:text-orange-500 transition ease-linear duration-300">
-                    {{.Title}}
-                </a>
-            </div>
+            <footer class=" shadow-none my-2 text-sm mb-0 mt-3 dark:shadow-none">
+                {{ dateFormat "2006-01-02" .Params.Date }}
+            </footer>
+            <a href="{{.Permalink}}"
+                class="border-none !bg-transparent hover:text-[#2763B6] dark:hover:text-orange-500 transition ease-linear duration-300">
+                {{.Title}}
+            </a>
         </li>
         {{ end }}
         {{end}}
     </ol>
 </div>
-{{end}}

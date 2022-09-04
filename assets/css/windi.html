@@ -46,21 +46,33 @@
 
 
     #TableOfContents li {
-        @apply pl-6 my-2;
+        @apply pl-4 my-2;
     }
 
     #TableOfContents li a {
-        @apply pr-2 py-1;
+        @apply pr-2 py-1 border-none bg-transparent;
     }
 
     #TableOfContents li a:hover {
-        @apply text-cyan-700 dark: text-orange-500 transition duration-300;
+        @apply text-[#2763B6] dark: text-orange-500 transition duration-300;
     }
 
     #TableOfContents {
-        @apply text-left text-[#44403c] dark: text-[#d6d3d1] mt-2;
+        @apply text-left text-[#393939] dark: text-[#eaeaea] dark: text-[#d6d3d1] mt-2 leading-7;
     }
 
+
+    header,
+    footer {
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+        ;
+    }
+
+    .dark header,
+    .dark footer {
+        box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.25);
+        ;
+    }
 
 
     .line {
@@ -107,9 +119,10 @@
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     }
 
+
     body {
         /* windi-zinc */
-        @apply bg-[#fafafa] dark: bg-[#18181B] font-maintext transition ease-linear duration-300;
+        @apply bg-[#fafafa] dark: bg-[#19191a] font-maintext transition ease-linear duration-300;
     }
 
     li span {
@@ -120,8 +133,14 @@
         @apply border border-transparent;
     }
 
+    #tags a:hover {
+        @apply transition duration-200 ease-linear bg-[#f6f6f6] dark: bg-[#19191a] rounded-full cursor-pointer;
+    }
+
     aside a:hover {
-        @apply transition duration-200 ease-linear cursor-pointer rounded-full border border-[#DCDCDC] border-opacity-80;
+        /* @apply transition duration-200 ease-linear cursor-pointer rounded-full border border-[#DCDCDC] border-opacity-80; */
+        /* @apply transition duration-200 ease-linear cursor-pointer text-[#2763B6]; */
+        @apply transition duration-200 ease-linear bg-[#f6f6f6] dark: bg-[#19191a] rounded-full cursor-pointer;
     }
 
     .label sup {
@@ -146,7 +165,7 @@
     article h2,
     article h3,
     article h4 {
-        @apply pl-5 pr-6 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose;
+        @apply pl-7 <lg: pl-3 pr-8 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose;
     }
 
     article h3 {
@@ -158,7 +177,7 @@
     }
 
     article blockquote {
-        @apply border-l-4 border-[#d6d3d1] dark: border-[#737373] pt-3 pl-5 pr-6 pb-3 mb-5 text-[#404040] dark: text-[#d4d4d4];
+        @apply border-l-4 border-[#d6d3d1] dark: border-[#737373] pt-3 pl-7 pr-8 pb-3 mb-5 text-[#404040] dark: text-[#d4d4d4];
     }
 
 
@@ -181,7 +200,7 @@
     }
 
     content>p {
-        @apply px-6 mb-3;
+        @apply px-8 mb-3 <lg: px-4;
     }
 
     .text-shadow {
@@ -192,15 +211,14 @@
     content a:hover,
     .article-tags a:hover,
     extra>a:hover {
-        @apply hover: text-[#154384] dark:hover:text-orange-500;
-        box-shadow: 0 -.5rem 0 #cacdcfd5 inset;
+        box-shadow: 0 -.5rem 0 #8da6b2c5 inset;
     }
 
     content a,
     .article-tags a,
     extra>a {
         @apply transition duration-200 ease-linear text-[#2763B6] dark: text-orange-200;
-        box-shadow: 0 -.2rem 0 #cacdcfd5 inset;
+        box-shadow: 0 -.2rem 0 #88a2ae9b inset;
     }
 
     .life-desc>p {
@@ -211,7 +229,7 @@
     content>ol,
     content>ul,
     section>ol {
-        @apply pl-16 my-2;
+        @apply pl-18 <lg: pl-14 my-2;
     }
 
     content hr {
@@ -243,7 +261,7 @@
     }
 
     content {
-        @apply leading-relaxed;
+        @apply leading-relaxed mt-2 block;
     }
 
     .card-title {
@@ -295,7 +313,7 @@
     }
 
     content li {
-        @apply pr-6 my-2;
+        @apply pr-8 my-2;
     }
 
 
@@ -316,17 +334,29 @@
     }
 
     content pre {
-        @apply pl-6 my-4 font-code;
+        @apply pl-8 my-4 font-code <lg: pl-4;
     }
 
     content code {
         @apply mx-1 px-1 rounded text-[0.9375rem] bg-[#f0f3f3] dark: bg-[#2f1e2e];
     }
 
+    aside>div,
+    .card-outline {
+        outline: solid 1px #dcdcdc9c;
+    }
 
+    .dark aside>div,
+    .dark .card-outline {
+        outline: solid 1px #6161619c;
+    }
 
     content .highlight {
         @apply my-6;
+    }
+
+    content .highlight {
+        @apply relative;
     }
 
 

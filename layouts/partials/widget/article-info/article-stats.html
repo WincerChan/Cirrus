@@ -1,16 +1,37 @@
-<div class="text-[#44403c] dark:text-[#d6d3d1] border-t mt-6  font-headline">
-    <div class="sm:px-6 px-5 py-3 flex items-center">
-        {{ (resources.Get "icons/calendar.svg").Content | safeHTML }}
-        <span class="px-4"> <span class="sm:inline-block hidden"> Last</span> Updated in <span
-                class="text-[#404040] dark:text-[#d4d4d4]">
-                {{ dateFormat "Mon Jan 2, 2006" .Params.Updated }}</span></span>
+<style>
+    .copyright {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0idy00OCBhYnNvbHV0ZSB0b3AtMCByaWdodC0wIiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CjxwYXRoIGZpbGw9IiNkOWQ5ZDkiIGQ9Ik04IDEuNWMzLjYgMCA2LjUgMi45IDYuNSA2LjVzLTIuOSA2LjUtNi41IDYuNS02LjUtMi45LTYuNS02LjUgMi45LTYuNSA2LjUtNi41ek04IDBjLTQuNCAwLTggMy42LTggOHMzLjYgOCA4IDggOC0zLjYgOC04LTMuNi04LTgtOHYweiI+PC9wYXRoPgo8cGF0aCBmaWxsPSIjZDlkOWQ5IiBkPSJNOS45IDEwLjNjLTAuNSAwLjQtMS4yIDAuNy0xLjkgMC43LTEuNyAwLTMtMS4zLTMtM3MxLjMtMyAzLTNjMC44IDAgMS42IDAuMyAyLjEgMC45bDEuMS0xLjFjLTAuOC0wLjgtMi0xLjMtMy4yLTEuMy0yLjUgMC00LjUgMi00LjUgNC41czIgNC41IDQuNSA0LjVjMS4xIDAgMi0wLjQgMi44LTFsLTAuOS0xLjJ6Ij48L3BhdGg+Cjwvc3ZnPgoK");
+        background-repeat: no-repeat;
+        background-size: 148px;
+        background-position: right top;
+    }
+</style>
+
+<div
+    class="text-[#696969] dark:text-[#b5b5b5] copyright relative leading-7 text-[.9375rem] dark:text-[#d6d3d1] bg-[#f6f6f6] dark:bg-[#444] mt-6 p-8  font-headline">
+
+
+    <div class="">
+        <p class=" text-[#393939] dark:text-[#eaeaea]">{{ .Title }}</p>
+        <p>{{ .Permalink }}</p>
     </div>
-    <div class="sm:px-6 px-5 py-3 flex items-center border-t border-b article-tags">
-        {{ (resources.Get "icons/scale.svg").Content | safeHTML }}
-        <span class="px-4"><span class="sm:inline-block hidden">This article under the </span>
-            <span class="text-[#404040] dark:text-[#d4d4d4]"> CC BY-NC-ND 4.0.</span> <a
-                href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener"><span
-                    class="cursor-default"></span>
-                <span class="capitalize cursor-pointer">learn more</span></a></span></span>
+    <div class="flex top-24 flex-wrap">
+        <div class="flex-none mr-12 mt-4">
+            <p class=" text-[#393939] dark:text-[#eaeaea]">作者</p>
+            <p>{{site.Author.name }}</p>
+        </div>
+        <div class="flex-none mr-12 mt-4">
+            <p class=" text-[#393939] dark:text-[#eaeaea]">更新于</p>
+            <p>{{ dateFormat "Jan 2, 2006" .Params.Updated }}</p>
+        </div>
+        <div class="flex-none mt-4">
+            <p class=" text-[#393939] dark:text-[#eaeaea]">许可协议</p>
+            <p>
+                <a class="text-[#2763B6] dark:text-orange-200"
+                    href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">
+                    CC BY-NC-ND 4.0
+                </a>
+            </p>
+        </div>
     </div>
 </div>

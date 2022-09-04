@@ -1,6 +1,6 @@
 {{ if eq .style "span" }}
 <a href="{{ .link }}" title="{{ .name }}" class="px-2">
-    <span class="text-[#2763B6]">#</span>{{ .name }}
+    <span class="text-[#2763B6] dark:text-orange-200">#</span>{{ .name }}
 </a>
 {{ else if eq .style "button" }}
 <a href="{{ .link }}" title="{{ .name }}" style="line-height: 32px" level="{{ .count }}"

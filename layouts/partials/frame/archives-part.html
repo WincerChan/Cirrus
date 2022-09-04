@@ -2,7 +2,7 @@
     {{ .Title }}
 </h1>
 
-<div class="flex pt-4 pb-2 text-base dark:text-[#f8fafc] text-[#393939]  space-x-3">
+<div class="flex pl-1 pt-4 pb-2 text-base dark:text-[#f8fafc] text-[#393939]  space-x-3">
     {{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
     {{ $published := where site.RegularPages "Params.published" "!=" false }}
     {{ $pages := ($all | intersect $published) }}
@@ -11,7 +11,7 @@
     {{ $id := lower (replace $item.Key " " "-") }}
     <div id="xx{{$id}}" data-id="{{ $id }}" data-index="{{ $index }}" data-total="{{ len $archives }}"
         onclick="hideArchives(this)"
-        class=" cursor-pointer bg-[#fffffd] dark:bg-[#2e2e2e] border rounded-full border-[#DCDCDC] border-opacity-80 {{ if (eq $index 0) }} card-shadow {{end}}">
+        class="  cursor-pointer bg-[#fffffd] dark:bg-[#2e2e2e] border rounded-full border-[#DCDCDC] border-opacity-80  {{ if (eq $index 0) }} card-shadow {{end}}">
         <p class="leading-8 px-6">{{ .Key }}</p>
     </div>
     {{ end }}
@@ -23,7 +23,8 @@
 {{ $archives := $pages.GroupByDate "2006" }}
 {{ range $archives }}
 <div id="s-{{ .Key }}">
-    <h2 class="py-4 mt-5 dark:text-[#f8fafc] text-[#393939] text-2xl px-4 sm:px-0" id="{{ .Key }}">{{ .Key }}</h2>
+    <h2 class="py-4 mt-5 dark:text-[#f8fafc] text-[#393939] text-2xl px-4 sm:px-0" id="{{ .Key }}">
+        {{ .Key }}</h2>
     <p class="leading-8 text-xl mb-5 mt-2 text-[#696969]">共计 {{ len .Pages }} 篇文章</p>
     <div class="flex flex-wrap justify-between">
         {{ range .Pages }}

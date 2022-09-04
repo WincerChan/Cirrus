@@ -1,5 +1,58 @@
-<article class="pt-2 max-w-full">
-    <div class="h-2"></div>
+<article class="pt-2">
+    <div style="background-size: 1px;"
+        class="article-meta text-[#3F3F46] dark:text-[#c9c9c3]  cover bg-clip-text backdrop-filter backdrop-blur-lg">
+
+        {{ $date := .Date }}
+        {{ $wordcount := .WordCount }}
+        {{ with .Params.tags }}
+        <div id="tags"
+            class="flex leading-8 flex-wrap space-x-1 text-[0.9375rem] px-8 <lg:px-4 font-button items-center mt-3 bg-[#fffffd] dark:bg-[#2e2e2e]">
+            <span class="text-[#404040] dark:text-[#d6d3d1] mr-1"> {{ dateFormat "Jan 2, 2006" $date }} </span>
+            <div class="bg-[#4a4a4a] dark:bg-[#b5b5b5] h-0.5 w-0.5 !mx-3 rounded-full"></div>
+            {{ range . }}
+            {{ $page := site.GetPage (printf "/tags/%s" .) }}
+            {{ partial "widget/right-side/single-tag" (dict "style" "span" "count" 1 "name" . "link"
+            $page.RelPermalink
+            ) }}
+            {{ end }}
+        </div>
+        {{ end }}
+        <h1
+            class="dark:text-[#f8fafc]  text-[#393939] dark:text-[#eaeaea] text-size-[1.75rem] leading-8 font-medium px-8 <lg:px-4 py-4">
+            <span
+                class="text-size-[1.75rem] <lg:text-2xl <md:text-size-[22px] text-[rgb(0,0,0)] dark:text-light-300 text-opacity-50 dark:text-opacity-70">
+                {{ .Title }}</span>
+            {{ if in .Site.Params.mainSections .Type }}
+            <sup class=" text-sm text-[#44403c] dark:text-[#d6d3d1]"> {{ $wordcount }} Words</sup>
+            {{end}}
+        </h1>
+        {{ with .Params.Subtitle }}
+        <h5
+            class=" text-[rgb(0,0,0)] dark:text-light-500 text-opacity-40 dark:text-opacity-50 text-2xl <lg:text-size-[22px] <md:text-size-[20px] font-medium pb-3 leading-8 px-8 <lg:px-4 mb-3">
+            <span>{{ . }}</span>
+        </h5>
+        {{ end }}
+    </div>
+    {{ if in .Site.Params.mainSections .Type }}
+    {{ $days := div (sub now.Unix .Date.Unix) 86400 }}
+    {{ if gt $days 180 }}
+    <blockquote id="out-dated"
+        class="border-amber-300 mt-2 mb-4 dark:border-amber-500 dark:bg-opacity-5 dark:border-opacity-70 dark:bg-amber-100 bg-[#fffbeb] ">
+        <p class="">本文最近一次更新于
+            {{ $year := div $days 360 }}
+            {{ $month := div $days 30 }}
+            {{ if gt $year 0 }}
+            {{ $year }} 年
+            {{ if gt (mod $month 12) 0 }}
+            零 {{ mod $month 12 }} 个月
+            {{end}}
+            {{ else }}
+            {{ mod $month 12 }} 个月
+            {{ end }}
+            前，其中所包含的信息很可能已经有所发展或是发生改变。</p>
+    </blockquote>
+    {{ end }}
+    {{ end }}
     <content {{ with .Params.encrypt_pwd }} class="hidden" {{ end }} {{ with .Params.encrypt_pwd }} data-password={{.}}
         {{ end }}>
         {{ replace .Content "<br>" "" | safeHTML }}

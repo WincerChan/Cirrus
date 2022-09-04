@@ -1,16 +1,13 @@
 {{ if not (in .Site.Params.mainSections .Type) }}
 
-<div class="pt-5 w-full flex flex-col items-start">
+<div class="pt-4 w-full flex flex-col items-start">
     <div class="mb-4">
-        <span class="text-base text-[#696969] mb-4">推荐</span>
+        <span class="text-base text-[#696969] dark:text-[#b5b5b5] mb-4">推荐</span>
     </div>
-    <div class="flex-wrap flex text-[#3F3F46] dark:text-[#a8a29e] leading-9 mb-6 pb-1 font-button">
+    <div class="flex-wrap flex text-[#393939] dark:text-[#eaeaea] leading-9 mb-6 pb-1 font-button">
         {{ $.Scratch.Set "tags" (slice) }}
         {{ partial "widget/right-side/site-tags" . }}
 
     </div>
-    {{ if in .Site.Params.mainSections .Type }}
-    <div class="seprator mt-6 mb-3"></div>
-    {{ end }}
 </div>
 {{ end }}

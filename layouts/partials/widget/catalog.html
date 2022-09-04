@@ -1,11 +1,8 @@
-{{ if in .Site.Params.mainSections .Type }}
-<div class="text-[#3F3F46] dark:text-[#a8a29e] -600 flex flex-col items-start md:mx-0 w-full">
-    <div class="inline-flex items-center flex-wrap my-1">
-        {{ (resources.Get "icons/book.svg").Content | safeHTML }}
-        <span class="text-lg uppercase text-[#44403c] dark:text-[#d6d3d1] my-1 pl-5 font-headline">Catalog</span>
+<div class="w-full pt-5">
+    <div class="mb-2">
+        <span class="text-base text-[#696969] dark:text-[#b5b5b5]">目录</span>
     </div>
-    <div class="flex-wrap flex text-[#3F3F46] dark:text-[#a8a29e]  pb-1 max-h-80 overflow-y-auto w-full">
+    <div class="flex-wrap flex text-[#3F3F46] dark:text-[#a8a29e] pb-1 max-h-80 overflow-y-auto w-full">
         {{ .TableOfContents }}
     </div>
 </div>
-{{ end }}

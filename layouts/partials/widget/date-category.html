@@ -1,11 +1,11 @@
 <div class="inline-flex items-center">
 
-    <span class="">
+    <span>
         {{ dateFormat " Jan 2, 2006" .Date }}</span>
     {{ $category := .Params.Category }}
     {{ with $.Site.GetPage (printf "/category/%s" $category) }}
-    <div class="bg-[#4a4a4a] h-0.5 w-0.5 mx-4 rounded-full"></div>
-    <a href="{{ .Permalink }}" title="{{ $category }}" class="text-[#2763B6] hover:text-[#154384]">
+    <div class="bg-[#4a4a4a] dark:bg-[#b5b5b5] h-0.5 w-0.5 mx-4 rounded-full"></div>
+    <a href="{{ .Permalink }}" title="{{ $category }}" class="hover:text-[#2763B6] dark:hover:text-orange-200">
         {{ $category }}
     </a>
     {{ end }}

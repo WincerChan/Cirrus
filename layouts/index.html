@@ -5,7 +5,8 @@
 {{ range $index, $element := $paginate.Pages }}
 {{ if eq $index 0 }}
 {{ partial "core/card-main" $element }}
-<p class="text-xl font-maintext font-medium leading-loose text-[#636363] mt-12 mb-6">近期文章</p>
+<p class="text-xl font-maintext font-medium leading-loose text-[#636363] dark:text-[#b3b3b3] mt-12 mb-6 <sm:px-6">近期文章
+</p>
 <div class="flex flex-wrap justify-between">
 
     {{ else }}
@@ -13,7 +14,7 @@
     {{ end }}
     {{ end }}
 </div>
-<div class="my-8">
+<div class="my-8 <sm:px-6">
 
     <extra>
         <a href="/archives/" class="">查看更多文章</a>

@@ -1,5 +1,7 @@
-<div class="flex h-14">
-    <span class="cursor-pointer px-3 flex items-center" title="Switch Mode">
+<div class="h-14 flex <sm:h-12">
+    <span
+        class=" cursor-pointer flex items-center px-3 <sm:px-2.5 hover:text-[#2763B6] dark:hover:text-orange-200 hover:bg-[#f6f6f6] dark:hover:bg-[#464646]"
+        title="Switch Mode">
         <label for="checkbox" class="theme-switch cursor-pointer">
             <input type="checkbox" id="checkbox" class="hidden">
             <span class="slider round">
@@ -7,12 +9,14 @@
             </span>
         </label>
     </span>
-    <a class="px-3 flex items-center" href="/search/">
+    <a class="flex items-center px-3 <sm:px-2.5 hover:text-[#2763B6] dark:hover:text-orange-200 hover:bg-[#f6f6f6] dark:hover:bg-[#464646]"
+        href="/search/">
         <span class="cursor-pointer" title="Search">
             {{ (resources.Get "icons/search.svg").Content | safeHTML }}
         </span>
     </a>
-    <a class="flex items-center px-3" href="/atom.xml">
+    <a class="flex items-center px-3 <sm:px-2.5 hover:text-[#2763B6] dark:hover:text-orange-200 hover:bg-[#f6f6f6] dark:hover:bg-[#464646]"
+        href="/atom.xml">
         <span class="cursor-pointer" title="RSS">
             {{ (resources.Get "icons/rss.svg").Content | safeHTML }}
         </span>
