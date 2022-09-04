@@ -4,7 +4,7 @@
 <div class="w-full pt-5 pb-6">
 
     <div class="mb-4">
-        <span class="text-base text-[#696969] dark:text-[#b5b5b5]">相关文章</span>
+        <span class="text-base text-[#808080] dark:text-[#b5b5b5]">相关文章</span>
     </div>
     <ol class="text-left text-[#44403c] leading-7 w-full dark:text-[#d6d3d1]">
         {{range first 6 (index .Site.Taxonomies.category $category)}}
@@ -14,7 +14,7 @@
                 {{ dateFormat "2006-01-02" .Params.Date }}
             </footer>
             <a href="{{.Permalink}}"
-                class="border-none !bg-transparent hover:text-[#2763B6] dark:hover:text-orange-500 transition ease-linear duration-300">
+                class="border-none !bg-transparent hover:text-[#065279] dark:hover:text-[#ffa631] transition ease-linear duration-300">
                 {{.Title}}
             </a>
         </li>

@@ -1,9 +1,14 @@
 <style lang="windi">
-    @media (max-width: 767.9px) {
+    @media (max-width: 860px) and (min-width: 768px) {
         aside {
-            display: none;
+            width: 15rem !important;
+        }
+
+        aside>div>div {
+            width: 13.5rem !important;
         }
     }
+
 
     #TableOfContents li {
         @apply pl-4 my-2;
@@ -14,23 +19,23 @@
     }
 
     #TableOfContents li a:hover {
-        @apply text-[#2763B6] dark: text-orange-500 transition duration-300;
+        @apply text-[#065279] dark: text-[#ffa631] transition duration-300;
     }
 
     #TableOfContents {
-        @apply text-left text-[#393939] dark: text-[#eaeaea] dark: text-[#d6d3d1] mt-2 leading-7;
+        @apply text-left text-[#392f41] dark: text-[#f0f0f4] dark: text-[#d6d3d1] mt-2 leading-7;
     }
 
 
     header,
     footer {
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 0px 4px #d1d9e0;
         ;
     }
 
     .dark header,
     .dark footer {
-        box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.25);
+        box-shadow: 0px 0px 4px #6b6882;
         ;
     }
 
@@ -45,7 +50,7 @@
 
     body {
         /* windi-zinc */
-        @apply bg-[#fafafa] dark: bg-[#19191a] font-maintext transition ease-linear duration-300;
+        @apply bg-[#FFFEFF] dark: bg-[#19191a] font-maintext transition ease-linear duration-300;
     }
 
     li span {
@@ -57,13 +62,13 @@
     }
 
     #tags a:hover {
-        @apply transition duration-200 ease-linear bg-[#f6f6f6] dark: bg-[#19191a] rounded-full cursor-pointer;
+        @apply transition duration-200 ease-linear bg-[#f0f0f4] dark: bg-[#19191a] rounded-full cursor-pointer;
     }
 
     aside a:hover {
         /* @apply transition duration-200 ease-linear cursor-pointer rounded-full border border-[#DCDCDC] border-opacity-80; */
-        /* @apply transition duration-200 ease-linear cursor-pointer text-[#2763B6]; */
-        @apply transition duration-200 ease-linear bg-[#f6f6f6] dark: bg-[#19191a] rounded-full cursor-pointer;
+        /* @apply transition duration-200 ease-linear cursor-pointer text-[#065279]; */
+        @apply transition duration-200 ease-linear bg-[#f0f0f4] dark: bg-[#19191a] rounded-full cursor-pointer;
     }
 
     .label sup {
@@ -134,14 +139,14 @@
     content a:hover,
     .article-tags a:hover,
     extra>a:hover {
-        box-shadow: 0 -.5rem 0 #8da6b2c5 inset;
+        box-shadow: 0 -.5rem 0 #d1d9e0 inset;
     }
 
     content a,
     .article-tags a,
     extra>a {
-        @apply transition duration-200 ease-linear text-[#2763B6] dark: text-orange-200;
-        box-shadow: 0 -.2rem 0 #88a2ae9b inset;
+        @apply transition duration-200 ease-linear text-[#065279] dark: text-[#ffa631];
+        box-shadow: 0 -.2rem 0 #d1d9e0 inset;
     }
 
     .life-desc>p {
@@ -184,7 +189,7 @@
     }
 
     content {
-        @apply leading-relaxed mt-2 block;
+        @apply leading-7 mt-2 block;
     }
 
     .card-title {
@@ -215,13 +220,6 @@
 
     progress::-webkit-progress-value {
         background: rgba(255, 255, 255, 0.7);
-    }
-
-    #summary {
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
     }
 
     ul ul {
@@ -267,7 +265,7 @@
 
     aside>div,
     .card-outline {
-        outline: solid 1px #dcdcdc9c;
+        outline: solid 1px #f0f0f4;
     }
 
     .dark aside>div,

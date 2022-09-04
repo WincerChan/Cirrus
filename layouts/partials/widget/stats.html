@@ -8,12 +8,11 @@
     {{ $scratch.Add "wordcount" .WordCount }}
     {{ end }}
     <div class="mb-4">
-        <span class="text-base text-[#696969] dark:text-[#b5b5b5] mb-4">统计</span>
+        <span class="text-base text-[#808080] dark:text-[#b5b5b5] mb-4">统计</span>
     </div>
     <div class="flex justify-between w-full mt-4">
         {{ partial "widget/right-side/single-stat" (dict "number" (len $normal) "name" "文章") }}
         {{ partial "widget/right-side/single-stat" (dict "number" (len .Site.Taxonomies.category) "name" "分类") }}
-        {{ partial "widget/right-side/single-stat" (dict "number" ((div ($scratch.Get "wordcount") 10000.0) |
-        lang.NumFmt 1 ) "name" "万字") }}
+        {{ partial "widget/right-side/single-stat" (dict "number" ((div ($scratch.Get "wordcount") 10000.0) | lang.NumFmt 1 ) "name" "万字") }}
     </div>
 </div>

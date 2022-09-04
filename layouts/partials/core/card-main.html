@@ -5,21 +5,22 @@
     <div class="2xl:px-6 2xl:py-4 xl:px-4 xl:py-3 p-4 flex flex-col text-[0.9375rem] 2xl:h-80 xl:h-72 lg:h-64 <lg:h-72">
         <a href="{{ .RelPermalink }}">
             <h2
-                class="text-2xl <lg:leading-9 font-maintext font-medium leading-11  text-[#393939] dark:text-[#eaeaea] hover:text-[#2763B6]  dark:hover:text-orange-200 truncate">
+                class="text-2xl <lg:leading-9 font-maintext font-medium leading-11  text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631] truncate">
                 {{ .Params.Title }}
             </h2>
         </a>
         {{ with .Params.Subtitle }}
-        <h3 class="text-xl font-maintext font-medium leading-8 text-[#636363] dark:text-[#b3b3b3]">
+        <h3 class="text-xl font-maintext font-medium leading-8 xl:py-1 <lg:py-1 text-[#665757] dark:text-[#f0f0f4]">
             {{ . }}
         </h3>
         {{ end }}
-        <p class=" leading-7 max-h-36 mt-2 text-justify overflow-hidden">
+        <p id="summary" class="leading-7 relative max-h-35 mt-2 text-justify overflow-hidden">
             {{ .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify}}
+                {{ (resources.Get "icons/ellipsis.svg").Content | safeHTML}}
         </p>
-        <extra class="mt-auto 2xl:py-2 py-1  leading-5 text-[#636363] dark:text-[#b3b3b3] justify-between flex">
+        <extra class="mt-auto 2xl:py-2 py-1  leading-5 text-[#665757] dark:text-[#f0f0f4] justify-between flex">
             {{ partial "widget/date-category.html" . }}
-            <a href="{{ .RelPermalink }}" class="text-[#2763B6]">继续阅读</a>
+            <a href="{{ .RelPermalink }}">继续阅读</a>
         </extra>
     </div>
 </div>
