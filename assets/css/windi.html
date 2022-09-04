@@ -1,49 +1,9 @@
 <style lang="windi">
-    @media (max-width: 1439px) {
-        #right-side {
+    @media (max-width: 767.9px) {
+        aside {
             display: none;
         }
-
-        #left-side {
-            width: 27%;
-        }
     }
-
-    /* this layout will make left menu to top */
-    @media (max-width: 1023.9px) {
-        #left-side {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .navbar-collapse {
-            @apply max-h-[0] overflow-hidden;
-            transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
-        }
-
-        .navbar-collapse.expanded {
-            @apply max-h-[22.5rem];
-            transition: max-height 0.6s ease-in-out;
-
-        }
-
-        #menu {
-            display: block;
-        }
-    }
-
-    @media (min-width: 1440px) {
-        .core-container {
-            width: 81rem !important;
-        }
-    }
-
-    @media (min-width: 1800px) {
-        .core-container {
-            width: 96rem !important;
-        }
-    }
-
 
     #TableOfContents li {
         @apply pl-4 my-2;
@@ -74,50 +34,6 @@
         ;
     }
 
-
-    .line {
-        fill: none;
-        stroke: #bababa;
-        stroke-width: 6;
-        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .line1 {
-        stroke-dasharray: 60 207;
-        stroke-width: 6;
-    }
-
-    .line2 {
-        stroke-dasharray: 60 60;
-        stroke-width: 6;
-    }
-
-    .line3 {
-        stroke-dasharray: 60 207;
-        stroke-width: 6;
-    }
-
-    .opened .line1 {
-        stroke-dasharray: 90 207;
-        stroke-dashoffset: -134;
-        stroke-width: 6;
-    }
-
-    .opened .line2 {
-        stroke-dasharray: 1 60;
-        stroke-dashoffset: -30;
-        stroke-width: 6;
-    }
-
-    .opened .line3 {
-        stroke-dasharray: 90 207;
-        stroke-dashoffset: -134;
-        stroke-width: 6;
-    }
-
-    .card-shadow {
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-    }
 
 
     body {
@@ -279,6 +195,7 @@
 
     #search-results b {
         color: var(--code) !important;
+        font-weight: 500;
         font-style: unset;
         font-weight: unset;
     }
