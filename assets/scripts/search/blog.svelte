@@ -4,6 +4,7 @@
 </script>
 
 <script lang="ts">
+    import { space } from "svelte/internal";
     import Params from "./params";
     let promise: Promise<SearchResult> = Promise.resolve({});
     let fake_result = [0, 1, 2, 3];
@@ -31,9 +32,9 @@
         <button
             id="search-button"
             on:click={fetchResults}
-            class="flex-none  text-gray-100 hover:text-white hover:bg-indigo-500 bg-indigo-400 rounded-full ml-1 px-6 h-10 flex items-center"
+            class="flex-none border-1 border-[#425066] rounded-full ml-1 px-6 h-10 flex items-center"
         >
-            <p class="text-xl">搜索</p>
+            <p class="text-lg">搜索</p>
         </button>
     </div>
     {#if show_result}
@@ -66,7 +67,7 @@
                 <div class="card-compact-list space-y-6" id="search-results">
                     {#each data.data as item}
                         <div
-                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden font-sans transition ease-linear duration-300"
+                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden font-sans transition ease-linear duration-300 card-outline"
                         >
                             <div class="metadata px-4 py-4">
                                 <a
@@ -76,7 +77,7 @@
                                 >
                                     <h3
                                         id="search-title"
-                                        class="text-[#404040] dark:text-[#d4d4d4] truncate w-full text-xl hover:text-cyan-700 dark:hover:text-[#ffa631]"
+                                        class=" text-[#392f41] dark:text-[#f3f9f1] truncate w-full text-xl hover:text-[#065279] dark:hover:text-[#ffa631]"
                                         contenteditable="false"
                                         bind:innerHTML={item.title}
                                     />
@@ -113,9 +114,24 @@
                                     Params.page--;
                                     fetchResults();
                                 }}
-                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 transition ease-linear duration-300 border-[#d4d4d8] hover:border-[#3F3F46] hover:border-[#3F3F46] dark:hover::border-[#a8a29e] "
+                                class="mr-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center"
                             >
-                                Prev
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-6 h-6"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5"
+                                    />
+                                </svg>
+
+                                <span class="text-lg ml-4"> Prev </span>
                             </button>
                         {/if}
                     </div>
@@ -127,9 +143,23 @@
                                     Params.page++;
                                     fetchResults();
                                 }}
-                                class="text-center border-2 bg-[#fffffd] dark:bg-[#2e2e2e] rounded font-medium px-5 py-3 transition ease-linear duration-300 border-[#d4d4d8] hover:border-[#3F3F46] hover:border-[#3F3F46] dark:hover:border-[#a8a29e] "
+                                class="ml-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center"
                             >
-                                Next
+                                <span class="text-lg mr-4"> Next </span>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-6 h-6"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                    />
+                                </svg>
                             </button>
                         {/if}
                     </div>
