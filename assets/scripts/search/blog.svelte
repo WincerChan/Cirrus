@@ -64,6 +64,11 @@
                         >篇文章
                     </p>
                 </div>
+                <style>
+                    b {
+                        font-weight: bold;
+                    }
+                </style>
                 <div class="card-compact-list space-y-6" id="search-results">
                     {#each data.data as item}
                         <div
