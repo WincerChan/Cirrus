@@ -1,12 +1,12 @@
 <h1
-    class="py-4 dark:text-[#f8fafc]  text-[#392f41] dark:text-[#f0f0f4] text-size-[1.75rem] font-medium w-full text-[#44403c] leading-8">
+    class="py-4 <sm:px-4 dark:text-[#f8fafc] <lg:text-2xl <md:text-size-[22px]  text-[#392f41] dark:text-[#f0f0f4] text-size-[1.75rem] font-medium w-full text-[#44403c] leading-8">
     {{ if eq .Type "category" }}
     {{ printf "分类：%s" .Title }}
     {{ else if eq .Type "tags" }}
     {{ printf "分类：%s" .Title }}
     {{ end }}
 </h1>
-<p class="text-xl mb-5 mt-2 leading-8">共计 {{ len .Pages }} 篇文章</p>
+<p class="mb-5 mt-2 <sm:px-4 leading-8 text-size-[22px] <md:text-size-[18px]">共计 {{ len .Pages }} 篇文章</p>
 {{ $published := where .Pages "Params.published" "!=" false }}
 <div class="flex flex-wrap justify-between <md:mb-10">
     {{ range $published }}
