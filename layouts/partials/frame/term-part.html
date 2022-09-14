@@ -8,7 +8,7 @@
 </h1>
 <p class="text-xl mb-5 mt-2 leading-8">共计 {{ len .Pages }} 篇文章</p>
 {{ $published := where .Pages "Params.published" "!=" false }}
-<div class="flex flex-wrap justify-between">
+<div class="flex flex-wrap justify-between <md:mb-10">
     {{ range $published }}
     {{ partial "core/card-small" . }}
     {{ end }}
