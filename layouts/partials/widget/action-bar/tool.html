@@ -1,0 +1,21 @@
+<div class="h-14 flex <sm:h-12">
+    <label for="checkbox"
+        class="theme-switch cursor-pointer flex items-center px-3 <sm:px-2.5 hover:text-[#065279] dark:hover:text-[#ffa631] hover:bg-[#f0f0f4] dark:hover:bg-[#464646]">
+        <input type="checkbox" id="checkbox" class="hidden">
+        <span class="slider round">
+            {{ (resources.Get "icons/light.svg").Content | safeHTML }}
+        </span>
+    </label>
+    <a class="flex items-center px-3 <sm:px-2.5 hover:text-[#065279] dark:hover:text-[#ffa631] hover:bg-[#f0f0f4] dark:hover:bg-[#464646]"
+        href="/search/">
+        <span class="cursor-pointer" title="Search">
+            {{ (resources.Get "icons/search.svg").Content | safeHTML }}
+        </span>
+    </a>
+    <a class="flex items-center px-3 <sm:px-2.5 hover:text-[#065279] dark:hover:text-[#ffa631] hover:bg-[#f0f0f4] dark:hover:bg-[#464646]"
+        href="/atom.xml">
+        <span class="cursor-pointer" title="RSS">
+            {{ (resources.Get "icons/rss.svg").Content | safeHTML }}
+        </span>
+    </a>
+</div>

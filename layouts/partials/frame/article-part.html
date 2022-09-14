@@ -1,16 +1,15 @@
-<div class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-[.75rem] shadow-lg overflow-hidden">
+<div class="bg-[#fffffd] dark:bg-[#2e2e2e] card-outline overflow-hidden">
     <style>
         .cover {
             background-image: url("{{ .Params.cover }}");
         }
     </style>
-    <div id="article-cover" class="flex cover content-end flex-wrap bg-cover w-full bg-center h-64 box-border mb-3">
+    <div id="article-cover" class="flex cover content-end flex-wrap bg-cover bg-center 2xl:h-80 h-72 box-border mb-3">
     </div>
     {{ partial "core/main-text" . }}
 
-    {{ partial "widget/disqus" . }}
 </div>
 {{ if in .Site.Params.mainSections .Type }}
 {{ partial "widget/neighbor" . }}
 {{ end }}
-{{ partial "footer/site-footer" . }}
+{{ partial "widget/disqus" . }}

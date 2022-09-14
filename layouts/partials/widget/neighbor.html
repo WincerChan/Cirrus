@@ -1,28 +1,19 @@
-<div class="neighbor grid-cols-63 grid text-white">
+<div class="leading-8 my-6 flex justify-between flex-wrap">
     {{ with .NextInSection }}
-    <div class="col-start-1 col-end-32 shadow-lg  rounded-lg overflow-hidden relative z-10">
-        <a href="{{ .RelPermalink }}">
-            <div class="lazy ng-cover px-8 md:h-56 h-48 bg-center bg-cover flex items-center justify-center transition ease-linear duration-300 text-shadow"
-                data-src="{{ .Params.Cover }}">
-                <div class="text-center">
-                    <span class="block text-2xl font-bold uppercase">Next</span>
-                    <span class="block text-xl">{{ .Title }}</span>
-                </div>
-            </div>
-        </a>
-    </div>
+    <a href="{{ .RelPermalink }}"
+        class="mr-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center">
+        {{ (resources.Get "icons/left.svg").Content | safeHTML}}
+        <span class="text-lg ml-4">
+            {{ .Title }}
+        </span>
+    </a>
     {{ end }}
     {{ with .PrevInSection }}
-    <div class="col-start-33 col-end-64 shadow-lg rounded-lg overflow-hidden relative z-10">
-        <a href="{{ .RelPermalink }}">
-            <div class="lazy ng-cover px-8 md:h-56 h-48 bg-center bg-cover flex items-center justify-center transition ease-linear duration-300 text-shadow"
-                data-src="{{ .Params.Cover }}">
-                <div class="text-center">
-                    <span class="block text-2xl font-bold uppercase">Previous</span>
-                    <span class="block text-xl">{{ .Title }}</span>
-                </div>
-            </div>
-        </a>
-    </div>
+    <a href="{{ .RelPermalink }}"
+        class="ml-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center">
+        <span class="text-lg mr-4">{{ .Title }}
+        </span>
+        {{ (resources.Get "icons/right.svg").Content | safeHTML}}
+    </a>
     {{ end }}
 </div>

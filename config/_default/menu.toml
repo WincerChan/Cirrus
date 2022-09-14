@@ -1,34 +1,27 @@
 [[main]]
     identifier = "home"
-    name = "Home"
+    name = "首页"
     url ="/"
     weight = 10
     pre = "home"
 
 [[main]]
     identifier = "about"
-    name = "About"
+    name = "关于"
     url ="/about/"
     weight = 20
     pre = "user"
 
 [[main]]
     identifier = "life"
-    name = "Life"
+    name = "消遣"
     url ="/life/"
     weight = 30
     pre = "news"
 
 [[main]]
     identifier = "friends"
-    name = "Friends"
+    name = "友链"
     url = "/friends/"
     weight = 40
     pre = "link"
-
-[[main]]
-    identifier = "archives"
-    name = "Archives"
-    url = "/archives/"
-    weight = 50
-    pre = "archive"

@@ -1,0 +1,39 @@
+{{ if (in .Site.Params.mainSections .Type)}}
+<style>
+    @media(max-width: 767.9px) {
+        aside {
+            display: none;
+        }
+    }
+</style>
+{{end}}
+<aside class="2xl:w-80 xl:w-72 w-66 <md:w-full lg:flex-shrink-0">
+
+
+    <div
+        class="text-[0.9375rem] relative flex-none bg-[#fffffd] dark:bg-[#2e2e2e]  top-10 sticky  text-[#392f41] dark:text-[#f0f0f4]">
+        <div class="2xl:w-74 xl:w-66 w-60 <md:w-[calc(100%-2rem)] mx-auto relative">
+            <div class="relative">
+                {{ partial "widget/seprator" . }}
+            </div>
+            {{ if not (in .Site.Params.mainSections .Type) }}
+            {{ partial "widget/stats" . }}
+            <div class="relative mt-6 <sm:hidden">
+                {{ partial "widget/seprator" . }}
+            </div>
+            {{ partial "widget/right-side/category" . }}
+            <div class="relative mt-6">
+                {{ partial "widget/seprator" . }}
+            </div>
+            {{ partial "widget/tag-clouds" . }}
+            {{else}}
+            {{ partial "widget/seprator" . }}
+            {{ partial "widget/catalog" . }}
+            <div class="relative mt-6">
+                {{ partial "widget/seprator" . }}
+            </div>
+            {{ partial "widget/related" . }}
+            {{end}}
+        </div>
+    </div>
+</aside>

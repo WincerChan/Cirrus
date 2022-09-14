@@ -3,15 +3,15 @@ subtitle = "昔日玫瑰以其名流芳，今人所持唯玫瑰之名"
 description = "这里是 @Wincer，喜欢折腾新技术，却没多大耐心。个人博客会写得比较杂，包括日常吐槽、技术踩坑，偶尔会写正经一点的。欢迎订阅 RSS(•̀ᴗ•́)。"
 keywords = "Blog, 博客, Web, 生活, Wincer, Linux, Dev, FreeBSD, Elixir, Python, JavaScript"
 
-tagNumber = 24
+tagNumber = 16
 archiveYears = 5
 
 disqusUserName = "wincer"
 backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
-    version = "wir@1.8.9"
-    jsSRI = "sha384-HViyLi6g9QPiOzfW/nEnld/b1nl6vuSUmuyBIChJOhpRk/T3blMUSPy/XOzJkGOb"
+    version = "wir@2.0.1"
+    jsSRI = "sha256-eAi2m1lyHNwm6JewxjrEhjJ8oee5zyydw73mncGOeFc="
 
 [Sitemap]
     changeFreq = "weekly"

@@ -1,0 +1,14 @@
+<div class="w-full pt-4">
+
+    <div class="mb-4">
+        <span class="text-base text-[#808080] dark:text-[#b5b5b5] mb-4">分类</span>
+    </div>
+    {{ range .Site.Taxonomies.category }}
+
+    <a class="flex px-3 leading-9 justify-between" href={{ .Page.Permalink }}>
+        <span class="">
+            {{ .Page.Title }}</span>
+        <span>{{ .Count }}</span>
+    </a>
+    {{ end }}
+</div>

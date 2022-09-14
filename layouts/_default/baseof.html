@@ -4,20 +4,22 @@
 {{ partial "head/head.html" . }}
 {{$.Scratch.Set "svelte" true}}
 
-<body class="antialiased dark:text-[#f4f4f5] text-[#1c1917] font-maintext transition ease-linear duration-300">
-    <div class="core-container mx-auto md:w-full 2xl:w-[96rem] lg:max-w-[95%] md:max-w-full xl:w-[66rem]">
-        <div class="lg:flex mx-auto sm:block md:block lg:justify-between ">
-            {{ partial "frame/left-part" . }}
-            <div
-                class=" py-10 content-center overflow-hidden lg:px-0 sm:px-3 flex-grow flex-col min-h-[100vh] md:min-h-0 flex md:w-[95%] article-list md:mx-auto space-y-12">
+<body
+    class="antialiased dark:text-[#f0f0f4] text-[#392f41] font-maintext transition flex ease-linear duration-300 h-[100vh] flex-col">
+    {{ partial "frame/header-part" . }}
+    <div class="mx-auto 2xl:w-320 xl:w-270 lg:w-240 w-full <lg:px-6 <sm:px-0">
+        <div class="flex mx-auto lg:space-x-6 md:space-x-4 pt-10 <md:pt-8 <md:flex-col">
+            <div class="flex-1 overflow-auto p-[1px] <md:p-0">
                 {{ block "main" . }}{{ end }}
             </div>
-            {{ partial "frame/right-part" . }}
+            {{ partial "frame/aside-part" . }}
         </div>
     </div>
     {{if $.Scratch.Get "svelte" }}
     <div id="svelte"></div>
     {{end}}
+    {{ partial "footer/site-footer.html" . }}
+    {{ partial "footer/back-top.html" . }}
 </body>
 {{ if .Site.IsServer }}
 <script async crossorigin defer src="/bundle.js"></script>

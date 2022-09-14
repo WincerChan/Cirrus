@@ -1,115 +1,74 @@
 <style lang="windi">
-    @media (max-width: 1439px) {
-        #right-side {
-            display: none;
+    @media (max-width: 860px) and (min-width: 768px) {
+        aside {
+            width: 15rem !important;
         }
 
-        #left-side {
-            width: 27%;
-        }
-    }
-
-    /* this layout will make left menu to top */
-    @media (max-width: 1023.9px) {
-        #left-side {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .navbar-collapse {
-            @apply max-h-[0] overflow-hidden;
-            transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
-        }
-
-        .navbar-collapse.expanded {
-            @apply max-h-[22.5rem];
-            transition: max-height 0.6s ease-in-out;
-
-        }
-
-        #menu {
-            display: block;
-        }
-    }
-
-    @media (min-width: 1440px) {
-        .core-container {
-            width: 81rem !important;
-        }
-    }
-
-    @media (min-width: 1800px) {
-        .core-container {
-            width: 96rem !important;
+        aside>div>div {
+            width: 13.5rem !important;
         }
     }
 
 
     #TableOfContents li {
-        @apply pl-6 my-2;
+        @apply pl-4 my-2;
     }
 
     #TableOfContents li a {
-        @apply pr-2 py-1;
+        @apply pr-2 py-1 border-none bg-transparent;
     }
 
     #TableOfContents li a:hover {
-        @apply text-cyan-700 dark: text-orange-500 transition duration-300;
+        @apply text-[#065279] dark: text-[#ffa631] transition duration-300;
     }
 
     #TableOfContents {
-        @apply text-left text-[#44403c] dark: text-[#d6d3d1] mt-2;
+        @apply text-left text-[#392f41] dark: text-[#f0f0f4] dark: text-[#d6d3d1] mt-2 leading-7;
     }
 
 
-
-    .line {
-        fill: none;
-        stroke: #bababa;
-        stroke-width: 6;
-        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    header,
+    footer {
+        box-shadow: 0px 0px 4px #d1d9e0;
+        ;
     }
 
-    .line1 {
-        stroke-dasharray: 60 207;
-        stroke-width: 6;
+    .dark header,
+    .dark footer {
+        box-shadow: 0px 0px 4px #6b6882;
+        ;
     }
 
-    .line2 {
-        stroke-dasharray: 60 60;
-        stroke-width: 6;
+    .card-shadow {
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     }
 
-    .line3 {
-        stroke-dasharray: 60 207;
-        stroke-width: 6;
+    .dark .card-shadow {
+        box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.45);
     }
 
-    .opened .line1 {
-        stroke-dasharray: 90 207;
-        stroke-dashoffset: -134;
-        stroke-width: 6;
-    }
-
-    .opened .line2 {
-        stroke-dasharray: 1 60;
-        stroke-dashoffset: -30;
-        stroke-width: 6;
-    }
-
-    .opened .line3 {
-        stroke-dasharray: 90 207;
-        stroke-dashoffset: -134;
-        stroke-width: 6;
-    }
 
     body {
         /* windi-zinc */
-        @apply bg-[#f4f4f5] dark: bg-[#18181B] font-maintext transition ease-linear duration-300;
+        @apply bg-[#FFFEFF] dark: bg-[#19191a] font-maintext transition ease-linear duration-300;
     }
 
     li span {
         @apply font-headline;
+    }
+
+    aside a {
+        @apply border border-transparent;
+    }
+
+    #tags a:hover {
+        @apply transition duration-200 ease-linear bg-[#f0f0f4] dark: bg-[#19191a] rounded-full cursor-pointer;
+    }
+
+    aside a:hover {
+        /* @apply transition duration-200 ease-linear cursor-pointer rounded-full border border-[#DCDCDC] border-opacity-80; */
+        /* @apply transition duration-200 ease-linear cursor-pointer text-[#065279]; */
+        @apply transition duration-200 ease-linear bg-[#f0f0f4] dark: bg-[#19191a] rounded-full cursor-pointer;
     }
 
     .label sup {
@@ -134,7 +93,7 @@
     article h2,
     article h3,
     article h4 {
-        @apply pl-5 pr-6 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose;
+        @apply pl-7 <lg: pl-3 pr-8 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose;
     }
 
     article h3 {
@@ -146,7 +105,7 @@
     }
 
     article blockquote {
-        @apply border-l-4 border-[#d6d3d1] dark: border-[#737373] pt-3 pl-5 pr-6 pb-3 mb-5 text-[#404040] dark: text-[#d4d4d4];
+        @apply border-l-4 border-[#d6d3d1] dark: border-[#737373] pt-3 pl-7 <lg:pl-3 <lg:pr-4 pr-8 pb-3 mb-5 text-[#404040] dark: text-[#d4d4d4];
     }
 
 
@@ -169,7 +128,7 @@
     }
 
     content>p {
-        @apply px-6 mb-3;
+        @apply px-8 mb-3 <lg: px-4;
     }
 
     .text-shadow {
@@ -178,15 +137,16 @@
 
 
     content a:hover,
-    .article-tags a:hover {
-        @apply hover: text-[#334155] dark:hover:text-orange-500;
-        box-shadow: 0 -.5rem 0 rgba(190, 195, 200, 0.5) inset;
+    .article-tags a:hover,
+    extra>a:hover {
+        box-shadow: 0 -.5rem 0 #d1d9e0 inset;
     }
 
     content a,
-    .article-tags a {
-        @apply transition duration-200 ease-linear text-[#475569] dark: text-orange-200;
-        box-shadow: 0 -.15rem 0 rgba(190, 195, 200, 0.5) inset;
+    .article-tags a,
+    extra>a {
+        @apply transition duration-200 ease-linear text-[#065279] dark: text-[#ffa631];
+        box-shadow: 0 -.2rem 0 #d1d9e0 inset;
     }
 
     .life-desc>p {
@@ -197,7 +157,7 @@
     content>ol,
     content>ul,
     section>ol {
-        @apply pl-16 my-2;
+        @apply pl-18 <lg: pl-14 my-2;
     }
 
     content hr {
@@ -229,7 +189,7 @@
     }
 
     content {
-        @apply leading-relaxed;
+        @apply leading-7 mt-2 block;
     }
 
     .card-title {
@@ -247,6 +207,7 @@
 
     #search-results b {
         color: var(--code) !important;
+        font-weight: 500;
         font-style: unset;
         font-weight: unset;
     }
@@ -259,13 +220,6 @@
 
     progress::-webkit-progress-value {
         background: rgba(255, 255, 255, 0.7);
-    }
-
-    #summary {
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
     }
 
     ul ul {
@@ -281,7 +235,7 @@
     }
 
     content li {
-        @apply pr-6 my-2;
+        @apply pr-8 my-2;
     }
 
 
@@ -302,17 +256,29 @@
     }
 
     content pre {
-        @apply pl-6 my-4 font-code;
+        @apply pl-8 my-4 font-code <lg: pl-4;
     }
 
     content code {
         @apply mx-1 px-1 rounded text-[0.9375rem] bg-[#f0f3f3] dark: bg-[#2f1e2e];
     }
 
+    aside>div,
+    .card-outline {
+        outline: solid 1px #f0f0f4;
+    }
 
+    .dark aside>div,
+    .dark .card-outline {
+        outline: solid 1px #6161619c;
+    }
 
     content .highlight {
         @apply my-6;
+    }
+
+    content .highlight {
+        @apply relative;
     }
 
 
@@ -323,9 +289,6 @@
         padding: unset;
     }
 
-    .highlight {
-        @apply relative;
-    }
 
     .card-text {
         text-shadow: 1px 1px 2px #444
