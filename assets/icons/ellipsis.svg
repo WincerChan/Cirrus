@@ -1,6 +1,18 @@
-<svg class="absolute right-0 bottom-5px text-[#fffffd] dark:text-[#2e2e2e]" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="15" height="15" fill="currentColor"/>
-<circle cx="7.5" cy="7.5" r="1" fill="black"/>
-<circle cx="11.5" cy="7.5" r="1" fill="black"/>
-<circle cx="3.5" cy="7.5" r="1" fill="black"/>
+<svg class="absolute right-0 bottom-5px text-[#fffffd] dark:text-[#2e2e2e]" width="15" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style type="text/css">
+<![CDATA[
+    .dot {
+         fill: #392f41;
+       }
+    .dark .dot {
+        fill: #f0f0f4
+    }
+]]>
+</style>
+</defs>
+<rect width="15" height="15" fill="currentColor" stroke="currentColor"/>
+<circle class="dot" cx="7.5" cy="7.5" r="1" />
+<circle class="dot" cx="11.5" cy="7.5" r="1"/>
+<circle class="dot" cx="3.5" cy="7.5" r="1"/>
 </svg>
