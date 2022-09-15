@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{ $all := where site.RegularPages ".Section" "in" site.Params.mainSections }}
 {{ $published := where site.RegularPages "Params.published" "!=" false }}
-{{ $paginate := .Paginate ($all | intersect $published) }}
-{{ range $index, $element := $paginate.Pages }}
+{{ $home := first 5 ($all | intersect $published) }}
+{{ range $index, $element := $home }}
 {{ if eq $index 0 }}
 {{ partial "core/card-main" $element }}
 <p class="text-xl font-maintext font-medium leading-loose text-[#665757] dark:text-[#f0f0f4] mt-12 mb-6 <sm:px-4">近期文章
