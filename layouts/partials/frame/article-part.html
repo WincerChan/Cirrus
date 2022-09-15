@@ -1,10 +1,11 @@
-<div class="bg-[#fffffd] dark:bg-[#2e2e2e] card-outline overflow-hidden">
+<div class="bg-[#fffffd] dark:bg-[#2e2e2e] card-outline rounded overflow-hidden">
     <style>
         .cover {
             background-image: url("{{ .Params.cover }}");
         }
     </style>
-    <div id="article-cover" class="flex cover content-end flex-wrap bg-cover bg-center 2xl:h-80 h-72 box-border mb-3">
+    <div id="article-cover"
+        class="flex rounded cover content-end flex-wrap bg-cover bg-center 2xl:h-80 h-72 box-border mb-3">
     </div>
     {{ partial "core/main-text" . }}
 

@@ -29,7 +29,7 @@
     <link rel="preload stylesheet" href="{{ $mode.Permalink }}" as="style">
     <link href="/windi.css" rel="preload stylesheet" as="style">
     {{ else }}
-    <link rel="preload" as="script" integrity="{{ .Site.Params.StaticVendor.jsSRI }}"
+    <link rel="preload" as="script"
         href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">
     <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css"
         rel="preload stylesheet" as="style">
