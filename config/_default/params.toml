@@ -13,6 +13,7 @@ backendAPI = "https://api.itswincer.com/"
     version = "wir@2.0.5"
     jsSRI = "sha256-PYDwV26rE53u/ak9Lg6MS59Jqmd99cPRZC4j3/R/KCc="
 
+
 [Sitemap]
     changeFreq = "weekly"
     priority = "0.6"
