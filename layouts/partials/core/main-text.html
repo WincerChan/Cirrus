@@ -18,7 +18,7 @@
         <h1
             class="dark:text-[#f8fafc]  text-[#392f41] dark:text-[#f0f0f4] text-size-[1.75rem] leading-8 font-medium px-8 <lg:px-4 py-4">
             <span
-                class="text-size-[1.75rem] <lg:text-2xl <md:text-size-[22px] text-[rgb(0,0,0)] dark:text-light-300 text-opacity-50 dark:text-opacity-70">
+                class="text-size-[1.75rem] <lg:text-2xl <md:text-size-[22px] text-[rgb(0,0,0)] dark:text-light-300 text-opacity-70 dark:text-opacity-80">
                 {{ .Title }}</span>
             {{ if in .Site.Params.mainSections .Type }}
             <sup class=" text-sm text-[#44403c] dark:text-[#d6d3d1]"> {{ $wordcount }} Words</sup>
@@ -26,7 +26,7 @@
         </h1>
         {{ with .Params.Subtitle }}
         <h5
-            class=" text-[rgb(0,0,0)] dark:text-light-500 text-opacity-40 dark:text-opacity-50 text-2xl <lg:text-size-[22px] <md:text-size-[20px] font-medium pb-3 pt-1 leading-8 px-8 <lg:px-4 mb-3">
+            class=" text-[rgb(0,0,0)] dark:text-light-500 text-opacity-60 dark:text-opacity-60 text-2xl <lg:text-size-[22px] <md:text-size-[20px] font-medium pb-3 pt-1 leading-8 px-8 <lg:px-4 mb-3">
             <span>{{ . }}</span>
         </h5>
         {{ end }}
