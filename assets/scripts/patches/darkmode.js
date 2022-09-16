@@ -31,6 +31,16 @@ const invertDarkModeObj = {
     'light': 'dark'
 }
 
+const hideSVG = (currentSetting) => {
+    if (currentSetting === "dark") {
+        document.getElementById("moon").style.display = 'none'
+        document.getElementById("sun").style.display = ''
+    } else {
+        document.getElementById("sun").style.display = 'none'
+        document.getElementById("moon").style.display = ''
+    }
+}
+
 const toggleCustomDarkMode = () => {
     let currentSetting = getLS('theme');
 
@@ -42,7 +52,7 @@ const toggleCustomDarkMode = () => {
         return;
     }
     setLS('theme', currentSetting);
-
+    hideSVG(currentSetting)
     return currentSetting;
 }
 
@@ -63,7 +73,9 @@ const patchDarkmode = () => {
 }
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
-    document.documentElement.setAttribute('class', e.matches ? 'dark' : 'light');
+    const curr = e.matches ? 'dark' : 'light'
+    hideSVG(curr)
+    document.documentElement.setAttribute('class', curr);
 })
 
 export default patchDarkmode;
