@@ -48,9 +48,11 @@
     }
 
 
-    body {
+    body,
+    html {
         /* windi-zinc */
         @apply bg-[#FFFEFF] dark: bg-[#19191a] font-maintext transition ease-linear duration-300;
+        scroll-behavior: smooth
     }
 
     li span {
@@ -85,7 +87,7 @@
         display: block;
         height: 2px;
         width: 3rem;
-        background: #757575;
+        @apply bg-[#808080] dark: bg-[#e1e1e1];
     }
 
 
@@ -142,8 +144,14 @@
         box-shadow: 0 -.5rem 0 #d1d9e0 inset;
     }
 
-    #avatar {
+    #avatar,
+    .link,
+    .link:hover {
         box-shadow: #39526063 0px 0px 3px;
+    }
+
+    .link::after {
+        display: none !important;
     }
 
     .dark #avatar {
@@ -169,7 +177,7 @@
     }
 
     content hr {
-        @apply seprator m-6 w-24 border-none;
+        @apply seprator m-8 <lg: mx-4 w-24 border-none;
     }
 
 
