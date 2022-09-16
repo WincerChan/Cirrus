@@ -2,9 +2,12 @@ import { registerRoute } from "workbox-routing";
 import { CacheFirst, StaleWhileRevalidate, NetworkFirst } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
 
+registerRoute(({ request }) => request.url.startsWith('https://api'), new StaleWhileRevalidate({
+    cacheName: "api"
+}))
 
 registerRoute(
-    ({ request }) => (request.destination === "script" && !request.url.startsWith('https://api')) || request.destination === 'style',
+    ({ request }) => request.destination === "script" || request.destination === 'style',
     new StaleWhileRevalidate({
         cacheName: 'static-cache'
     })
