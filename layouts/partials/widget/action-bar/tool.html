@@ -2,8 +2,11 @@
     <label for="checkbox"
         class="theme-switch cursor-pointer flex items-center px-3 <sm:px-2.5 hover:text-[#065279] dark:hover:text-[#ffa631] hover:bg-[#f0f0f4] dark:hover:bg-[#464646]">
         <input type="checkbox" id="checkbox" class="hidden">
-        <span class="slider round">
-            {{ (resources.Get "icons/light.svg").Content | safeHTML }}
+        <span class="slider round" id="sun">
+            {{ (resources.Get "icons/sun.svg").Content | safeHTML }}
+        </span>
+        <span class="slider round" id="moon">
+            {{ (resources.Get "icons/moon.svg").Content | safeHTML }}
         </span>
     </label>
     <a class="flex items-center px-3 <sm:px-2.5 hover:text-[#065279] dark:hover:text-[#ffa631] hover:bg-[#f0f0f4] dark:hover:bg-[#464646]"

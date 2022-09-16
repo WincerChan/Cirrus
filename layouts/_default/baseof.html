@@ -5,7 +5,7 @@
 {{$.Scratch.Set "svelte" true}}
 
 <body
-    class="antialiased dark:text-[#f0f0f4] text-[#392f41] font-maintext transition flex ease-linear duration-300 h-[100vh] flex-col">
+    class="antialiased dark:text-[#f0f0f4] text-[#392f41] font-maintext transition flex ease-linear duration-300 flex-col">
     {{ partial "frame/header-part" . }}
     <div class="mx-auto 2xl:w-320 xl:w-270 lg:w-240 w-full <lg:px-6 <sm:px-0">
         <div class="flex mx-auto lg:space-x-6 md:space-x-4 pt-10 <md:pt-8 <md:flex-col">
@@ -22,8 +22,14 @@
     {{ partial "footer/back-top.html" . }}
 </body>
 {{ if .Site.IsServer }}
-<script async crossorigin defer src="/bundle.js"></script>
+<script>
+    var usedLaterScript = document.createElement('script');
+    usedLaterScript.src = '/bundle.js';
+    document.body.appendChild(usedLaterScript);
+</script>
 {{ else }}
+<script async defer data-website-id="73f9fff9-4107-47da-a145-22316f69fbf0"
+    src="https://api.itswincer.com/react/route.js"></script>
 <script>
     var usedLaterScript = document.createElement('script');
     usedLaterScript.src = 'https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js';

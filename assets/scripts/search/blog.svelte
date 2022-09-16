@@ -1,6 +1,5 @@
 <script context="module">
     let url = new URL(`${window.backendAPI}/blog-search/v1/`);
-    console.log(window.backendAPI);
 </script>
 
 <script lang="ts">

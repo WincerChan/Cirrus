@@ -4,7 +4,7 @@ import { ExpirationPlugin } from "workbox-expiration";
 
 
 registerRoute(
-    ({ request }) => request.destination === "script" || request.destination === 'style',
+    ({ request }) => (request.destination === "script" && !request.url.startsWith('https://api')) || request.destination === 'style',
     new StaleWhileRevalidate({
         cacheName: 'static-cache'
     })

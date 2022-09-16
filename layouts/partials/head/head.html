@@ -10,13 +10,11 @@
             const e = document.documentElement,
                 t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
                 n = localStorage.getItem("theme");
-            // n === t ? a() : n ? e.setAttribute("class", n) : (e.removeAttribute("class"), localStorage.removeItem("theme"))
             if (n === t) {
                 localStorage.removeItem("theme")
                 e.setAttribute("class", n)
             }
             if (n === null) {
-                console.log("whhh")
                 e.setAttribute("class", t)
             } else if (n !== t) {
                 e.setAttribute("class", n)
@@ -50,7 +48,8 @@
     {{ with site.Author.name }}
     <meta name="author" content="{{ . }}" />{{ end }}
     <meta content="on" http-equiv="x-dns-prefetch-control">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link href="https://api.itswincer.com" rel="preconnect" crossorigin>
+    <link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
     <link href="{{ .Permalink }}" rel="canonical" />
     <link rel="manifest" href="/manifest.webmanifest" />
     {{ if .Params.Mathrender }}

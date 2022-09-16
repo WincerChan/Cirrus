@@ -42,7 +42,6 @@ const toggleCustomDarkMode = () => {
         return;
     }
     setLS('theme', currentSetting);
-
     return currentSetting;
 }
 
@@ -63,7 +62,8 @@ const patchDarkmode = () => {
 }
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
-    document.documentElement.setAttribute('class', e.matches ? 'dark' : 'light');
+    const curr = e.matches ? 'dark' : 'light'
+    document.documentElement.setAttribute('class', curr);
 })
 
 export default patchDarkmode;
