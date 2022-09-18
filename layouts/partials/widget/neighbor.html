@@ -3,7 +3,7 @@
     <a href="{{ .RelPermalink }}"
         class="mr-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center">
         {{ (resources.Get "icons/left.svg").Content | safeHTML}}
-        <span class="text-lg ml-4">
+        <span class="text-lg ml-3">
             {{ .Title }}
         </span>
     </a>
@@ -11,7 +11,7 @@
     {{ with .PrevInSection }}
     <a href="{{ .RelPermalink }}"
         class="ml-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center">
-        <span class="text-lg mr-4">{{ .Title }}
+        <span class="text-lg mr-3">{{ .Title }}
         </span>
         {{ (resources.Get "icons/right.svg").Content | safeHTML}}
     </a>
