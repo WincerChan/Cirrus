@@ -10,7 +10,7 @@
             </h2>
         </a>
         {{ with .Params.Subtitle }}
-        <h3 class="text-xl font-maintext font-medium leading-8 xl:py-1 <lg:py-1 text-[#665757] dark:text-[#f0f0f4]">
+        <h3 class="text-xl font-maintext font-medium leading-8 xl:py-1 <lg:py-1 text-[#665757] dark:text-[#e9f1f6]">
             {{ . }}
         </h3>
         {{ end }}
@@ -18,7 +18,7 @@
             {{ .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify}}
                 {{ (resources.Get "icons/ellipsis.svg").Content | safeHTML}}
         </p>
-        <extra class="mt-auto 2xl:py-2 py-1  leading-5 text-[#665757] dark:text-[#f0f0f4] justify-between flex">
+        <extra class="mt-auto 2xl:py-2 py-1  leading-5 text-[#665757] dark:text-[#e9f1f6] justify-between flex">
             {{ partial "widget/date-category.html" . }}
             <a href="{{ .RelPermalink }}">继续阅读</a>
         </extra>
