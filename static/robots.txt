@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://blog.itswincer.com/sitemap.xml
