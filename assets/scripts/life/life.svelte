@@ -19,8 +19,8 @@
     $: update(element);
 </script>
 
-<div class="px-6">
-    <div class="seprator my-5" />
+<div class="px-6 <lg:px-2">
+    <div class="seprator mb-6 mx-2" />
     <div class="flex justify-center w-full mb-10">
         <p class="text-2xl ">
             我看过的书籍和电影（{new Date().getFullYear()}）
@@ -29,7 +29,7 @@
     <div class="flex flex-wrap mb-4 items-end">
         {#await promise}
             {#each placeholder as l}
-                <div class="px-2 sm:w-1/5 rounded-md w-1/4 pb-6">
+                <div class="px-2 sm:w-1/5 rounded w-1/4 pb-6">
                     <figure
                         class="text-center text-sm truncate text-[#3F3F46] dark:text-[#a8a29e]  bg-[#fffffd] dark:bg-[#2e2e2e] bg-[#fffffd] dark:bg-[#2e2e2e]  transition ease-linear duration-300 rounded"
                     >
@@ -71,6 +71,10 @@
                 </div>
             {/each}
             <span bind:this={element} />
+        {:catch error}
+            <p class="mx-2 mb-6 text-[#ed5736]">
+                载入失败，错误原因：{error.message}，控制台也许有更详细的信息。
+            </p>
         {/await}
     </div>
 </div>

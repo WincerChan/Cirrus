@@ -31,7 +31,7 @@
         <button
             id="search-button"
             on:click={fetchResults}
-            class="flex-none border-1 border-[#425066] rounded-full ml-1 px-6 h-10 flex items-center"
+            class="flex-none border-1 border-[#425066] dark:border-[#c2ccd0] rounded-full ml-1 px-6 h-10 flex items-center"
         >
             <p class="text-lg">搜索</p>
         </button>
@@ -108,7 +108,7 @@
                     {/each}
                 </div>
                 <div
-                    class="mt-16 flex justify-between text-[#3F3F46] dark:text-[#a8a29e]  uppercase font-headline"
+                    class="my-6 flex justify-between text-[#3F3F46] dark:text-[#a8a29e]  uppercase font-headline"
                 >
                     <div>
                         {#if Params.page > 1}
@@ -169,6 +169,10 @@
                     </div>
                 </div>
             {/if}
+        {:catch error}
+            <p class="mx-2 mb-6 text-[#ed5736]">
+                载入失败，错误原因：{error.message}，控制台也许有更详细的信息。
+            </p>
         {/await}
     {/if}
 </div>
