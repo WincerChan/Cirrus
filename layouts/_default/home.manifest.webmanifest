@@ -1,28 +1,12 @@
 {
-    "name": {
-        { site.Title | htmlUnescape | jsonify
-        }
-    },
+    "name": {{ site.Title | htmlUnescape | jsonify }},
     "short_name": "Wincer",
-    {
-        {with site.Params.description
-        }
-    }"description": "{{htmlEscape site.Params.description }}",
-    {
-        {end
-        }
-    }
-    {
-        { with site.LanguageCode
-        }
-    }"lang": {
-        { . | jsonify
-        }
-    },
-    {
-        { end
-        }
-    } 
+    {{ with site.Params.description }}
+    "description": "{{ htmlEscape site.Params.description }}",
+    {{ end }}
+    {{ with site.LanguageCode}}
+    "lang": {{ . | jsonify }},
+    {{ end }} 
     "start_url": "/",
     "display": "fullscreen",
     "orientation": "natural",
