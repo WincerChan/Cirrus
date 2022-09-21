@@ -1,12 +1,12 @@
-<ul class="flex h-14 <sm:h-12">
+<div class="flex h-14 <sm:h-12">
     {{ $currentNode := . }}
     {{ range .Site.Menus.main }}
     {{ $isCurrent := eq (.URL | absLangURL) ($.Page.Permalink) }}
     <a href="{{ .URL }}"
         class="h-full hover:bg-[#f0f0f4] dark:hover:bg-[#464646] hover:text-[#065279] px-3 <sm:px-2.5 transition ease-linear duration-50 dark:hover:text-[#ffa631]">
-        <li class="h-full flex items-center">
+        <div class="h-full flex items-center">
             <span class="items-center">{{ .Name }}</span>
-        </li>
+        </div>
     </a>
     {{ end }}
-</ul>
+</div>
