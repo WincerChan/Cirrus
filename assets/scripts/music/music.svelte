@@ -73,7 +73,7 @@
 </script>
 
 <div
-    class="leading-5 h-20 mx-6 mb-6 flex-col flex relative text-white shadow-lg"
+    class="leading-5 h-20 mx-8 <lg:mx-4 mt-8 flex-col flex relative text-white shadow-lg"
 >
     <div
         style="background: rgba(0, 0, 0, 0) linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.8)) repeat scroll 0% 0%"
@@ -154,7 +154,7 @@
                                 />
                             {:then music_info}
                                 <div
-                                    style="line-height: 19px;"
+                                    style="line-height: 22px;"
                                     class="font-semibold overflow-hidden overflow-ellipsis text-white"
                                 >
                                     <span dir="auto"
@@ -184,7 +184,7 @@
                                 src={music_link}
                             />
                             <div
-                                class="m-0 w-full cursor-auto flex-grow py-2 relative flex items-center px-3"
+                                class="m-0 w-full cursor-auto flex-grow pt-2 pb-1 relative flex items-center px-3"
                             >
                                 {#await promise}
                                     <div
@@ -218,7 +218,7 @@
                                             />
                                             <div
                                                 bind:this={s.player_thumb}
-                                                class="bottom-4 h-[10px] w-[10px] bg-white hidden -left-1 rounded-full relative"
+                                                class="bottom-[17px] h-[10px] w-[10px] z-10 bg-white hidden -left-1 rounded-full relative"
                                             />
                                         </div>
                                     </div>
