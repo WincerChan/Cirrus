@@ -243,7 +243,10 @@
                                             />
                                         </svg>
                                     </div>
-                                    <div class="flex font-code">
+                                    <div
+                                        style="font-feature-settings: 'tnum'"
+                                        class="flex"
+                                    >
                                         <span class="sm:block hidden"
                                             >{s.displayed(currentTime)}</span
                                         >
