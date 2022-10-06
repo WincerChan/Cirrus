@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ $all := where site.RegularPages ".Section" "in" site.Params.mainSections }}
 {{ $published := where site.RegularPages "Params.published" "!=" false }}
-{{ range $index, $element := first 5 ($all | intersect $published) }}
+{{ range $index, $element := first 4 ($all | intersect $published) }}
 {{ if eq $index 0 }}
 {{ partial "core/card-main" $element }}
 <p class="text-xl font-maintext font-medium leading-loose text-[#665757] dark:text-[#e9f1f6] mt-12 mb-6 <sm:px-4">近期文章

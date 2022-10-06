@@ -2,9 +2,9 @@
 
 <div class="pt-4 w-full flex flex-col items-start">
     <div class="mb-4">
-        <span class="text-base text-[#41555d] dark:text-[#b5b5b5] mb-4">推荐</span>
+        <span class="text-base font-headline text-[#41555d] dark:text-[#b5b5b5] mb-4">推荐</span>
     </div>
-    <div class="flex-wrap flex text-[#392f41] dark:text-[#f0f0f4] leading-9 mb-6 pb-1 font-button">
+    <div class="flex-wrap flex text-[#392f41] dark:text-[#f0f0f4] leading-9 mb-6 pb-1">
         {{ $.Scratch.Set "tags" (slice) }}
         {{ partial "widget/right-side/site-tags" . }}
 
