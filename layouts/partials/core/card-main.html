@@ -5,12 +5,12 @@
     <div class="2xl:px-6 2xl:py-4 xl:px-4 xl:py-3 p-4 flex flex-col text-[0.9375rem] 2xl:h-80 xl:h-72 lg:h-64 <lg:h-72">
         <a href="{{ .RelPermalink }}">
             <h2
-                class="text-2xl <lg:leading-9 font-maintext font-medium leading-11  text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631] truncate">
+                class="text-2xl <lg:leading-9 font-headline font-medium leading-11  text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631] truncate">
                 {{ .Params.Title }}
             </h2>
         </a>
         {{ with .Params.Subtitle }}
-        <h3 class="text-xl font-maintext font-medium leading-8 xl:py-1 <lg:py-1 text-[#665757] dark:text-[#e9f1f6]">
+        <h3 class="text-xl font-headline font-medium leading-8 xl:py-1 <lg:py-1 text-[#665757] dark:text-[#e9f1f6]">
             {{ . }}
         </h3>
         {{ end }}
