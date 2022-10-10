@@ -1,10 +1,10 @@
 const { Processor } = require('windicss/lib')
-import { HTMLParser, CSSParser } from 'windicss/utils/parser'
-import { StyleSheet as Ss } from 'windicss/utils/style'
-import { promisify } from "util";
+const { HTMLParser, CSSParser } = require('windicss/utils/parser')
+const { StyleSheet: Ss } = require('windicss/utils/style')
+const { promisify } = require("util");
 
-import fs from 'fs'
-import glob from 'glob'
+const fs = require('fs')
+const glob = require('glob')
 
 
 const MATCH_CLASSES_FILES = '{layouts,assets}/**/*.{html,svg,svelte}'
@@ -27,7 +27,7 @@ const restoreCompiledFiles = async () => {
     fs.rmSync('./windi.js')
 }
 
-const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles: { [x: string]: Ss }) => {
+const replaceWithCompiledFiles = (fileHTMLs, fileStyles) => {
     for (const file in fileHTMLs) {
         allWriteFiles.push(renameFilePromise(file, `${file}.cw`)
             .then(() =>
@@ -43,12 +43,12 @@ const replaceWithCompiledFiles = (fileHTMLs: { [x: string]: string }, fileStyles
     )
 }
 
-const processMatchedFiles = async (replaceSource: boolean) => {
+const processMatchedFiles = async (replaceSource) => {
     let matchedFiles = await glob.sync(MATCH_CLASSES_FILES),
         fileStyles = {},
         fileHTMLs = {};
 
-    matchedFiles.forEach((file: string) => {
+    matchedFiles.forEach((file) => {
         if (file == MATCH_STYLES_FILE) return
         let content = fs.readFileSync(file).toString();
         let r = extractClasses(content)
@@ -60,7 +60,7 @@ const processMatchedFiles = async (replaceSource: boolean) => {
     await replaceWithCompiledFiles(fileHTMLs, fileStyles);
 }
 
-const extractClasses = (html: string) => {
+const extractClasses = (html) => {
     const processor = new Processor()
     const parser = new HTMLParser(html)
     const preflightSheet = processor.preflight(html)
@@ -87,7 +87,7 @@ const extractClasses = (html: string) => {
     }
 }
 
-const extractStyles = (html: string) => {
+const extractStyles = (html) => {
     const processor = new Processor()
     const content = html.match(/(?<=<style[\r\n]*\s*lang\s?=\s?['"]windi["']>)[\s\S]*(?=<\/style>)/);
     const css = html.slice(content.index, content.index + content[0].length)

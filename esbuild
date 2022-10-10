@@ -5,28 +5,12 @@ const sveltePlugin = require("esbuild-svelte");
 const sveltePreprocess = require("svelte-preprocess");
 
 const isDev = process.argv[2] === "--dev";
-const isCompileWindi = process.argv[2] === "--windi";
 const isCompileAsset = process.argv[2] === "--asset";
 
 const outputPrefix = isDev ? "static" : "_blogs/wir";
 let callback;
 
-// 1. extract windi class and replace source html
-const compileWindi = async () => {
-    if (isCompileWindi || isCompileAsset) {
-        return esbuild.build({
-            entryPoints: ["./windi.ts"],
-            platform: 'node',
-            format: "cjs",
-            outfile: './windi.js',
-        })
-            .catch(() => process.exit(1));
-    } else {
-        return Promise.resolve()
-    }
-}
 const concatWindiCSS = async () => {
-    await compileWindi();
     const w = require("./windi.js");
     if (!isDev) {
         await w.processMatchedFiles()
