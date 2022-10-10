@@ -8,7 +8,7 @@
     {{ $scratch.Add "wordcount" .WordCount }}
     {{ end }}
     <div class="mb-4">
-        <span class="text-base text-[#41555d] dark:text-[#b5b5b5] mb-4">统计</span>
+        <span class="text-base text-[#41555d] dark:text-[#b5b5b5] mb-4 font-medium">统计</span>
     </div>
     <div class="flex justify-between w-full mt-4">
         {{ partial "widget/right-side/single-stat" (dict "number" (len $normal) "name" "文章") }}
