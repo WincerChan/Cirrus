@@ -1,15 +1,14 @@
-<div
-    class="flex flex-shrink-0 rounded <lg:w-full my-3 card-outline bg-[#fffffd] dark:bg-[#2e2e2e] w-[calc(100%/2-0.75rem)]">
-    <div class="lazy flex-none rounded lg:w-25 lg:h-25 w-24 h-24 bg-cover bg-center" data-src="{{ .Params.Cover }}">
+<div class="flex-shrink-0 <lg:w-full my-3 w-[calc(100%/3-1rem)] text-[0.9375rem]">
+    <div class="lazy flex-none rounded w-full border mb-6 border-[#2e2e2e] lg:h-54 h-48 bg-cover bg-center"
+        data-src="{{ .Params.Cover }}">
     </div>
-    <div
-        class="flex-grow flex flex-col justify-between xl:px-4 pt-2 pb-3 px-3 text-[0.9375rem] text-[#4a4040] dark:text-[#e9f1f6]">
+    {{ partial "widget/date-category.html" . }}
+    <div class="flex-grow flex flex-col justify-between text-[0.9375rem] mt-4 text-[#665757] dark:text-[#e9f1f6]">
         <a href="{{ .RelPermalink }}">
             <h2
-                class="text-lg font-maintext font-medium text-[#392f41] dark:text-[#f0f0f4] hover:text-[#065279] dark:hover:text-[#ffa631] overflow-hidden max-h-14">
+                class="text-lg font-headline  text-[#392f41] dark:text-[#f0f0f4] hover:text-[#065279] dark:hover:text-[#ffa631] overflow-hidden max-h-14">
                 {{ .Params.Title }}
             </h2>
         </a>
-        {{ partial "widget/date-category.html" . }}
     </div>
 </div>
