@@ -5,7 +5,8 @@
     </div>
     {{ range .Site.Taxonomies.category }}
 
-    <a class="flex px-3 leading-9 justify-between" href={{ .Page.Permalink }}>
+    <a class="flex px-3 border rounded leading-9 justify-between"
+     href={{ .Page.Permalink }}>
         <span class="">
             {{ .Page.Title }}</span>
         <span>{{ .Count }}</span>
