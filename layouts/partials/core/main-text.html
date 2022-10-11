@@ -1,7 +1,7 @@
 <article class="pt-2">
     <div style="background-size: cover;
     background-position: center;" data-src="{{ .Params.Cover }}"
-        class="article-meta text-[#3F3F46] lazy dark:text-[#c9c9c3] px-8 <lg:px-4 bg-clip-text backdrop-filter backdrop-blur-lg">
+        class="article-meta <sm:px-4 text-[#3F3F46] lazy dark:text-[#c9c9c3] bg-clip-text backdrop-filter backdrop-blur-lg">
 
         {{ $date := .Date }}
         {{ $wordcount := .WordCount }}
@@ -18,8 +18,7 @@
         {{ end }}
         <h1
             class="dark:text-[#f8fafc] text-[#392f41] text-size-[1.75rem] font-headline leading-8 font-medium py-4 <lg:pt-3">
-            <span
-                class="text-size-[1.75rem] <lg:text-2xl <md:text-size-[22px] text-[rgb(0,0,0)] dark:text-light-300 text-opacity-60">
+            <span class="text-size-[1.75rem] <lg:text-2xl text-[rgb(0,0,0)] dark:text-light-300 text-opacity-60">
                 {{ .Title }}</span>
             {{ if in .Site.Params.mainSections .Type }}
             <sup class=" text-sm text-[#44403c] dark:text-[#d6d3d1]"> {{ $wordcount }} Words</sup>
@@ -27,7 +26,7 @@
         </h1>
         {{ with .Params.Subtitle }}
         <p
-            class="text-[rgb(0,0,0)] dark:text-light-500 font-headline text-opacity-60 text-2xl <lg:text-size-[22px] <md:text-size-[20px] font-medium pb-3 pt-1 leading-8 mb-3">
+            class="text-[rgb(0,0,0)] dark:text-light-500 font-headline text-opacity-60 text-2xl <lg:text-[21px] font-medium pb-3 pt-1 leading-8 mb-3">
             <span>{{ . }}</span>
         </p>
         {{ end }}
