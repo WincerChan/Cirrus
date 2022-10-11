@@ -118,7 +118,7 @@
                                     Params.page--;
                                     fetchResults();
                                 }}
-                                class="mr-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center"
+                                class="mr-auto my-2 hover:underline hover:underline-1px hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,7 @@
                                     Params.page++;
                                     fetchResults();
                                 }}
-                                class="ml-auto my-2 hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center"
+                                class="ml-auto my-2 hover:underline hover:underline-1px hover:text-[#065279] dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center"
                             >
                                 <span class="text-lg mr-4"> Next </span>
                                 <svg
