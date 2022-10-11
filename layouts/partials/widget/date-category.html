@@ -5,7 +5,8 @@
     {{ $category := .Params.Category }}
     {{ with $.Site.GetPage (printf "/category/%s" $category) }}
     <div class="bg-[#4a4a4a] dark:bg-[#b5b5b5] h-0.5 w-0.5 mx-4 rounded-full"></div>
-    <a href="{{ .Permalink }}" title="{{ $category }}" class="hover:text-[#065279] dark:hover:text-[#ffa631]">
+    <a href="{{ .Permalink }}" title="{{ $category }}"
+        class="hover:text-[#065279] hover:underline-1px hover:underline dark:hover:text-[#ffa631]">
         {{ $category }}
     </a>
     {{ end }}
