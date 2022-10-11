@@ -10,7 +10,7 @@ disqusUserName = "wincer"
 backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
-    version = "wir@2.1.9"
+    version = "wir@2.2.0"
 
 
 [Sitemap]
