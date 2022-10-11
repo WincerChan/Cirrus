@@ -71,18 +71,13 @@
         @apply border border-transparent;
     }
 
-    #tags a:hover {
-        @apply transition duration-200 ease-linear bg-[#f0f0f4] dark: bg-[#19191a] rounded-full cursor-pointer;
-    }
-
     #tags {
         scrollbar-width: none;
     }
 
-    aside a:hover {
-        /* @apply transition duration-200 ease-linear cursor-pointer rounded-full border border-[#DCDCDC] border-opacity-80; */
-        /* @apply transition duration-200 ease-linear cursor-pointer text-[#065279]; */
-        @apply transition duration-200 ease-linear bg-[#f0f0f4] dark: bg-[#19191a] rounded-full cursor-pointer;
+    aside a:hover,
+    #tags a:hover {
+        @apply transition duration-200 ease-linear underline text-[#065279] dark: text-[#ffa631] underline-1px cursor-pointer;
     }
 
     .label sup {
@@ -107,7 +102,8 @@
     article h2,
     article h3,
     article h4 {
-        @apply pl-7 <lg: pl-3 pr-8 text-2xl font-medium my-6 border-maintext border-l-4 leading-loose;
+        @apply pl-5 <sm: pl-3 pr-8 text-[1.4rem] font-medium my-6 border-l-4 leading-loose;
+        font-family: 华文黑体, Microsoft YaHei, 微软雅黑, Heiti, 黑体, "sans-serif";
     }
 
     article h3 {
@@ -142,7 +138,7 @@
     }
 
     content>p {
-        @apply px-8 mb-3 <lg: px-4;
+        @apply mb-3 <sm: px-4;
     }
 
     .text-shadow {
@@ -189,11 +185,11 @@
     content>ol,
     content>ul,
     section>ol {
-        @apply pl-18 <lg: pl-14 my-2;
+        @apply pl-10 <lg: pl-14 my-2;
     }
 
     content hr {
-        @apply seprator m-8 <lg: mx-4 w-24 border-none;
+        @apply seprator my-8 <lg: mx-4 w-24 border-none;
     }
 
 
@@ -201,7 +197,7 @@
     content>ol ul,
     content>ul ol,
     content>ul ul {
-        padding-left: 3rem;
+        padding-left: 2rem;
     }
 
     content table {
@@ -289,14 +285,12 @@
         @apply mx-1 px-1 rounded text-[0.9375rem] bg-[#f0f3f3] dark: bg-[#2f1e2e];
     }
 
-    aside>div,
     .card-outline {
-        outline: solid 1px #f0f0f4;
+        outline: solid 1px #2e2e2e;
     }
 
-    .dark aside>div,
     .dark .card-outline {
-        outline: solid 1px #6161619c;
+        outline: solid 1px #f0f0f4;
     }
 
     content .highlight {

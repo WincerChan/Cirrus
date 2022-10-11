@@ -1,10 +1,10 @@
 <div
-    class="text-[#41555d] rounded dark:text-[#b5b5b5] relative leading-7 text-[.9375rem] dark:text-[#d6d3d1] bg-[#f9f9f9] dark:bg-[#444] mt-6  font-headline">
+    class="text-[#41555d] py-8 <sm:px-4 border-t border-b border-[#808080] dark:border-[#e1e1e1] dark:text-[#b5b5b5] relative leading-7 text-[.9375rem] dark:text-[#d6d3d1]  mt-10  font-headline">
     <div class="h-0 w-0 mr-36 ml-auto text-[#e1e1e1] dark:text-[#41555d]">
         {{ (resources.Get "icons/cc.svg").Content | safeHTML }}
     </div>
 
-    <div class="p-8">
+    <div>
         <div>
             <p class=" text-[#161823] dark:text-[#f0f0f4]">{{ .Title }}</p>
             <p>{{ .Permalink }}</p>

@@ -1,5 +1,5 @@
 <h1
-    class="py-4 <sm:px-4 dark:text-[#f8fafc] <lg:text-2xl <md:text-size-[22px]   text-[#392f41] dark:text-[#f0f0f4] text-size-[1.75rem] font-medium w-full text-[#44403c] leading-8">
+    class="py-4 <sm:px-4 dark:text-[#f8fafc] <lg:text-2xl <md:text-size-[22px]  font-headline text-[#392f41] dark:text-[#f0f0f4] text-size-[1.75rem] font-medium w-full text-[#44403c] leading-8">
     {{ .Title }}
 </h1>
 
@@ -24,13 +24,15 @@
 {{ $archives := $pages.GroupByDate "2006" }}
 {{ range $archives }}
 <div id="s-{{ .Key }}">
-    <h2 class="py-4 mt-3 <sm:px-4 leading-8 text-size-[24px] <md:text-size-[20px]" id="{{ .Key }}">
+    <h2 class="py-4 mt-3 <sm:px-4 leading-8 text-size-[24px] font-headline <md:text-size-[20px]" id="{{ .Key }}">
         {{ .Key }}</h2>
-    <p class="mb-5 mt-2 <sm:px-4 leading-8 text-size-[22px] <md:text-size-[18px]">共计 {{ len .Pages }} 篇文章</p>
+    <p class="mb-5 mt-2 <sm:px-4 leading-8 text-size-[22px] font-headline <md:text-size-[18px]">共计 {{ len .Pages }} 篇文章
+    </p>
     <div class="flex flex-wrap justify-between <md:mb-10">
         {{ range .Pages }}
         {{ partial "core/card-small" . }}
         {{ end }}
+        <div class="w-[calc(100%/3-1rem)]"></div>
     </div>
 
 </div>
