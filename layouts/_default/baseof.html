@@ -33,12 +33,13 @@
     usedLaterScript.src = 'https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js';
     document.body.appendChild(usedLaterScript);
 </script>
+<script async defer data-website-id="d50e9a0c-1726-40f7-b622-7bbf7aa989bc"
+    src="https://api.itswincer.com/react/route.js"></script>
+
 {{ end }}
 <script>
     window.disqusUserName = {{ .Site.Params.disqusUserName }}
     window.backendAPI = {{ .Site.Params.backendAPI }}
 </script>
-<script async defer data-website-id="d50e9a0c-1726-40f7-b622-7bbf7aa989bc"
-    src="https://api.itswincer.com/react/route.js"></script>
 
 </html>
