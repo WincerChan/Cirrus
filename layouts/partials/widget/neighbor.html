@@ -1,6 +1,6 @@
 <div class="leading-8 my-6 flex justify-between flex-wrap">
     {{ with .NextInSection }}
-    <a href="{{ .RelPermalink }}"
+    <a href="{{ .RelPermalink }}" data-track="Prev Blog"
         class="mr-auto my-2 hover:text-[#065279] hover:underline-1px hover:underline dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center">
         {{ (resources.Get "icons/left.svg").Content | safeHTML}}
         <span class="text-lg ml-3">
@@ -9,7 +9,7 @@
     </a>
     {{ end }}
     {{ with .PrevInSection }}
-    <a href="{{ .RelPermalink }}"
+    <a href="{{ .RelPermalink }}" data-track="Next Blog"
         class="ml-auto my-2 hover:text-[#065279] hover:underline-1px hover:underline dark:hover:text-[#ffa631] flex transition ease-linear duration-200 inline-flex items-center">
         <span class="text-lg mr-3">{{ .Title }}
         </span>
