@@ -3,7 +3,8 @@
     {{ .Title }}
 </h1>
 
-<div class="flex flex-wrap pl-1 <sm:px-4 pt-4 pb-2 text-base dark:text-[#f8fafc] text-[#392f41]">
+<div id="tags"
+    class="leading-8 text-base lg:pl-1 <sm:px-4 space-x-4 pt-4 pb-2 hyphens-auto whitespace-nowrap flex items-center overflow-x-scroll dark:text-[#f8fafc] text-[#392f41]">
     {{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
     {{ $published := where site.RegularPages "Params.published" "!=" false }}
     {{ $pages := ($all | intersect $published) }}
@@ -12,7 +13,7 @@
     {{ $id := lower (replace $item.Key " " "-") }}
     <div id="xx{{$id}}" data-id="{{ $id }}" data-index="{{ $index }}" data-total="{{ len $archives }}"
         onclick="hideArchives(this)"
-        class="  cursor-pointer bg-[#fffeff] dark:bg-[#2e2e2e] m-2 rounded-full card-outline border-opacity-80  {{ if (eq $index 0) }} card-shadow {{end}}">
+        class="  cursor-pointer bg-[#fffeff] dark:bg-[#2e2e2e] rounded-lg card-outline border-opacity-80  {{ if (eq $index 0) }} card-shadow {{end}}">
         <p class="leading-8 px-5">{{ .Key }}</p>
     </div>
     {{ end }}
