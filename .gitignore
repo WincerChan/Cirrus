@@ -37,3 +37,5 @@ BlogContent/
 static/bundle.js*
 _blogs/
 .hugo_build.lock
+static/*.js
+static/js

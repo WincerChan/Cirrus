@@ -24,7 +24,6 @@ const restoreCompiledFiles = async () => {
             renameFilePromise(`${file}.cw`, file);
         })
     })
-    fs.rmSync('./windi.js')
 }
 
 const replaceWithCompiledFiles = (fileHTMLs, fileStyles) => {
