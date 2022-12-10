@@ -5,7 +5,7 @@
 <script lang="ts">
     import { space } from "svelte/internal";
     import Params from "./params";
-    let promise: Promise<SearchResult> = Promise.resolve({});
+    let promise: Promise<Object> = Promise.resolve({});
     let fake_result = [0, 1, 2, 3];
     let query_params = "";
     let show_result = false;
@@ -33,7 +33,7 @@
             on:click={fetchResults}
             class="flex-none border-1 border-[#425066] dark:border-[#c2ccd0] rounded-full ml-1 px-6 h-10 flex items-center"
         >
-            <p class="text-lg">搜索</p>
+            <p class="text-lg font-button">搜索</p>
         </button>
     </div>
     {#if show_result}
@@ -55,7 +55,9 @@
                 <p class="text-xl text-red-600">{data.err_msg}</p>
             {:else}
                 <div class="mb-4 md:px-2">
-                    <p class="text-sm text-[#404040] dark:text-[#d4d4d4]">
+                    <p
+                        class="text-sm font-headline text-[#404040] dark:text-[#d4d4d4]"
+                    >
                         共搜索到<span
                             id="search-number"
                             class="w-6 text-center inline-block"
@@ -63,15 +65,10 @@
                         >篇文章
                     </p>
                 </div>
-                <style>
-                    b {
-                        font-weight: bold;
-                    }
-                </style>
                 <div class="card-compact-list space-y-6" id="search-results">
                     {#each data.data as item}
                         <div
-                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden font-sans transition ease-linear duration-300 card-outline"
+                            class="bg-[#fffffd] dark:bg-[#2e2e2e] rounded-md overflow-hidden transition ease-linear duration-300 card-outline"
                         >
                             <div class="metadata px-4 py-4">
                                 <a
@@ -81,13 +78,13 @@
                                 >
                                     <h3
                                         id="search-title"
-                                        class=" text-[#392f41] dark:text-[#f3f9f1] truncate w-full text-xl hover:text-[#065279] dark:hover:text-[#ffa631]"
+                                        class=" text-[#392f41] font-headline dark:text-[#f3f9f1] truncate w-full text-xl hover:text-[#065279] dark:hover:text-[#ffa631]"
                                         contenteditable="false"
                                         bind:innerHTML={item.title}
                                     />
                                 </a>
                                 <div
-                                    class="w-full mt-3 text-[#3F3F46] dark:text-[#a8a29e]  font-headline pb-3 sm:pb-0"
+                                    class="w-full mt-3 text-[#3F3F46] dark:text-[#a8a29e] pb-3 sm:pb-0"
                                 >
                                     <p class="text-justify">
                                         <span
@@ -108,7 +105,7 @@
                     {/each}
                 </div>
                 <div
-                    class="my-6 flex justify-between text-[#3F3F46] dark:text-[#a8a29e]  uppercase font-headline"
+                    class="my-6 flex justify-between text-[#3F3F46] dark:text-[#a8a29e] uppercase"
                 >
                     <div>
                         {#if Params.page > 1}

@@ -4,7 +4,7 @@
 </h1>
 
 <div id="tags"
-    class="leading-8 text-base lg:pl-1 <sm:px-4 space-x-4 pt-4 pb-2 hyphens-auto whitespace-nowrap flex items-center overflow-x-scroll dark:text-[#f8fafc] text-[#392f41]">
+    class="leading-8 font-button text-base lg:pl-1 <sm:px-4 space-x-4 pt-4 pb-2 hyphens-auto whitespace-nowrap flex items-center overflow-x-scroll dark:text-[#f8fafc] text-[#392f41]">
     {{ $all := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
     {{ $published := where site.RegularPages "Params.published" "!=" false }}
     {{ $pages := ($all | intersect $published) }}
