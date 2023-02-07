@@ -12,8 +12,7 @@
             <div class="bg-[#4a4a4a] dark:bg-[#b5b5b5] h-0.5 w-0.5 inline-block !mx-3 rounded-full"></div>
             {{ range . }}
             {{ $page := site.GetPage (printf "/tags/%s" .) }}
-            {{ partial "widget/right-side/single-tag" (dict "style" "span" "count" 1 "name" . "link"
-            $page.RelPermalink)}}
+            {{ partial "widget/right-side/single-tag" (dict "style" "span" "count" 1 "name" . "link" $page.RelPermalink)}}
             {{ end }}
         </div>
         {{ end }}

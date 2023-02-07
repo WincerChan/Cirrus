@@ -18,7 +18,7 @@
             {{ . }}
         </h3>
         {{ end }}
-        <p
+        <p id="summary"
             class="leading-7 <lg:leading-7 text-base <lg:text-[0.9375rem] relative <2xl:max-h-[140px] max-h-[168px] mt-2 text-justify overflow-hidden">
             {{ .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify}}
                 {{ (resources.Get "icons/ellipsis.svg").Content | safeHTML}}
