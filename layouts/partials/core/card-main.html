@@ -1,14 +1,15 @@
-<div class="lg:flex <lg:flex-colrounded">
+<div class="lg:flex <lg:flex-col rounded">
     <a href="{{ .RelPermalink }}">
 
-        <div class="lazy flex-none 2xl:w-108 card-outline rounded 2xl:h-76 xl:w-92 xl:h-72 w-56 h-56 lg:h-64 lg:w-72 <lg:w-full <md:h-64 bg-cover bg-center"
+        <div class="lazy flex-none 2xl:w-100 card-outline rounded 2xl:h-76 xl:w-88 xl:h-72 w-56 h-56 lg:h-64 lg:w-72 <lg:w-full <md:h-64 bg-cover bg-center"
             data-src="{{ .Params.Cover }}">
         </div>
     </a>
-    <div class="lg:pl-6 flex flex-col <sm:px-4 text-[0.9375rem] 2xl:h-76 xl:h-72 lg:h-64 <lg:h-72">
+    <div
+        class="lg:pl-6 flex flex-col <sm:px-4 text-[0.9375rem] 2xl:w-[calc(100%-25rem)] xl:w-[calc(100%-23rem)] lg:w-[calc(100%-18rem)] 2xl:h-76 xl:h-72 lg:h-64 <lg:h-72">
         <a href="{{ .RelPermalink }}">
             <h2
-                class="text-[1.65rem] <lg:mt-4 <lg:text-2xl <lg:leading-9 font-headline font-medium leading-11  text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631] truncate">
+                class="text-[1.6rem] <lg:mt-4 <lg:text-[22px] font-headline font-medium leading-relaxed truncate text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631]">
                 {{ .Params.Title }}
             </h2>
         </a>
