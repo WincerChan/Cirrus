@@ -9,13 +9,13 @@
         class="lg:pl-6 flex flex-col <sm:px-4 text-[0.9375rem] 2xl:w-[calc(100%-25rem)] xl:w-[calc(100%-23rem)] lg:w-[calc(100%-18rem)] 2xl:h-76 xl:h-72 lg:h-64 <lg:h-72">
         <a href="{{ .RelPermalink }}">
             <h2
-                class="text-[1.6rem] <lg:mt-4 <lg:text-[22px] font-headline font-medium leading-relaxed truncate text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631]">
+                class="lg:text-[1.6rem] <lg:mt-4 text-[1.4rem] lg:leading-loose font-headline font-medium leading-relaxed truncate text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631]">
                 {{ .Params.Title }}
             </h2>
         </a>
         {{ with .Params.Subtitle }}
         <h3
-            class="text-[1.4rem] <lg:mt-1 <lg:text-xl font-headline font-medium leading-8 xl:py-1 <lg:py-1 text-[#665757] dark:text-[#e9f1f6]">
+            class="lg:text-[1.4rem] <lg:mt-1 text-xl font-headline font-medium leading-relaxed xl:py-1 text-[#665757] dark:text-[#e9f1f6]">
             {{ . }}
         </h3>
         {{ end }}
