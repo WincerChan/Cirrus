@@ -1,11 +1,13 @@
 <div class="rounded-[.75rem]">
     <h1
-        class="uppercase font-headline pb-4 dark:text-[#f8fafc] text-[#392f41] text-size-[1.75rem] leading-[unset] font-meidum w-full text-[#44403c] dark:text-[#d6d3d1] py-2">
-        {{ .Title }}
+        class="uppercase font-headline pb-4  <sm:px-4 dark:text-[#f8fafc] text-[#392f41] text-size-[1.75rem] leading-[unset] font-meidum w-full text-[#44403c] dark:text-[#d6d3d1] py-2">
+        <span class="text-size-[1.75rem] <lg:text-2xl text-[rgb(0,0,0)] dark:text-light-300 text-opacity-60">
+            {{ .Title }}
+        </span>
     </h1>
     <div id="svelte" style="min-height: 40px;" class="mt-4"></div>
     {{$.Scratch.Set "svelte" false}}
-    <article id="search-hint" class="mt-8">
+    <article id="search-hint" class="my-8">
 
         <content>
             <p>支持的搜索格式：</p>

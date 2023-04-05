@@ -19,8 +19,8 @@
     $: if (show_result) document.getElementById("search-hint").hidden = true;
 </script>
 
-<div>
-    <div class="flex mt-4 mb-6 md:mx-0 mx-2">
+<div class="<sm:mx-4">
+    <div class="flex mt-4 mb-6">
         <input
             type="text"
             bind:value={query_params}
@@ -38,7 +38,7 @@
     </div>
     {#if show_result}
         {#await promise}
-            <div class="mb-4 md:px-2">
+            <div class="mb-4">
                 <p
                     class="text-sm text-[#404040] dark:text-[#d4d4d4] w-28 h-5 bg-gray-200 animate-pulse"
                 />
@@ -54,7 +54,7 @@
             {#if data.err_msg}
                 <p class="text-xl text-red-600">{data.err_msg}</p>
             {:else}
-                <div class="mb-4 md:px-2">
+                <div class="mb-4">
                     <p
                         class="text-sm font-headline text-[#404040] dark:text-[#d4d4d4]"
                     >
