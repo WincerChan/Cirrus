@@ -1,30 +1,28 @@
 <div class="lg:flex <lg:flex-col rounded">
     <a href="{{ .RelPermalink }}">
 
-        <div class="lazy flex-none card-outline rounded 2xl:h-76 2xl:w-[22rem] xl:w-80 xl:h-72 w-56 h-56 lg:h-64 lg:w-64 <lg:w-full <md:h-64 bg-cover bg-center"
+        <div class="lazy flex-none card-outline rounded 2xl:h-74 2xl:w-[22rem] xl:w-80 xl:h-72 w-56 h-56 lg:h-64 lg:w-64 <lg:w-full <md:h-64 bg-cover bg-center"
             data-src="{{ .Params.Cover }}">
         </div>
     </a>
-    <div
-        class="lg:pl-6 flex flex-col <sm:px-4 text-[0.9375rem] 2xl:w-[calc(100%-23rem)] xl:w-[calc(100%-20rem)] lg:w-[calc(100%-16rem)] 2xl:h-76 xl:h-72 lg:h-64 <lg:h-72">
+    <div class="lg:pl-6 flex flex-col <sm:px-4 text-[0.9375rem] 2xl:h-74 xl:h-72 lg:h-64 <lg:h-72">
         <a href="{{ .RelPermalink }}">
             <h2 title="{{.Params.Title}}"
-                class="lg:text-[1.6rem] <lg:mt-4 text-[1.4rem] lg:leading-loose font-headline font-medium leading-relaxed truncate text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631]">
+                class="lg:text-[1.7rem] <lg:mt-4 text-[1.4rem] lg:mb-1 font-headline font-medium !leading-relaxed text-[#392f41] dark:text-[#f3f9f1] hover:text-[#065279]  dark:hover:text-[#ffa631]">
                 {{ .Params.Title }}
             </h2>
         </a>
         {{ with .Params.Subtitle }}
         <h3
-            class="lg:text-[1.4rem] <lg:mt-1 text-xl font-headline font-medium leading-relaxed xl:py-1 text-[#665757] dark:text-[#e9f1f6]">
+            class="lg:text-[1.4rem] my-1 text-xl font-headline font-medium leading-relaxed xl:py-1 text-[#665757] dark:text-[#e9f1f6]">
             {{ . }}
         </h3>
         {{ end }}
         <p id="summary"
             class="leading-7 <lg:leading-7 text-base <lg:text-[0.9375rem] relative <2xl:max-h-[140px] max-h-[168px] mt-2 text-justify overflow-hidden">
             {{ .Summary | replaceRE "(?m)(?s:<(style|script).*(style|script)>)" "" | plainify}}
-                {{ (resources.Get "icons/ellipsis.svg").Content | safeHTML}}
         </p>
-        <extra class="mt-auto 2xl:py-2 py-1 mb-1 leading-5 text-[#4a4040] dark:text-[#e9f1f6] justify-between flex">
+        <extra class="mt-auto py-2 mb-1 leading-5 text-[#4a4040] dark:text-[#e9f1f6] justify-between flex">
             {{ partial "widget/date-category.html" . }}
             <a href="{{ .RelPermalink }}">继续阅读</a>
         </extra>
