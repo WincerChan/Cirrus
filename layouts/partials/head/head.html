@@ -5,6 +5,8 @@
     <title>{{ $title }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name="referrer" content="same-origin">
+    <link rel="dns-prefetch" href="{{ .Site.Params.StaticVendor.prefix}}">
+    <link rel="preconnect" href="{{ .Site.Params.StaticVendor.prefix}}">
     <script>
         !function () {
             const e = document.documentElement,
@@ -28,8 +30,8 @@
     <link href="/windi.css" rel="preload stylesheet" as="style">
     {{ else }}
     <link rel="preload" as="script"
-        href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">
-    <link href="https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/css/main.min.css"
+        href="{{ .Site.Params.StaticVendor.prefix}}/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js">
+    <link href="{{ .Site.Params.StaticVendor.prefix}}/{{ .Site.Params.StaticVendor.version }}/css/main.min.css"
         rel="preload stylesheet" as="style">
     {{ end }}
     {{ if in .Site.Params.mainSections .Type }}

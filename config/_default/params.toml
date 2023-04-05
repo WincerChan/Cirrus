@@ -10,7 +10,8 @@ disqusUserName = "wincer"
 backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
-    version = "wir@2.3.4"
+    version = "v2.3.4"
+    prefix = "https://blog-assets.itswincer.net"
 
 
 [Sitemap]

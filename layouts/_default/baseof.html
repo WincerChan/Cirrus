@@ -33,7 +33,7 @@
 {{ else }}
 <script>
     var usedLaterScript = document.createElement('script');
-    usedLaterScript.src = 'https://cdn.jsdelivr.net/npm/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js';
+    usedLaterScript.src = '{{ .Site.Params.StaticVendor.prefix}}/{{ .Site.Params.StaticVendor.version }}/js/defer.prod.js';
     document.body.appendChild(usedLaterScript);
 </script>
 <script async defer data-website-id="d50e9a0c-1726-40f7-b622-7bbf7aa989bc"
