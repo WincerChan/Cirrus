@@ -11,7 +11,7 @@ backendAPI = "https://api.itswincer.com/"
 
 [StaticVendor]
     version = "v2.3.4"
-    prefix = "https://blog-assets.itswincer.net"
+    prefix = "https://cdn.blog.itswincer.net"
 
 
 [Sitemap]
